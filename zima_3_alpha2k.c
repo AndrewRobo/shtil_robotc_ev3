@@ -483,7 +483,7 @@ task main()
 
  	rotate_boat(-180, speed_main);
 
- 		kyrs(185,1);
+ 		kyrs(185,1);//1 povorot rodara
 
  			kyrs_rul_gir_bye(-180, speed_main, 60);
 	playSound(soundBlip);
