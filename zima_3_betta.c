@@ -81,7 +81,7 @@ nose[ pointer_array++ ]  = rand()
 }// end while(true)
 
 
-}	//end task filter
+}	//end task logg
 //====================================================
 
 
