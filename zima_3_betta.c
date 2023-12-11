@@ -37,12 +37,12 @@ int partition(int l, int r)
       }// end if
     }// end for i
     return(m);
- } //end partitoin()
+} //end partitoin()
 
  // _______________
 
- void sort(int l, int r)
-   {
+void sort(int l, int r)
+{
 
     if (  r - l == 1 )     {  return; }
 
@@ -51,7 +51,7 @@ int partition(int l, int r)
     sort(l, m);
     sort(m, r);
 
- }// end  sort()
+}// end  sort()
 
 // ---------
 void quick_sort()
