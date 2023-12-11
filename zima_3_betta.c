@@ -9,25 +9,25 @@
 
 
 const int len_arr=10; //dlina massiva dlya filtra
-int nose[len_arr];    // massiv originalnih znachenij s datcika
+int nose[len_arr];    // massiv originalnih znachenij s us datcika radara
 int nose_sorted[len_arr]; //otsortirovannaya kopia massiva
-long counter=0;
+long counter=0;   // schetchik ciklov chteniya datchika
 
 int pointer_array = 0; // ukazatel -index massiva -kuda pisat sleduschee znachenie s datchika
 long rr, rr2;
 
-int partition(int l, int r)
+int partition(int k, int r)
 {// razdel sortiruemogo massiva na chasti dlya bisroi sortirovkj
     int pivot;
-    rr2=r-1-l;
-    rr=randlong() % (r-l) +l;
+    rr2=r-1-k;
+    rr=(randlong() % (r-k)) + k; // index sluchano vibrannogo razdelitelya
 
     pivot = nose_sorted[rr];
-    //= a[random(l,r - 1)]
-    int m =l;
-    for (int i = l;i<r; i++)
+    //= a[random(k,r - 1)]
+    int m = 1;
+    for ( int i = k; i < r; i++ )
     {
-        if (nose_sorted[i] < pivot)
+        if ( nose_sorted[i] < pivot )
         {
             //swap(a[i], a[m])
             int itmp = nose_sorted[i];
@@ -35,20 +35,21 @@ int partition(int l, int r)
             nose_sorted[m] = itmp;
             m++;
       }// end if
+
     }// end for i
     return(m);
 } //end partitoin()
-
  // _______________
 
-void sort(int l, int r)
-{
+void sort(int k, int r)
+{// rekursivnaya chast sortirovki vizivayuschayasama sebya 
+ // po radelennim chastyam
 
-    if (  r - l == 1 )     {  return; }
+    if (  r - k == 1 )     {  return; }
 
-    int m = partition(l, r);
+    int m = partition(k, r);
 
-    sort(l, m);
+    sort(k, m);
     sort(m, r);
 
 }// end  sort()
