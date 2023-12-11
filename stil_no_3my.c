@@ -22,21 +22,30 @@ int ryl2 =2;
 int en_rodar2 = 1;
 int g_yg;  //giroskop_yg
 
+
+
 void set_rul_zero(int ff)
-{
-	f=ff;
+{ // postavit' rul' v zadannoe pologenie na ff gradusov
+	
 	s=getMotorEncoder(port_rul);
+
+	f=ff;   // f -public
+
+	// ne otklonyat' rul boloshe 60 gradusov
 	if(f > 60){ f=60;}
 	if(f < -60){ f=-60;}
+	
+	/*  eto ostalos ot  proslih vessij
 	int x;
 	if(delt<0){ x=1;}
 	else { x=-1;}
+	*/
 	setMotorTarget(port_rul, f, 30);
 	waitUntilMotorStop(port_rul);
-}
+} // end postavit' rul' v zadannoe pologenie na ff gradusov
 
 void home_radar()
-{
+{ // radar vlevo k palke-ogranichitelu
 	motor[port_rodar] = 30;
 	while(en_rodar!=en_rodar2)
 	{
@@ -45,11 +54,16 @@ void home_radar()
 		sleep(100);
 		en_rodar = getMotorEncoder(port_rodar);
 	}
+
+	// vozmogno pravilnee sbros encodera 
+	// pravilnee delat kogda motor uge ostanovilsya
 	en_rodar=resetMotorEncoder(port_rodar);
 	motor[port_rodar] = 0;
 	sleep(500);
 	en_rodar = 0;
-}///////////////////////////
+}//  end fn  home_radar()
+
+
 void kyrs(int ygol,int speed)
 {
 	if(en_rodar!=0)
