@@ -14,18 +14,21 @@ int nose_sorted[len_arr]; //otsortirovannaya kopia massiva
 long counter=0;   // schetchik ciklov chteniya datchika
 
 int pointer_array = 0; // ukazatel -index massiva -kuda pisat sleduschee znachenie s datchika
-long rr, rr2;
+//long rr, rr2;
 
-int partition(int k, int r)
+int partition(int low, int higt)
 {// razdel sortiruemogo massiva na chasti dlya bisroi sortirovkj
-    int pivot;
-    rr2=r-1-k;
-    rr=(randlong() % (r-k)) + k; // index sluchano vibrannogo razdelitelya
-
-    pivot = nose_sorted[rr];
+    //int pivot;
+    int rr3=higt-1-low;
+    int rk1=abs(rand());
+    int rk2=rk1 % rr3;
+    int rk = rk2+low ;
+    // index sluchano vibrannogo razdelitelya
+     //rr=rk;
+    int pivot = nose_sorted[rk];
     //= a[random(k,r - 1)]
-    int m = 1;
-    for ( int i = k; i < r; i++ )
+    int m = low;
+    for ( int i = low; i < higt; i++ )
     {
         if ( nose_sorted[i] < pivot )
         {
@@ -42,10 +45,11 @@ int partition(int k, int r)
  // _______________
 
 void sort(int k, int r)
-{// rekursivnaya chast sortirovki vizivayuschayasama sebya 
+{// rekursivnaya chast sortirovki vizivayuschayasama sebya
  // po radelennim chastyam
 
-    if (  r - k == 1 )     {  return; }
+    if (  r - k <= 1 )     {  return; }
+
 
     int m = partition(k, r);
 
@@ -67,13 +71,14 @@ void quick_sort()
 //---------------------
 task logg
 {  // pishem dannie s datchika v massiv
-int time_sleep=	20;
+int time_sleep=	100;
 
 while(true)
 {
 	//	  nose[ pointer_array++ ]  = SensorValue(port_nose);
-nose[ pointer_array++ ]  = rand()
+nose[ pointer_array++ ]  = rand();
 	    sleep(time_sleep);
+ //     datalogAddValue(nDataSeries, nDataValue);
 
 	    if (pointer_array == len_arr)
  			 {pointer_array =0;   }
@@ -489,7 +494,7 @@ task main()
 
 startTask(logg);
 sleep(2000);
-quick_sort();
+// quick_sort();
 
 	home_rul();
 	//	playTone(600,10);
