@@ -10,7 +10,7 @@
 const int len_arr = 10;
 int Arr[len_arr];
 int Arr_frisen[len_arr]
-
+int x = 1
 void maseiwe_s_datcika()
 {
 	int ih = 0 ;
@@ -28,6 +28,21 @@ void cp_arr()
      Arr_frisen[ih]=arr[ih];
      ih++;
 	}	
+}
+void sortirowka()
+{
+while(x<11)
+    {
+    if(Arr_frisen[x--]>Arr_frisen[x])
+    {
+		int swap=Arr_frisen[x]
+		Arr_frisen[x]=Arr_frisen[x--]
+		Arr_frisen[x--]=swap
+	}
+
+
+
+    }
 }
 task main()
 {
