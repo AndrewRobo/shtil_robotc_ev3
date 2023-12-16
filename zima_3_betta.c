@@ -69,26 +69,27 @@ recurs++; //scetchik rekursii
    // datalogDataGroupEnd();
 
     if (  r - k == 0 )     {  return; }
-	if (  (r-k) == 1 )  {
-
-	 if ( nose_sorted[k] < nose_sorted[r] )
-      {
+	if (  (r-k) == 1 ) 
+	  {
+    	 if ( nose_sorted[k] < nose_sorted[r] )
+          {
             //swap(a[i], a[m])
             int itmp = nose_sorted[k];
             nose_sorted[k] = nose_sorted[r];
             nose_sorted[r] = itmp;
             //m++;
-      }// end if if ( nose_sorted[i] < pivot )
-      return;
-	}
+         }// end if if ( nose_sorted[i] < pivot )
+        return;
+	  } 
 
 
     int m = partition(k, r);
+
 datalogDataGroupStart();
 	datalogAddValue(0, k);
 	datalogAddValue(1, r);
-  datalogAddValue(2, m);
-  datalogAddValue(3, recurs);
+    datalogAddValue(2, m);
+    datalogAddValue(3, recurs);
 datalogDataGroupEnd();
 
     sort(k, m);
