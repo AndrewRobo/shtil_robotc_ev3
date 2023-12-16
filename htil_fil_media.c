@@ -9,45 +9,52 @@
 
 const int len_arr = 10;
 int Arr[len_arr];
-int Arr_frisen[len_arr]
-int x = 1
+int Arr_frisen[len_arr];
+int x = 1;
 void maseiwe_s_datcika()
 {
 	int ih = 0 ;
+	int whilee =1
 	while(ih<len_arr)
 	{
-   	    Arr[ih]=SensorValue(port_nose);
+		Arr[ih]=SensorValue(port_nose);
 		ih++;
 		sleep(100);
+
 	}
 }
 void cp_arr()
 {
 	int ih = 0 ;
- while(ih<len_arr)
+	while(ih<len_arr)
 	{
-     Arr_frisen[ih]=Arr[ih];
-     ih++;
+		Arr_frisen[ih]=Arr[ih];
+		ih++;
 	}
 }
 void sortirovka()
 {
-while(x<len_arr+1)
-    {
-    if(Arr_frisen[x-1]>Arr_frisen[x])
-    {
-		int swap=Arr_frisen[x];
-		Arr_frisen[x]=Arr_frisen[x-1];
-		Arr_frisen[x-1]=swap;
-		x++;
+	int whilee=1
+	while(whilee<9)
+	{
+		while(x<len_arr)
+		{
+			if(Arr_frisen[x-1]>Arr_frisen[x])
+			{
+				int swap=Arr_frisen[x];
+				Arr_frisen[x]=Arr_frisen[x-1];
+				Arr_frisen[x-1]=swap;
+			}
+			x++
+		}
+		whilee++
 	}
-    }
 }
 task main()
 {
-maseiwe_s_datcika();
-cp_arr();
-sortirovka();
+	maseiwe_s_datcika();
+	cp_arr();
+	sortirovka();
 
 
 
