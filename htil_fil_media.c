@@ -34,22 +34,25 @@ void cp_arr()
 }
 void sortirovka()
 {
-	int whilee=1
-	while(whilee<9)
+	int im, j;
+	im=0;
+	while(i<len_arr-1)
 	{
-		while(x<len_arr)
+		j=0
+		while(j<len_arr-im-1)
 		{
-			if(Arr_frisen[x-1]>Arr_frisen[x])
+			if(Arr_frisen[j+1]>Arr_frisen[j])
 			{
-				int swap=Arr_frisen[x];
-				Arr_frisen[x]=Arr_frisen[x-1];
-				Arr_frisen[x-1]=swap;
+				int swap=Arr_frisen[j];
+				Arr_frisen[j]=Arr_frisen[j+1];
+				Arr_frisen[j+1]=swap;
 			}
-			x++
+			j++
 		}
-		whilee++
+		im++
 	}
 }
+
 task main()
 {
 	maseiwe_s_datcika();
