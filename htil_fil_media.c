@@ -45,7 +45,8 @@ while(x<len_arr+1)
 task main()
 {
 maseiwe_s_datcika();
-
+cp_arr()
+sortirovka()
 
 
 
