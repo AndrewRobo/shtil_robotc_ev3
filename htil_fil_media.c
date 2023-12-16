@@ -31,7 +31,7 @@ void cp_arr()
 }
 void sortirowka()
 {
-while(x<11)
+while(x<len_arr+1)
     {
     if(Arr_frisen[x-1]>Arr_frisen[x])
     {
