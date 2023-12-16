@@ -23,30 +23,31 @@ void maseiwe_s_datcika()
 }
 void cp_arr()
 {
+	int ih = 0 ;
  while(ih<len_arr)
 	{
-     Arr_frisen[ih]=arr[ih];
+     Arr_frisen[ih]=Arr[ih];
      ih++;
-	}	
+	}
 }
-void sortirowka()
+void sortirovka()
 {
 while(x<len_arr+1)
     {
     if(Arr_frisen[x-1]>Arr_frisen[x])
     {
-		int swap=Arr_frisen[x]
-		Arr_frisen[x]=Arr_frisen[x-1]
-		Arr_frisen[x-1]=swap
-		x++
+		int swap=Arr_frisen[x];
+		Arr_frisen[x]=Arr_frisen[x-1];
+		Arr_frisen[x-1]=swap;
+		x++;
 	}
     }
 }
 task main()
 {
 maseiwe_s_datcika();
-cp_arr()
-sortirovka()
+cp_arr();
+sortirovka();
 
 
 
