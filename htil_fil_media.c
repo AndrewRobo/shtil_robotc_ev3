@@ -38,10 +38,8 @@ while(x<11)
 		int swap=Arr_frisen[x]
 		Arr_frisen[x]=Arr_frisen[x--]
 		Arr_frisen[x--]=swap
+		x++
 	}
-
-
-
     }
 }
 task main()
