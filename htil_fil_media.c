@@ -33,11 +33,11 @@ void sortirowka()
 {
 while(x<11)
     {
-    if(Arr_frisen[x--]>Arr_frisen[x])
+    if(Arr_frisen[x-1]>Arr_frisen[x])
     {
 		int swap=Arr_frisen[x]
-		Arr_frisen[x]=Arr_frisen[x--]
-		Arr_frisen[x--]=swap
+		Arr_frisen[x]=Arr_frisen[x-1]
+		Arr_frisen[x-1]=swap
 		x++
 	}
     }
