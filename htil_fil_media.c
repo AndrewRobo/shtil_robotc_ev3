@@ -20,13 +20,13 @@ void maseiwe_s_datcika()
 	{
 		Arr[ih]=SensorValue(port_nose);
 		ih++;
-		sleep(100);
+		sleep(10);
 
 	}
 }
 
 void cp_arr()
-{
+{// kopiryem massiwe arr v massiwe arr_frisen
 	int ih = 0 ;
 	while(ih<len_arr)
 	{
@@ -36,7 +36,7 @@ void cp_arr()
 }
 
 void sortirovka()
-{
+{// sortirovka na osnove pyzira 
 	int im, j;
 	im=0;
 	while( im < len_arr-1 )
