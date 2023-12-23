@@ -10,11 +10,12 @@
 const int len_arr = 100;
 int Arr[len_arr];
 int Arr_frisen[len_arr];
-int x = 1;
+//int x = 1;
+
 void maseiwe_s_datcika()
 {
 	int ih = 0 ;
-	int whilee =1
+	//int whilee =1
 	while(ih<len_arr)
 	{
 		Arr[ih]=SensorValue(port_nose);
@@ -23,6 +24,7 @@ void maseiwe_s_datcika()
 
 	}
 }
+
 void cp_arr()
 {
 	int ih = 0 ;
@@ -32,11 +34,12 @@ void cp_arr()
 		ih++;
 	}
 }
+
 void sortirovka()
 {
 	int im, j;
 	im=0;
-	while(i<len_arr-1)
+	while(im<len_arr-1)
 	{
 		j=0
 		while(j<len_arr-im-1)
@@ -53,7 +56,7 @@ void sortirovka()
 	}
 }
 
-task main()
+task main()//+++++++++++++++++++++=====+++++
 {
 	maseiwe_s_datcika();
 	cp_arr();
