@@ -1,5 +1,4 @@
 #pragma config(Sensor, S1,     port_nose,      sensorEV3_Ultrasonic)
-#pragma config(Sensor, S3,     port_right,     sensorEV3_Ultrasonic)
 #pragma config(Sensor, S4,     port_giro,      sensorEV3_Gyro)
 #pragma config(Motor,  motorA,          mot_left,      tmotorEV3_Large, PIDControl, reversed, encoder)
 #pragma config(Motor,  motorB,          port_rodar,    tmotorEV3_Medium, PIDControl, reversed, encoder)
