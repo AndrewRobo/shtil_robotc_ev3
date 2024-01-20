@@ -21,7 +21,7 @@ void init_radar()///////////////////////////////////////////////////////////////
 		sleep(100);
 		en_radar = getMotorEncoder(port_radar);
 	}
-	en_rodar=resetMotorEncoder(port_radar);
+	en_radar=resetMotorEncoder(port_radar);
 	motor[port_radar] = 0;
 	sleep(500);
 	en_radar = 0;
@@ -52,20 +52,20 @@ void init_rul()/////////////////////////////////////////////////////////////////
 
 void kyrs(int ygol,int speed)///////////////////////////////////////////////////////////////////////////////////
 {
-	if(en_rodar!=0)
+	if(en_radar!=0)
 	{
-		en_rodar = getMotorEncoder(port_rodar);
-		moveMotorTarget(port_rodar,-ygol,10*(-speed));
+		en_radar = getMotorEncoder(port_radar);
+		moveMotorTarget(port_radar,-ygol,10*(-speed));
 		sleep(2000);
-		en_rodar = getMotorEncoder(port_rodar);
+		en_radar = getMotorEncoder(port_radar);
 	}
 	else
 	{
 		ygol = ygol+16;
-		en_rodar = getMotorEncoder(port_rodar);
-		moveMotorTarget(port_rodar,-ygol,10*(-speed));
+		en_radar = getMotorEncoder(port_radar);
+		moveMotorTarget(port_radar,-ygol,10*(-speed));
 		sleep(2000);
-		en_rodar = getMotorEncoder(port_rodar);
+		en_radar = getMotorEncoder(port_radar);
 	}
 }
 
@@ -95,8 +95,8 @@ init_radar();   // moving into the dead zone(all the way)
 init_gir();     // reset giro sensor
 init_rul();     // moving into the dead zone(all the way)
 kyrs(90,2);     // set kyrs radar
-kyrs_rul(90,j2); // set kyrs rul (rudder)
-int real_yg = SensorValue[port_giro]
+kyrs_rul(90,2); // set kyrs rul (rudder)
+int real_yg = SensorValue[port_gyro];
 
 
 playTone(600,100);
