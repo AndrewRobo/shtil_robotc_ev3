@@ -13,6 +13,7 @@ int Arr_frisen[len_arr]; // massiv dlya sortirovki
 //int x = 1;
 int caunter_if = 0;//skolko ras sravnili paru
 int caunter_swp = 0;//skolko raz pomenalis mestnami
+
 void maseiwe_s_datcika()
 {  // chitaem  s datchika v massiv  Arr[]
 	int ih = 0 ;
