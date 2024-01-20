@@ -96,8 +96,12 @@ init_gir();     // reset giro sensor
 init_rul();     // moving into the dead zone(all the way)
 kyrs(90,2);     // set kyrs radar
 kyrs_rul(90,2); // set kyrs rul (rudder)
-int real_yg = SensorValue[port_gyro];
 
+int real_yg = SensorValue[port_gyro];
+displayBigTextLine(8, "%d", real_yg);
+sleep(3000);
+real_yg = SensorValue[port_gyro];
+displayBigTextLine(10, "%d", real_yg);
 
 playTone(600,100);
 
