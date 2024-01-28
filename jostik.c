@@ -13,8 +13,11 @@
 
 
 
-void init_radar()/////////////////////////////////////////////////////////////////////////////////////////
-{
+void init_radar()////////////////////////////////////////////
+{ // inicializacia naoravlenia radararadara
+ // vraschaem motor radara do ogranichitela
+ // i vistavlyaen nulevim kurs vpered
+
   int en_radar = 1;
   int en_radar2 = 2;
 
@@ -26,14 +29,17 @@ void init_radar()///////////////////////////////////////////////////////////////
 		sleep(50);
 		en_radar = getMotorEncoder(port_radar);
 	  }
-	en_radar=resetMotorEncoder(port_radar);
+
+	resetMotorEncoder(port_radar);
 	motor[port_radar] = 0;
 	sleep(500);
-	en_radar = 0;
+
 
 	moveMotorTarget(port_radar,-110,-30); // 100 grad - 90 grad
   //                 plus experimentalnaya korrektirovka
-  waitUntilMotorStop(port_radar);
+  waitUntilMotorStop(port_radar); 
+
+  resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
 }
 
 
@@ -60,7 +66,6 @@ void init_rul()/////////////////////////////////////////////////////////////////
   moveMotorTarget(port_rul,-100,-30); // 100 grad - 90 grad
   //                 plus experimentalnaya korrektirovka
   waitUntilMotorStop(port_rul);
-
   resetMotorEncoder(port_rul);
 }
 
@@ -80,22 +85,25 @@ while(1)
   motor[mot_right] = joystick.joy1_y2;
 
 
-  if(joy1Btn(Btn5)) // umenshaen ugol rulya  do -60 gradusov
+  if( joy1Btn(Btn5) ) // umenshaen ugol rulya  do -60 gradusov
   	{
-  		if(nMotorEncoder(port_rul)>-60)
+  		if( nMotorEncoder(port_rul) > -60 )
   		{
-  		moveMotorTarget(port_rul,-10,-10);
-  		waitUntilMotorStop(port_rul);
+  		  moveMotorTarget(port_rul,-10,-10);
+  		  waitUntilMotorStop(port_rul);
   		}
   	}
-  if(joy1Btn(Btn6)) // uvelichivaem ugol rulya do +60 gradusov
+  if( joy1Btn(Btn6) ) // uvelichivaem ugol rulya do +60 gradusov
   	{
   		if( nMotorEncoder(port_rul) < 60 )
   		{
-  		moveMotorTarget(port_rul,+10,10);
-  		waitUntilMotorStop(port_rul);
+  		  moveMotorTarget(port_rul,+10,10);
+  		  waitUntilMotorStop(port_rul);
  		}
 	}
+
+
+
 }
 
 
