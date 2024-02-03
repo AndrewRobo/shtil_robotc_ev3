@@ -11,21 +11,26 @@
 #include "JoystickDriver.c"
 #pragma DebuggerWindows("JoystickSimple")
 
-const int len_ultrasonks_left=11;
-int Arr_left[len_ultrasonks_left];
-int Arr_left_frisen[len_ultrasonks_left];
 
+const int len_left_real=20 ;
+int arr_left[len_left_real];
+int ih_left = 0;
 
+const int len_left_frizen=11  ;
+int arr_left_frozen[len_left_frizen];
 
-void maseiwe_s_datcika_left()///////////////////////////////////////////////////////////////////
-{  // chitaem  s datchika v massiv  Arr_left[]
-	int ih_left = 0 ;
-	while(ih_left<len_ultrasonks_left)
+void massive_left_sensor()
+{
+	while(1)
 	{
-		Arr_left[ih_left]=SensorValue(port_left);
-		ih_left++;
-		sleep(100);
+   arr_left[ih_left]=SensorValue(port_left);
+   ih_left++;
+   if( ih_left >= len_left_real){ ih_left = 0; }
 	}
+}
+task sensors()
+{
+	massive_left_sensor();
 }
 void init_radar()////////////////////////////////////////////
 { // inicializacia naoravlenia radararadara
@@ -90,14 +95,13 @@ task main()/////////////////////////////////////////////////////////////////////
 	init_radar();
 	sleep(300);
 	init_rul();
-
+  startTask(sensors);
 
 	while(1)
 	{ // y - otklonenia joistikov s pulta otpravliaem v motori
 		getJoystickSettings(joystick);
 		motor[mot_left]  = joystick.joy1_y1;
 		motor[mot_right] = joystick.joy1_y2;
-
 
 		if( joy1Btn(Btn5) ) // umenshaen ugol rulya  do -60 gradusov
 		{
@@ -117,7 +121,6 @@ task main()/////////////////////////////////////////////////////////////////////
 		}
 		if( joy1Btn(Btn7) ) // umenshaen ugol rulya  do -60 gradusov   //  povorot k pravomu bortu
 		{
-
 			if( nMotorEncoder(port_radar) > -80 )
 			{
 				moveMotorTarget(port_radar,-10,-10);
@@ -126,7 +129,6 @@ task main()/////////////////////////////////////////////////////////////////////
 		}
 		if( joy1Btn(Btn8) ) // uvelichivaem ugol rulya do +60 gradusov   	// povotachivaem radar na pravij bort
 		{
-
 			if( nMotorEncoder(port_radar) < 80 )
 			{
 				moveMotorTarget(port_radar,10,10);
