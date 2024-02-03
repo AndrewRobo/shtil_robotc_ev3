@@ -1,6 +1,6 @@
 #pragma config(Sensor, S1,     port_nose,      sensorEV3_Ultrasonic)
 #pragma config(Sensor, S2,     port_left,      sensorEV3_Ultrasonic)
-#pragma config(Sensor, S3,     port_roght,     sensorEV3_Ultrasonic)
+#pragma config(Sensor, S3,     port_right,     sensorEV3_Ultrasonic)
 #pragma config(Sensor, S4,     port_gyro,      sensorEV3_Gyro)
 #pragma config(Motor,  motorA,          mot_left,      tmotorEV3_Large, openLoop, encoder)
 #pragma config(Motor,  motorB,          port_radar,    tmotorEV3_Medium, openLoop, encoder)
@@ -19,18 +19,41 @@ int ih_left = 0;
 const int len_left_frizen=11  ;
 int arr_left_frozen[len_left_frizen];
 
-void massive_left_sensor()
+//////////////////////////////////////////////////////////////////////////
+const int len_right_real=20 ;
+int arr_right[len_right_real];
+int ih_right = 0;
+
+const int len_right_frizen=11  ;
+int arr_right_frozen[len_right_frizen];
+
+//////////////////////////////////////////////////////////////////////////
+const int len_nose_real=20 ;
+int arr_nose[len_nose_real];
+int ih_nose = 0;
+
+const int len_nose_frizen=11  ;
+int arr_nose_frozen[len_nose_frizen];
+
+task sensors()
 {
 	while(1)
 	{
    arr_left[ih_left]=SensorValue(port_left);
    ih_left++;
    if( ih_left >= len_left_real){ ih_left = 0; }
-	}
-}
-task sensors()
-{
-	massive_left_sensor();
+   sleep(10);
+
+   arr_right[ih_right]=SensorValue(port_right);
+   ih_right++;
+   if( ih_right >= len_right_real){ ih_right = 0; }
+   sleep(10);
+
+   arr_nose[ih_nose]=SensorValue(port_nose);
+   ih_nose++;
+   if( ih_nose >= len_nose_real){ ih_nose = 0; }
+	 sleep(10);
+   }
 }
 void init_radar()////////////////////////////////////////////
 { // inicializacia naoravlenia radararadara
