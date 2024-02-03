@@ -12,49 +12,53 @@
 #pragma DebuggerWindows("JoystickSimple")
 
 
-const int len_left_real=20 ;
-int arr_left[len_left_real];
+const int len_left_real = 17 ;
+int arr_left[ len_left_real ];
 int ih_left = 0;
 
-const int len_left_frizen=11  ;
-int arr_left_frozen[len_left_frizen];
+const int len_left_frizen = 11  ;
+int arr_left_frozen[ len_left_frizen ];
 
 //////////////////////////////////////////////////////////////////////////
-const int len_right_real=20 ;
-int arr_right[len_right_real];
+const int len_right_real = 19 ;
+int arr_right[ len_right_real ];
 int ih_right = 0;
 
-const int len_right_frizen=11  ;
-int arr_right_frozen[len_right_frizen];
+const int len_right_frizen = 11  ;
+int arr_right_frozen[ len_right_frizen ];
 
 //////////////////////////////////////////////////////////////////////////
-const int len_nose_real=20 ;
-int arr_nose[len_nose_real];
+const int len_nose_real = 20 ;
+int arr_nose[ len_nose_real ];
 int ih_nose = 0;
 
-const int len_nose_frizen=11  ;
+const int len_nose_frizen= 11  ;
 int arr_nose_frozen[len_nose_frizen];
 
 task sensors()
 {
-	while(1)
-	{
-   arr_left[ih_left]=SensorValue(port_left);
+ while(1)
+ {
+   arr_left[ ih_left ] = SensorValue( port_left );
    ih_left++;
-   if( ih_left >= len_left_real){ ih_left = 0; }
+   if( ih_left >= len_left_real ){ ih_left = 0; }
    sleep(10);
 
-   arr_right[ih_right]=SensorValue(port_right);
+   arr_right[ ih_right ] = SensorValue( port_right );
    ih_right++;
-   if( ih_right >= len_right_real){ ih_right = 0; }
+   if( ih_right >= len_right_real ){ ih_right = 0; }
    sleep(10);
 
-   arr_nose[ih_nose]=SensorValue(port_nose);
+   arr_nose[ ih_nose ] = SensorValue( port_nose );
    ih_nose++;
-   if( ih_nose >= len_nose_real){ ih_nose = 0; }
-	 sleep(10);
-   }
-}
+   if( ih_nose >= len_nose_real ){ ih_nose = 0; }
+   sleep(10);
+
+ }//while(1)
+}// task sensors()
+
+
+
 void init_radar()////////////////////////////////////////////
 { // inicializacia naoravlenia radararadara
 	// vraschaem motor radara do ogranichitela
