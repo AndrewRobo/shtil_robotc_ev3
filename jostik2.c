@@ -11,7 +11,22 @@
 #include "JoystickDriver.c"
 #pragma DebuggerWindows("JoystickSimple")
 
+const int len_ultrasonks_left=11;
+int Arr_left[len_ultrasonks_left];
+int Arr_left_frisen[len_ultrasonks_left];
 
+
+
+void maseiwe_s_datcika_left()///////////////////////////////////////////////////////////////////
+{  // chitaem  s datchika v massiv  Arr_left[]
+	int ih_left = 0 ;
+	while(ih_left<len_ultrasonks_left)
+	{
+		Arr_left[ih_left]=SensorValue(port_left);
+		ih_left++;
+		sleep(100);
+	}
+}
 void init_radar()////////////////////////////////////////////
 { // inicializacia naoravlenia radararadara
 	// vraschaem motor radara do ogranichitela

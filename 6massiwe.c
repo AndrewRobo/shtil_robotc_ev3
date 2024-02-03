@@ -17,18 +17,17 @@ task main()/////////////////////////////////////////////////////////////////////
 
 while(1)
 {
-	getJoystickSettings(joystick)
-	motor[mot_left]  = joystick.joy1_y1
-	motor[mot_right] = joystick.joy1_y2
-	int encoder_rul = SensorValue(nMotorEncoder(port_rul))
+	getJoystickSettings(joystick);
+	motor[mot_left]  = joystick.joy1_y1;
+	motor[mot_right] = joystick.joy1_y2;
   if(joy1Btn(Btn1))
   	{
-  		setMotorTarget(port_rul,+5,10)
+  		setMotorTarget(port_rul,+5,10);
 
   		}
   if(joy1Btn(Btn2))
   	{
-  		setMotorTarget(port_rul,-5,-10)
+  		setMotorTarget(port_rul,-5,-10);
   		}
 
 }
