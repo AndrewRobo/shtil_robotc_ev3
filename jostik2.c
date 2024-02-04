@@ -65,7 +65,7 @@ void left_frozen(){
 		arr_left_frozen[ ii ] = arr_left[ ih ] ;
 
 		ii-- ;
-		if( ii < 0 ) { break }		
+		if( ii < 0 ) { break; }
 		ih-- ;
 		if( ih < 0 ) { ih = len_left_real - 1 ; }
 
@@ -79,7 +79,7 @@ void right_frozen(){
 		arr_right_frozen[ ii ] = arr_right[ ih ] ;
 
 		ii-- ;
-		if( ii < 0 ) { break }		
+		if( ii < 0 ) { break; }
 		ih-- ;
 		if( ih < 0 ) { ih = len_right_real - 1 ; }
 
@@ -93,9 +93,9 @@ void nose_frozen(){
 		arr_nose_frozen[ ii ] = arr_nose[ ih ] ;
 
 		ii-- ;
-		if( ii < 0 ) { break }		
+		if( ii < 0 ) { break; }
 		ih-- ;
-		if( ih < 0 ) { ih = len_noset_real - 1 ; }
+		if( ih < 0 ) { ih = len_nose_real - 1 ; }
 
 	}
 }
@@ -205,5 +205,21 @@ task main()/////////////////////////////////////////////////////////////////////
 				waitUntilMotorStop(port_radar);
 			}
 		}
+
+		if( joy1Btn(Btn1) )  // zapolnenie froze po knopke
+		{
+			left_frozen();
+		}
+
+		if( joy1Btn(Btn3) )
+		{
+			right_frozen();
+		}
+
+		if( joy1Btn(Btn4) )
+		{
+			nose_frozen();
+		}
+
 	}//while(1)
 } //task_main
