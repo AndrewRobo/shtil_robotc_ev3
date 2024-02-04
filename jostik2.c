@@ -16,27 +16,28 @@ const int len_left_real = 17 ;
 int arr_left[ len_left_real ];
 int ih_left = 0;
 
-const int len_left_frizen = 11  ;
-int arr_left_frozen[ len_left_frizen ];
+const int len_left_frozen = 11  ;
+int arr_left_frozen[ len_left_frozen ];
 
 //////////////////////////////////////////////////////////////////////////
 const int len_right_real = 19 ;
 int arr_right[ len_right_real ];
 int ih_right = 0;
 
-const int len_right_frizen = 11  ;
-int arr_right_frozen[ len_right_frizen ];
+const int len_right_frozen = 11  ;
+int arr_right_frozen[ len_right_frozen ];
 
 //////////////////////////////////////////////////////////////////////////
 const int len_nose_real = 20 ;
 int arr_nose[ len_nose_real ];
 int ih_nose = 0;
 
-const int len_nose_frizen= 11  ;
-int arr_nose_frozen[len_nose_frizen];
+const int len_nose_frozen= 11  ;
+int arr_nose_frozen[len_nose_frozen];
 
 task sensors()
-{
+{ // oprashivaem datchiki i po krugu zapisivaem v massip
+// originalnih poslednih znachenij datchika
  while(1)
  {
    arr_left[ ih_left ] = SensorValue( port_left );
@@ -56,6 +57,23 @@ task sensors()
 
  }//while(1)
 }// task sensors()
+
+void left_frozen(){
+	int ih = ih_left ;
+	int ii = len_left_frozen - 1 ;
+	while(1){
+		arr_left_frozen[ ii ] = arr_left [ih] ;
+		ih-- ;
+		if( ih < 0 ) { ih = len_right_real -1 ;}
+		ii-- ;
+		if( ii < 0 ) { break }
+
+	}
+}
+
+void right_frozen(){}
+
+void nose_frozen(){}
 
 
 
