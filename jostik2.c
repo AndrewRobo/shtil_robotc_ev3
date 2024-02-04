@@ -63,17 +63,42 @@ void left_frozen(){
 	int ii = len_left_frozen - 1 ;
 	while(1){
 		arr_left_frozen[ ii ] = arr_left[ ih ] ;
-		ih-- ;
-		if( ih < 0 ) { ih = len_right_real -1 ;}
+
 		ii-- ;
-		if( ii < 0 ) { break }
+		if( ii < 0 ) { break }		
+		ih-- ;
+		if( ih < 0 ) { ih = len_left_real - 1 ; }
 
 	}
 }
 
-void right_frozen(){}
+void right_frozen(){
+	int ih = ih_right ;
+	int ii = len_right_frozen - 1 ;
+	while(1){
+		arr_right_frozen[ ii ] = arr_right[ ih ] ;
 
-void nose_frozen(){}
+		ii-- ;
+		if( ii < 0 ) { break }		
+		ih-- ;
+		if( ih < 0 ) { ih = len_right_real - 1 ; }
+
+	}
+}
+
+void nose_frozen(){
+	int ih = ih_nose ;
+	int ii = len_nose_frozen - 1 ;
+	while(1){
+		arr_nose_frozen[ ii ] = arr_nose[ ih ] ;
+
+		ii-- ;
+		if( ii < 0 ) { break }		
+		ih-- ;
+		if( ih < 0 ) { ih = len_noset_real - 1 ; }
+
+	}
+}
 
 
 
