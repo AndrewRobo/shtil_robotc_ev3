@@ -62,7 +62,7 @@ void left_frozen(){
 	int ih = ih_left ;
 	int ii = len_left_frozen - 1 ;
 	while(1){
-		arr_left_frozen[ ii ] = arr_left [ih] ;
+		arr_left_frozen[ ii ] = arr_left[ ih ] ;
 		ih-- ;
 		if( ih < 0 ) { ih = len_right_real -1 ;}
 		ii-- ;
