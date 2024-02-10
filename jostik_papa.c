@@ -61,7 +61,7 @@ void sortirovka_left_2()
 {
 for(int ii = 0; ii<len_left_frozen;ii++)
 {
-for(int aa = ii+1;aa<len_left_frozen;a++)
+for(int aa = ii+1;aa<len_left_frozen;aa++)
 {
 	                int imp = arr_left_frozen[ii];
 					arr_left_frozen[ii] = arr_left_frozen[aa];
