@@ -240,6 +240,7 @@ task main()/////////////////////////////////////////////////////////////////////
 		if( joy1Btn(Btn1) )  // zapolnenie froze po knopke
 		{
 			left_frozen();
+            sortirovka_left_2();
 		}
 
 		if( joy1Btn(Btn3) )
