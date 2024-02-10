@@ -35,6 +35,22 @@ int ih_nose = 0;
 const int len_nose_frozen= 11  ;
 int arr_nose_frozen[len_nose_frozen];
 
+void sortirovka()
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 task sensors()
 { // oprashivaem datchiki i po krugu zapisivaem v massip
 // originalnih poslednih znachenij datchika
