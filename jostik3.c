@@ -35,21 +35,19 @@ int ih_nose = 0;
 const int len_nose_frozen= 11  ;
 int arr_nose_frozen[len_nose_frozen];
 
-void sortirovka()
+void sortirovka_left()
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
+int o = 1
+int n = 10
+while(o>0)
+	{
+		if(arr_left_frozen[n--]>arr_left_frozen[n])
+		{
+			int imp = arr_left_frozen[n]
+            arr_left_frozen[n] = arr_left_frozen[n--]
+            arr_left_frozen[n--] = imp
+		}
+	}
 }
 task sensors()
 { // oprashivaem datchiki i po krugu zapisivaem v massip
@@ -73,6 +71,7 @@ task sensors()
 
  }//while(1)
 }// task sensors()
+\
 
 void left_frozen(){
 	int ih = ih_left ;
