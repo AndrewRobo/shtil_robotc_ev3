@@ -57,16 +57,19 @@ void sortirovka_left()
 		}
 	}
 }
-void sortirovka_left_2
+void sortirovka_left_2()
 {
 for(int ii = 0; ii<len_left_frozen;ii++)
 {
 for(int aa = ii+1;aa<len_left_frozen;a++)
+{
 	int imp = arr_left_frozen[n];
 					arr_left_frozen[n] = arr_left_frozen[n-1];
 					arr_left_frozen[n-1] = imp;
+ }
 }
 }
+
 task sensors()
 { // oprashivaem datchiki i po krugu zapisivaem v massip
 	// originalnih poslednih znachenij datchika
