@@ -70,7 +70,6 @@ void sortirovka_buble_left()
 				arr_left_frozen[i] = arr_left_frozen[i+1];
 				arr_left_frozen[i+1] = temp_value;
 				wasSort++;
-				// size--;
 			}
 		}
 		if(wasSort==0) break;
