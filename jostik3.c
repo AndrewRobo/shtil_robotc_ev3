@@ -42,21 +42,41 @@ void sortirovka_left()
 	while(tmp>0)
 	{
 		tmp=0;
-		while(n>1)
+		while(n>0)
 		{
+			if(arr_left_frozen[n-1]>arr_left_frozen[n])
 			{
-				if(arr_left_frozen[n-1]>arr_left_frozen[n])
-				{
-					int imp = arr_left_frozen[n];
-					arr_left_frozen[n] = arr_left_frozen[n-1];
-					arr_left_frozen[n-1] = imp;
-					tmp++;
-				}
-				n--;
+				int imp = arr_left_frozen[n];
+				arr_left_frozen[n] = arr_left_frozen[n-1];
+				arr_left_frozen[n-1] = imp;
+				tmp++;
 			}
+			n--;
 		}
 	}
 }
+
+
+void sortirovka_buble_left()
+{
+	int size = len_left_frozen;
+	while(1)
+	{
+		int wasSort = 0;
+		for (int i=0; i < size-1; i++){
+			if(arr_left_frozen[i]>arr_left_frozen[i+1])
+			{
+				int temp_value = arr_left_frozen[i];
+				arr_left_frozen[i] = arr_left_frozen[i+1];
+				arr_left_frozen[i+1] = temp_value;
+				wasSort++;
+				// size--;
+			}
+		}
+		if(wasSort==0) break;
+	}
+}
+
 task sensors()
 { // oprashivaem datchiki i po krugu zapisivaem v massip
 	// originalnih poslednih znachenij datchika
@@ -230,6 +250,8 @@ task main()/////////////////////////////////////////////////////////////////////
 		if( joy1Btn(Btn1) )  // zapolnenie froze po knopke
 		{
 			left_frozen();
+			// sortirovka_left();
+			sortirovka_buble_left();
 		}
 
 		if( joy1Btn(Btn3) )
