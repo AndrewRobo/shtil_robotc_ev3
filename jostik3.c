@@ -37,39 +37,47 @@ int arr_nose_frozen[len_nose_frozen];
 
 void sortirovka_left()
 {
-int o = 1
-int n = 10
-while(o>0)
+	int n = 10;
+	int tmp = 1;
+	while(tmp>0)
 	{
-		if(arr_left_frozen[n--]>arr_left_frozen[n])
+		tmp=0;
+		while(n>1)
 		{
-			int imp = arr_left_frozen[n]
-            arr_left_frozen[n] = arr_left_frozen[n--]
-            arr_left_frozen[n--] = imp
+			{
+				if(arr_left_frozen[n-1]>arr_left_frozen[n])
+				{
+					int imp = arr_left_frozen[n];
+					arr_left_frozen[n] = arr_left_frozen[n-1];
+					arr_left_frozen[n-1] = imp;
+					tmp++;
+				}
+				n--;
+			}
 		}
 	}
 }
 task sensors()
 { // oprashivaem datchiki i po krugu zapisivaem v massip
-// originalnih poslednih znachenij datchika
- while(1)
- {
-   arr_left[ ih_left ] = SensorValue( port_left );
-   ih_left++;
-   if( ih_left >= len_left_real ){ ih_left = 0; }
-   sleep(10);
+	// originalnih poslednih znachenij datchika
+	while(1)
+	{
+		arr_left[ ih_left ] = SensorValue( port_left );
+		ih_left++;
+		if( ih_left >= len_left_real ){ ih_left = 0; }
+		sleep(10);
 
-   arr_right[ ih_right ] = SensorValue( port_right );
-   ih_right++;
-   if( ih_right >= len_right_real ){ ih_right = 0; }
-   sleep(10);
+		arr_right[ ih_right ] = SensorValue( port_right );
+		ih_right++;
+		if( ih_right >= len_right_real ){ ih_right = 0; }
+		sleep(10);
 
-   arr_nose[ ih_nose ] = SensorValue( port_nose );
-   ih_nose++;
-   if( ih_nose >= len_nose_real ){ ih_nose = 0; }
-   sleep(10);
+		arr_nose[ ih_nose ] = SensorValue( port_nose );
+		ih_nose++;
+		if( ih_nose >= len_nose_real ){ ih_nose = 0; }
+		sleep(10);
 
- }//while(1)
+	}//while(1)
 }// task sensors()
 \
 
@@ -178,7 +186,7 @@ task main()/////////////////////////////////////////////////////////////////////
 	init_radar();
 	sleep(300);
 	init_rul();
-  startTask(sensors);
+	startTask(sensors);
 
 	while(1)
 	{ // y - otklonenia joistikov s pulta otpravliaem v motori
