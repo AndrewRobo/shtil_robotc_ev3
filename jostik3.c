@@ -35,12 +35,12 @@ const int len_nose_frozen = 11;
 int arr_nose_frozen[len_nose_frozen];
 
 void sortirovka_left()
-{ // sortirovka puzirkom Andreya
-	int tmp = 1;  //flag poscheta nalichiya swapov
+{				 // sortirovka puzirkom Andreya
+	int tmp = 1; // flag poscheta nalichiya swapov
 	while (tmp > 0)
 	{
 		tmp = 0;
-        int n = len_left_frozen-1;
+		int n = len_left_frozen - 1;
 		while (n > 0)
 		{
 			if (arr_left_frozen[n - 1] > arr_left_frozen[n])
@@ -56,7 +56,7 @@ void sortirovka_left()
 }
 
 void sortirovka_buble_left()
-{ //  sortirovka puzirkom Sergej 
+{ //  sortirovka puzirkom Sergej
 	int size = len_left_frozen;
 	while (1)
 	{
