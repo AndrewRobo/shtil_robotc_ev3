@@ -34,6 +34,7 @@ int ih_nose = 0;
 const int len_nose_frozen = 11;
 int arr_nose_frozen[len_nose_frozen];
 
+/////////////////////////////////////////////////////////////////////
 void sortirovka_left()
 {
     int n = 10;
@@ -56,6 +57,8 @@ void sortirovka_left()
         }
     }
 }
+
+
 void sortirovka_left_2()
 {
     for (int ii = 0; ii < len_left_frozen; ii++)
@@ -69,6 +72,32 @@ void sortirovka_left_2()
                 arr_left_frozen[aa] = imp;
             }
         }
+    }
+}
+
+void qsort_left(int fierst, int last)
+{
+	if ( fierst < last ){
+        int left = fierst;
+        int right = last;
+        int middle = arr_left_frozen[ (left+last)/2 ];
+
+		do{
+            while( arr_left_frozen[ left ] < middle )
+              left++;
+            while( arr_left_frozen[ right ] > middle )
+                right--;
+            if ( left <= right ) {
+                int tmp = arr_left_frozen[ left ];
+                arr_left_frozen[ left ] = arr_left_frozen[ right ];
+                arr_left_frozen[ right ] = tmp;
+                left++;
+                right--;
+            }
+
+		}while( left < right );
+        qsort_left( fierst, right );
+        qsort_left( left, last );
     }
 }
 
@@ -250,7 +279,7 @@ task main() ////////////////////////////////////////////////////////////////////
                 waitUntilMotorStop(port_rul);
             }
         }
-        if (joy1Btn(Btn7)) // umenshaen ugol rulya  do -60 gradusov   //  povorot k pravomu bortu
+        if (joy1Btn(Btn7)) // umenshaen ugol radara  do -90 gradusov   //  povorot k pravomu bortu
         {
             if (nMotorEncoder(port_radar) > -80)
             {
@@ -258,7 +287,7 @@ task main() ////////////////////////////////////////////////////////////////////
                 waitUntilMotorStop(port_radar);
             }
         }
-        if (joy1Btn(Btn8)) // uvelichivaem ugol rulya do +60 gradusov   	// povotachivaem radar na pravij bort
+        if (joy1Btn(Btn8)) // uvelichivaem ugol radara do +90 gradusov   	// povotachivaem radar na pravij bort
         {
             if (nMotorEncoder(port_radar) < 80)
             {
@@ -270,7 +299,8 @@ task main() ////////////////////////////////////////////////////////////////////
         if (joy1Btn(Btn1)) // zapolnenie froze po knopke
         {
             left_frozen();
-            sortirovka_left_2();
+            //sortirovka_left_2();
+            qsort_left( 0, len_left_frozen-1 );
         }
 
         if (joy1Btn(Btn3))
