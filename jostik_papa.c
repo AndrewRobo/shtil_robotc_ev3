@@ -37,26 +37,22 @@ int arr_nose_frozen[len_nose_frozen];
 /////////////////////////////////////////////////////////////////////
 void sortirovka_left()
 {
-    int n = 10;
     int tmp = 1;
     while (tmp > 0)
     {
         tmp = 0;
-        while (n > 1)
+        for( int n = len_left_frozen-1; n > 1 ; n-- )
         {
-            {
-                if (arr_left_frozen[n - 1] > arr_left_frozen[n])
+            if (arr_left_frozen[n - 1] > arr_left_frozen[n])
                 {
                     int imp = arr_left_frozen[n];
                     arr_left_frozen[n] = arr_left_frozen[n - 1];
                     arr_left_frozen[n - 1] = imp;
                     tmp++;
                 }
-                n--;
-            }
         }
     }
-}
+}//puzirkovaya sortirovka Andreya popravlena
 
 
 void sortirovka_left_2()
@@ -73,31 +69,36 @@ void sortirovka_left_2()
             }
         }
     }
-}
+}// sortirovka pereborom
 
-void qsort_left(int fierst, int last)
-{
-	if ( fierst < last ){
-        int left = fierst;
+void qsort(int *arr, int first, int last)
+{// bistraya sortirovka
+	if ( first < last )
+    {
+        int left = first;
         int right = last;
-        int middle = arr_left_frozen[ (left+last)/2 ];
+        int middle = arr[ (left+last)/2 ];
 
 		do{
-            while( arr_left_frozen[ left ] < middle )
-              left++;
-            while( arr_left_frozen[ right ] > middle )
-                right--;
-            if ( left <= right ) {
-                int tmp = arr_left_frozen[ left ];
-                arr_left_frozen[ left ] = arr_left_frozen[ right ];
-                arr_left_frozen[ right ] = tmp;
+            while( arr[ left ] < middle )
+             left++;
+
+            while( arr[ right ] > middle )
+              right--;
+
+            if ( left <= right ) 
+            {
+                int tmp = arr[ left ];
+                arr[ left ] = arr[ right ];
+                arr[ right ] = tmp;
+
                 left++;
                 right--;
             }
-
 		}while( left < right );
-        qsort_left( fierst, right );
-        qsort_left( left, last );
+
+        qsort(arr, first, right );
+        qsort(arr, left, last );
     }
 }
 
@@ -300,7 +301,7 @@ task main() ////////////////////////////////////////////////////////////////////
         {
             left_frozen();
             //sortirovka_left_2();
-            qsort_left( 0, len_left_frozen-1 );
+            qsort(arr_left_frozen, 0, len_left_frozen-1 );
         }
 
         if (joy1Btn(Btn3))
