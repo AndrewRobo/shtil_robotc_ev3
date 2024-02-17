@@ -11,8 +11,9 @@
 #include "JoystickDriver.c"
 #pragma DebuggerWindows("JoystickSimple")
 
-int n5 = 0;
-int n6 = 0;
+int filtr_itog_left = arr_left_frozen[5];
+int filtr_itog_nose = arr_nose_frozen[5];
+int filtr_itog_right = arr_right_frozen[5];
 
 const int len_left_real = 17;
 int arr_left[len_left_real];
@@ -295,18 +296,19 @@ task main() ////////////////////////////////////////////////////////////////////
 			buble_sort(arr_left_frozen,len_left_frozen);
 			//sortirovka_left();
 			//sortirovka_buble_left();
-            n6 = sizeof(arr_left_frozen)/ sizeof(int);
 
 		}
 
 		if (joy1Btn(Btn3))
 		{
 			right_frozen();
+				buble_sort(arr_right_frozen,len_right_frozen);
 		}
 
 		if (joy1Btn(Btn4))
 		{
 			nose_frozen();
+				buble_sort(arr_nose_frozen,len_nose_frozen);
 		}
 
 	} // while(1)
