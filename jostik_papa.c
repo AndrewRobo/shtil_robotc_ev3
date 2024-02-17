@@ -37,9 +37,7 @@ int arr_nose_frozen[len_nose_frozen];
 /////////////////////////////////////////////////////////////////////
 void sortirovka_left()
 {
-    int tmp = 1;
-    while (tmp > 0)
-    {
+   do{
         tmp = 0;
         for( int n = len_left_frozen-1; n > 1 ; n-- )
         {
@@ -51,7 +49,7 @@ void sortirovka_left()
                     tmp++;
                 }
         }
-    }
+    }while (tmp > 0)
 }//puzirkovaya sortirovka Andreya popravlena
 
 
@@ -78,7 +76,6 @@ void qsort(int *arr, int first, int last)
         int left = first;
         int right = last;
         int middle = arr[ (left+last)/2 ];
-
 		do{
             while( arr[ left ] < middle )
              left++;
@@ -86,7 +83,7 @@ void qsort(int *arr, int first, int last)
             while( arr[ right ] > middle )
               right--;
 
-            if ( left <= right ) 
+            if ( left <= right )
             {
                 int tmp = arr[ left ];
                 arr[ left ] = arr[ right ];

@@ -273,8 +273,8 @@ task main() ////////////////////////////////////////////////////////////////////
 		if (joy1Btn(Btn1)) // zapolnenie froze po knopke
 		{
 			left_frozen();
-			// sortirovka_left();
-			sortirovka_buble_left();
+			sortirovka_left();
+			//sortirovka_buble_left();
 		}
 
 		if (joy1Btn(Btn3))
