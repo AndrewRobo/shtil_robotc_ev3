@@ -38,7 +38,7 @@ int arr_nose_frozen[len_nose_frozen];
 void sortirovka_left()
 {
    do{
-        tmp = 0;
+        int tmp = 0;
         for( int n = len_left_frozen-1; n > 1 ; n-- )
         {
             if (arr_left_frozen[n - 1] > arr_left_frozen[n])

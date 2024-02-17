@@ -18,6 +18,8 @@ int ih_left = 0;
 const int len_left_frozen = 11;
 int arr_left_frozen[len_left_frozen];
 
+
+
 //////////////////////////////////////////////////////////////////////////
 const int len_right_real = 19;
 int arr_right[len_right_real];
