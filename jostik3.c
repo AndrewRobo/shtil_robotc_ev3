@@ -78,6 +78,7 @@ void buble_sort( int *arr, int lenn )
 		}
 	}while (tmp > 0)
 }
+
 void sortirovka_buble_left()
 { //  sortirovka puzirkom Sergej
 	int size = len_left_frozen;
@@ -313,7 +314,7 @@ task main() ////////////////////////////////////////////////////////////////////
 			nose_frozen();
 				buble_sort(arr_nose_frozen,len_nose_frozen);
 		}
- filtr_itog_left = arr_left_frozen[];
+ filtr_itog_left = arr_left_frozen[5];
  filtr_itog_nose = arr_nose_frozen[5];
  filtr_itog_right = arr_right_frozen[5];
 
