@@ -11,9 +11,10 @@
 #include "JoystickDriver.c"
 #pragma DebuggerWindows("JoystickSimple")
 
-int filtr_itog_left = arr_left_frozen[5];
-int filtr_itog_nose = arr_nose_frozen[5];
-int filtr_itog_right = arr_right_frozen[5];
+int filtr_itog_left;
+int filtr_itog_nose;
+int filtr_itog_right;
+
 
 const int len_left_real = 17;
 int arr_left[len_left_real];
@@ -37,6 +38,8 @@ int ih_nose = 0;
 
 const int len_nose_frozen = 11;
 int arr_nose_frozen[len_nose_frozen];
+
+
 
 void sortirovka_left()
 {				 // sortirovka puzirkom Andreya
@@ -310,6 +313,9 @@ task main() ////////////////////////////////////////////////////////////////////
 			nose_frozen();
 				buble_sort(arr_nose_frozen,len_nose_frozen);
 		}
+ filtr_itog_left = arr_left_frozen[];
+ filtr_itog_nose = arr_nose_frozen[5];
+ filtr_itog_right = arr_right_frozen[5];
 
 	} // while(1)
 } // task_main
