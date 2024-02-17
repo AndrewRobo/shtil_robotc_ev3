@@ -157,7 +157,6 @@ void nose_frozen()
 	while (1)
 	{
 		arr_nose_frozen[ii] = arr_nose[ih];
-
 		ii--;
 		if (ii < 0)
 		{
