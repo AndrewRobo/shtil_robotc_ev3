@@ -11,14 +11,15 @@
 #include "JoystickDriver.c"
 #pragma DebuggerWindows("JoystickSimple")
 
+int n5 = 0;
+int n6 = 0;
+
 const int len_left_real = 17;
 int arr_left[len_left_real];
 int ih_left = 0;
 
 const int len_left_frozen = 11;
 int arr_left_frozen[len_left_frozen];
-
-
 
 //////////////////////////////////////////////////////////////////////////
 const int len_right_real = 19;
@@ -47,16 +48,32 @@ void sortirovka_left()
 		{
 			if (arr_left_frozen[n - 1] > arr_left_frozen[n])
 			{
-				int imp = arr_left_frozen[n];
-				arr_left_frozen[n] = arr_left_frozen[n - 1];
-				arr_left_frozen[n - 1] = imp;
-				tmp++;
+			int imp = arr_left_frozen[n];
+			arr_left_frozen[n] = arr_left_frozen[n - 1];
+			arr_left_frozen[n - 1] = imp;
+			tmp++;
 			}
 			n--;
 		}
 	}
 }
-
+void buble_sort( int *arr, int lenn )
+{
+	int tmp;
+	do{
+		tmp =0;
+		for(int n = lenn -1 ; n > 0; n--)
+		{
+			if (arr[n - 1] > arr[n])
+			{
+			int imp = arr[n];
+			arr[n] = arr[n - 1];
+			arr[n - 1] = imp;
+			tmp++;
+			}
+		}
+	}while (tmp > 0)
+}
 void sortirovka_buble_left()
 { //  sortirovka puzirkom Sergej
 	int size = len_left_frozen;
@@ -275,8 +292,11 @@ task main() ////////////////////////////////////////////////////////////////////
 		if (joy1Btn(Btn1)) // zapolnenie froze po knopke
 		{
 			left_frozen();
-			sortirovka_left();
+			buble_sort(arr_left_frozen,len_left_frozen);
+			//sortirovka_left();
 			//sortirovka_buble_left();
+            n6 = sizeof(arr_left_frozen)/ sizeof(int);
+
 		}
 
 		if (joy1Btn(Btn3))

@@ -37,8 +37,9 @@ int arr_nose_frozen[len_nose_frozen];
 /////////////////////////////////////////////////////////////////////
 void sortirovka_left()
 {
+	int tmp;
    do{
-        int tmp = 0;
+        tmp = 0;
         for( int n = len_left_frozen-1; n > 1 ; n-- )
         {
             if (arr_left_frozen[n - 1] > arr_left_frozen[n])
@@ -47,9 +48,10 @@ void sortirovka_left()
                     arr_left_frozen[n] = arr_left_frozen[n - 1];
                     arr_left_frozen[n - 1] = imp;
                     tmp++;
+
                 }
         }
-    }while (tmp > 0)
+    }while (tmp > 0);
 }//puzirkovaya sortirovka Andreya popravlena
 
 
