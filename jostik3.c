@@ -64,19 +64,20 @@ void sortirovka_left()
 void buble_sort( int *arr, int lenn )
 {
 	int tmp;
+	int last = lenn - 1;
 	do{
-		tmp =0;
-		for(int n = lenn -1 ; n > 0; n--)
+		tmp = 0;
+		for( int n = last ;   n > 0 ;   n-- )
 		{
-			if (arr[n - 1] > arr[n])
+			if (arr[ n-1 ] > arr[ n ])
 			{
-			int imp = arr[n];
-			arr[n] = arr[n - 1];
-			arr[n - 1] = imp;
-			tmp++;
+				int imp = arr[ n ];
+				arr[ n ] = arr[ n-1 ];
+				arr[ n-1 ] = imp;
+				tmp++;
 			}
 		}
-	}while (tmp > 0)
+	}while (tmp > 0);
 }
 
 void sortirovka_buble_left()
