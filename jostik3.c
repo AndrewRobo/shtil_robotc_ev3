@@ -61,8 +61,9 @@ void sortirovka_left()
 		}
 	}
 }
+
 void buble_sort( int *arr, int lenn )
-{
+{ // sortirovka puzirkom
 	int tmp;
 	int last = lenn - 1;
 	do{
