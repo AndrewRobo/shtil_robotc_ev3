@@ -34,6 +34,7 @@ void cp_arr()
 	{
 		Arr_frisen[ih]=Arr[ih];
 		ih++;
+		A
 	}
 }
 
