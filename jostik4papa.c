@@ -21,6 +21,7 @@ int arr_left[len_left_real];
 int ih_left = 0;
 
 const int len_left_frozen = 11;
+const int middle_left = len_left_frozen/2+1;
 int arr_left_frozen[len_left_frozen];
 
 //////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,7 @@ int arr_right[len_right_real];
 int ih_right = 0;
 
 const int len_right_frozen = 11;
+const int middle_right = len_right_frozen/2+1;
 int arr_right_frozen[len_right_frozen];
 
 //////////////////////////////////////////////////////////////////////////
@@ -37,30 +39,39 @@ int arr_nose[len_nose_real];
 int ih_nose = 0;
 
 const int len_nose_frozen = 11;
+const int middle_nose = len_nose_frozen/2+1;
 int arr_nose_frozen[len_nose_frozen];
 
 
 
-void sortirovka_left()
-{				 // sortirovka puzirkom Andreya
-	int tmp = 1; // flag poscheta nalichiya swapov
-	while (tmp > 0)
+
+
+task sensors()
+{ // oprashivaem datchiki i po krugu zapisivaem v massivi
+	// originalnih poslednih znachenij datchika
+	while (1)
 	{
-		tmp = 0;
-		int n = len_left_frozen - 1;
-		while (n > 0)
-		{
-			if (arr_left_frozen[n - 1] > arr_left_frozen[n])
-			{
-			int imp = arr_left_frozen[n];
-			arr_left_frozen[n] = arr_left_frozen[n - 1];
-			arr_left_frozen[n - 1] = imp;
-			tmp++;
-			}
-			n--;
-		}
-	}
-}
+		arr_left[ ih_left ] = SensorValue(port_left);
+		ih_left++;
+
+		if (ih_left >= len_left_real)
+			ih_left = 0;
+		sleep(10);
+
+		arr_right[ih_right] = SensorValue(port_right);
+		ih_right++;
+		if (ih_right >= len_right_real)
+			ih_right = 0;
+		sleep(10);
+
+		arr_nose[ih_nose] = SensorValue(port_nose);
+		ih_nose++;
+		if (ih_nose >= len_nose_real)
+			ih_nose = 0;
+		sleep(10);
+	} // while(1)
+} // task sensors()
+
 
 void buble_sort( int *arr, int lenn )
 { // sortirovka puzirkom
@@ -81,120 +92,22 @@ void buble_sort( int *arr, int lenn )
 	}while ( tmp > 0 );
 }
 
-void sortirovka_buble_left()
-{ //  sortirovka puzirkom Sergej
-	int size = len_left_frozen;
-	while (1)
+void frozen( const int raw[], int len_raw,
+             int raw_poinern,
+             int frozen[], int len_frozen   )
+{ // ficsaruem (zamorajivaem) massiv dlya sortirovki
+	int ih = raw_pointer;
+	
+	for( int ii = len_frozen - 1; ii >= 0; ii--; )
 	{
-		int wasSort = 0;
-		for (int i = 0; i < size - 1; i++)
-		{
-			if (arr_left_frozen[i] > arr_left_frozen[i + 1])
-			{
-				int temp_value = arr_left_frozen[i];
-				arr_left_frozen[i] = arr_left_frozen[i + 1];
-				arr_left_frozen[i + 1] = temp_value;
-				wasSort++;
-			}
-		}
-		if (wasSort == 0)
-			break;
-	}
-}
-
-task sensors()
-{ // oprashivaem datchiki i po krugu zapisivaem v massivi
-	// originalnih poslednih znachenij datchika
-	while (1)
-	{
-		arr_left[ih_left] = SensorValue(port_left);
-		ih_left++;
-		if (ih_left >= len_left_real)
-		{
-			ih_left = 0;
-		}
-		sleep(10);
-
-		arr_right[ih_right] = SensorValue(port_right);
-		ih_right++;
-		if (ih_right >= len_right_real)
-		{
-			ih_right = 0;
-		}
-		sleep(10);
-
-		arr_nose[ih_nose] = SensorValue(port_nose);
-		ih_nose++;
-		if (ih_nose >= len_nose_real)
-		{
-			ih_nose = 0;
-		}
-		sleep(10);
-
-	} // while(1)
-} // task sensors()
-
-void left_frozen()
-{
-	int ih = ih_left;
-	int ii = len_left_frozen - 1;
-	while (1)
-	{
-		arr_left_frozen[ii] = arr_left[ih];
-
-		ii--;
-		if (ii < 0)
-		{
-			break;
-		}
+		frozen[ii] = raw[ih];
 		ih--;
-		if (ih < 0)
-		{
-			ih = len_left_real - 1;
-		}
+		if ( ih < 0 )
+          	ih = len_raw - 1;
 	}
 }
 
-void right_frozen()
-{
-	int ih = ih_right;
-	int ii = len_right_frozen - 1;
-	while (1)
-	{
-		arr_right_frozen[ii] = arr_right[ih];
 
-		ii--;
-		if (ii < 0)
-		{
-			break;
-		}
-		ih--;
-		if (ih < 0)
-		{
-			ih = len_right_real - 1;
-		}
-	}
-}
-
-void nose_frozen()
-{
-	int ih = ih_nose;
-	int ii = len_nose_frozen - 1;
-	while (1)
-	{
-		arr_nose_frozen[ii] = arr_nose[ih];
-		ii--;
-		if (ii < 0)
-		{
-			break;
-		}
-		ih--;
-		if (ih < 0)
-		{
-			ih = len_nose_real - 1;
-		}
-	}
-}
 
 void init_radar() ////////////////////////////////////////////
 {				  // inicializacia naoravlenia radararadara
@@ -259,66 +172,66 @@ task main() ////////////////////////////////////////////////////////////////////
 
 	while (1)
 	{ // y - otklonenia joistikov s pulta otpravliaem v motori
-		getJoystickSettings(joystick);
-		motor[mot_left] = joystick.joy1_y1;
-		motor[mot_right] = joystick.joy1_y2;
+		getJoystickSettings( joystick );
+		motor[ mot_left ] = joystick.joy1_y1;
+		motor[ mot_right ] = joystick.joy1_y2;
 
-		if (joy1Btn(Btn5)) // umenshaen ugol rulya  do -60 gradusov
+		if ( joy1Btn( Btn5 )) // umenshaen ugol rulya  do -60 gradusov
 		{
-			if (nMotorEncoder(port_rul) > -60)
+			if ( nMotorEncoder( port_rul ) > -60)
 			{
-				moveMotorTarget(port_rul, -10, -10);
-				waitUntilMotorStop(port_rul);
+				moveMotorTarget( port_rul, -10, -10);
+				waitUntilMotorStop( port_rul );
 			}
 		}
-		if (joy1Btn(Btn6)) // uvelichivaem ugol rulya do +60 gradusov
+		if ( joy1Btn( Btn6 )) // uvelichivaem ugol rulya do +60 gradusov
 		{
-			if (nMotorEncoder(port_rul) < 60)
+			if ( nMotorEncoder( port_rul ) < 60)
 			{
-				moveMotorTarget(port_rul, 10, 10);
-				waitUntilMotorStop(port_rul);
+				moveMotorTarget( port_rul, 10, 10);
+				waitUntilMotorStop( port_rul );
 			}
 		}
-		if (joy1Btn(Btn7)) // umenshaen ugol radara  do -90 gradusov   //  povorot k pravomu bortu
+		if ( joy1Btn( Btn7 )) // umenshaen ugol radara  do -90 gradusov   //  povorot k pravomu bortu
 		{
-			if (nMotorEncoder(port_radar) > -80)
+			if (nMotorEncoder( port_radar ) > -80)
 			{
-				moveMotorTarget(port_radar, -10, -10);
-				waitUntilMotorStop(port_radar);
+				moveMotorTarget( port_radar, -10, -10);
+				waitUntilMotorStop( port_radar );
 			}
 		}
-		if (joy1Btn(Btn8)) // uvelichivaem ugol radara do +90 gradusov   	// povotachivaem radar na pravij bort
+		if (joy1Btn( Btn8 )) // uvelichivaem ugol radara do +90 gradusov   	// povotachivaem radar na pravij bort
 		{
-			if (nMotorEncoder(port_radar) < 80)
+			if (nMotorEncoder( port_radar ) < 80)
 			{
-				moveMotorTarget(port_radar, 10, 10);
-				waitUntilMotorStop(port_radar);
+				moveMotorTarget( port_radar, 10, 10);
+				waitUntilMotorStop( port_radar );
 			}
 		}
 
-		if (joy1Btn(Btn1)) // zapolnenie froze po knopke
+		if ( joy1Btn( Btn1 ) ) // zapolnenie froze po knopke
 		{
-			left_frozen();
+			frozen( arr_left[],len_left_real,ih_left,arr_left_frozen[],len_left_frozen);
 			buble_sort(arr_left_frozen,len_left_frozen);
-			//sortirovka_left();
-			//sortirovka_buble_left();
+            filtr_itog_left = arr_left_frozen[ middle_left ];
+
 
 		}
 
-		if (joy1Btn(Btn3))
+		if ( joy1Btn( Btn3 ) )
 		{
-			right_frozen();
-				buble_sort(arr_right_frozen,len_right_frozen);
+			frozen( arr_right[], len_right_real, ih_right,  arr_right_frozen[], len_right_frozen);
+			buble_sort(arr_right_frozen,len_right_frozen);
+            filtr_itog_left = arr_left_frozen[ middle_right ];
+
 		}
 
-		if (joy1Btn(Btn4))
+		if (  joy1Btn( Btn4 ) )
 		{
-			nose_frozen();
-				buble_sort(arr_nose_frozen,len_nose_frozen);
+			frozen( arr_ arr_nose_frozen[],len_nose_frozen);
+			buble_sort(arr_nose_frozen,len_nose_frozen);
+            filtr_itog_nose = arr_nose_frozen[ middle_nose ];
 		}
- filtr_itog_left = arr_left_frozen[5];
- filtr_itog_nose = arr_nose_frozen[5];
- filtr_itog_right = arr_right_frozen[5];
-
+ 
 	} // while(1)
 } // task_main
