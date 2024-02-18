@@ -21,7 +21,7 @@ int arr_left[len_left_real];
 int ih_left = 0;
 
 const int len_left_frozen = 11;
-const int middle_left = len_left_frozen/2+1;
+const int middle_left = len_left_frozen/2;
 int arr_left_frozen[len_left_frozen];
 
 //////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ int arr_right[len_right_real];
 int ih_right = 0;
 
 const int len_right_frozen = 11;
-const int middle_right = len_right_frozen/2+1;
+const int middle_right = len_right_frozen/2;
 int arr_right_frozen[len_right_frozen];
 
 //////////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ int arr_nose[len_nose_real];
 int ih_nose = 0;
 
 const int len_nose_frozen = 11;
-const int middle_nose = len_nose_frozen/2+1;
+const int middle_nose = len_nose_frozen/2;
 int arr_nose_frozen[len_nose_frozen];
 
 
