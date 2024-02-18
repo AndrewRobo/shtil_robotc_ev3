@@ -92,13 +92,11 @@ void buble_sort( int *arr, int lenn )
 	}while ( tmp > 0 );
 }
 
-void frozen( const int raw[], int len_raw,
-             int raw_poinern,
-             int frozen[], int len_frozen   )
-{ // ficsaruem (zamorajivaem) massiv dlya sortirovki
+void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
+{ // ficsaruem - zamorajivae  massiv dlya sortirovki
 	int ih = raw_pointer;
-	
-	for( int ii = len_frozen - 1; ii >= 0; ii--; )
+
+	for( int ii = len_frozen - 1; ii >= 0; ii-- )
 	{
 		frozen[ii] = raw[ih];
 		ih--;
@@ -211,7 +209,7 @@ task main() ////////////////////////////////////////////////////////////////////
 
 		if ( joy1Btn( Btn1 ) ) // zapolnenie froze po knopke
 		{
-			frozen( arr_left[],len_left_real,ih_left,arr_left_frozen[],len_left_frozen);
+			frozen( arr_left, len_left_real, ih_left, arr_left_frozen, len_left_frozen );
 			buble_sort(arr_left_frozen,len_left_frozen);
             filtr_itog_left = arr_left_frozen[ middle_left ];
 
@@ -220,18 +218,18 @@ task main() ////////////////////////////////////////////////////////////////////
 
 		if ( joy1Btn( Btn3 ) )
 		{
-			frozen( arr_right[], len_right_real, ih_right,  arr_right_frozen[], len_right_frozen);
+			frozen( arr_right, len_right_real, ih_right,  arr_right_frozen, len_right_frozen);
 			buble_sort(arr_right_frozen,len_right_frozen);
-            filtr_itog_left = arr_left_frozen[ middle_right ];
+            filtr_itog_right = arr_right_frozen[ middle_right ];
 
 		}
 
 		if (  joy1Btn( Btn4 ) )
 		{
-			frozen( arr_ arr_nose_frozen[],len_nose_frozen);
+			frozen(arr_nose,len_nose_real, ih_nose, arr_nose_frozen,len_nose_frozen);
 			buble_sort(arr_nose_frozen,len_nose_frozen);
             filtr_itog_nose = arr_nose_frozen[ middle_nose ];
 		}
- 
+
 	} // while(1)
 } // task_main
