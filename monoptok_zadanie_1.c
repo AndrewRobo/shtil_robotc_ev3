@@ -10,6 +10,8 @@
 
 //global variable
 {
+	int ryl = 1
+
 	int distans_ot_robota_do_borta=30
 	int v_max=80;
 	int gyro_real;
@@ -83,6 +85,25 @@ void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen
 	}
 }
 
+void kurs_rul(int ugol_rul, int speed)
+{
+		if(ryl!=0)
+	{
+		ryl = getMotorEncoder(port_rul);
+		moveMotorTarget(port_rul,-ygol_r,30*(-speed));
+		sleep(2000);
+		ryl = getMotorEncoder(port_rul);
+	}
+	else
+	{
+		ygol_r = ygol_r+16;
+		ryl = getMotorEncoder(port_rul);
+		moveMotorTarget(port_rul,-ygol_r,30*(-speed));
+		sleep(2000);
+		ryl = getMotorEncoder(port_rul);
+	}
+}
+
 //init
 {
 	void init_radar()
@@ -112,7 +133,7 @@ void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen
 
 	resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
 	}
-	
+
 	void init_rul()
 	{
 	// povopot rulya do fiksatora  vdol zadnego borta
@@ -137,7 +158,7 @@ void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen
 	waitUntilMotorStop(port_rul);
 	resetMotorEncoder(port_rul);
 	}
-	
+
 	void init_rodar()
 	{
 	sleep(500);
@@ -227,10 +248,15 @@ task main()
 	{
 		if(filtr_itog_right>distans_ot_robota_do_borta)
 		{
-			
-			
-			
-			
+			kurs_rul(-60, 20)
+			motor[mot_left]=v_max + v_max / 5;
+			motor[mot_right]=v_max - v_max / 5;
+		}//if(filtr_itog_right>distans_ot_robota_do_borta)
+		if(filtr_itog_right<distans_ot_robota_do_borta-10)
+		{
+			kurs_rul(60, 20)
+			motor[mot_left]=v_max - v_max / 5;
+			motor[mot_right]=v_max + v_max / 5;
 		}
 		gyro_real = SensorValuer(port_gyro);
 		if(gyro_real < 5 )
