@@ -16,6 +16,18 @@ int filtr_itog_nose;
 int filtr_itog_right;
 
 
+const int LEN_filtered=11;
+
+struct filter{
+	int pointer;
+	int value[LEN_filtered];
+};
+
+struct filter usleft;
+struct filter usright;
+struct filter usnose;
+
+
 const int len_left_real = 17;
 int arr_left[len_left_real];
 int ih_left = 0;
