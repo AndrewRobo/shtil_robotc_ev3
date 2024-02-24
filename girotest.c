@@ -21,7 +21,16 @@ long krug=0;
 
 task main()
 {
+
+    sleep(500);
+	resetGyro(port_gyro);
+	sleep(500);
+    
     time1[0]=0;
+
+    	sleep(500);
+	resetGyro(port_gyro);
+	sleep(500);
 
         while(krug < 1000 )
         {
