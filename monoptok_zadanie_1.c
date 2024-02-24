@@ -72,7 +72,6 @@ task sensors()
 	} // while(1)
 } // task sensors()
 
-
 void buble_sort( int *arr, int lenn )
 { // sortirovka puzirkom
 	int tmp;
@@ -104,9 +103,7 @@ void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen
 	}
 }
 
-
-
-void init_radar() ////////////////////////////////////////////
+void init_radar() 
 {				  // inicializacia naoravlenia radararadara
 	// vraschaem motor radara do ogranichitela
 	// i vistavlyaen nulevim kurs vpered
@@ -134,8 +131,7 @@ void init_radar() ////////////////////////////////////////////
 	resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
 }
 
-void init_rul() /////////////////////////////////////////////////////////////////////////////////////////////
-
+void init_rul()
 {
 	// povopot rulya do fiksatora  vdol zadnego borta
 	int ryl = 1;
@@ -160,14 +156,15 @@ void init_rul() ////////////////////////////////////////////////////////////////
 	resetMotorEncoder(port_rul);
 }
 
-task main() ////////////////////////////////////////////////////////////////////////////////////////
+task main() 
 {
 	init_radar();
 	sleep(300);
 	init_rul();
+
 	startTask(sensors);
 
-	while (1)
+	while(1)
 	{ // y - otklonenia joistikov s pulta otpravliaem v motori
 		getJoystickSettings( joystick );
 		motor[ mot_left ] = joystick.joy1_y1;
@@ -175,60 +172,18 @@ task main() ////////////////////////////////////////////////////////////////////
 
 		if ( joy1Btn( Btn5 )) // umenshaen ugol rulya  do -60 gradusov
 		{
-			if ( nMotorEncoder( port_rul ) > -60)
+			while(2)
 			{
-				moveMotorTarget( port_rul, -10, -10);
-				waitUntilMotorStop( port_rul );
-			}
-		}
-		if ( joy1Btn( Btn6 )) // uvelichivaem ugol rulya do +60 gradusov
-		{
-			if ( nMotorEncoder( port_rul ) < 60)
-			{
-				moveMotorTarget( port_rul, 10, 10);
-				waitUntilMotorStop( port_rul );
-			}
-		}
-		if ( joy1Btn( Btn7 )) // umenshaen ugol radara  do -90 gradusov   //  povorot k pravomu bortu
-		{
-			if (nMotorEncoder( port_radar ) > -80)
-			{
-				moveMotorTarget( port_radar, -10, -10);
-				waitUntilMotorStop( port_radar );
-			}
-		}
-		if (joy1Btn( Btn8 )) // uvelichivaem ugol radara do +90 gradusov   	// povotachivaem radar na pravij bort
-		{
-			if (nMotorEncoder( port_radar ) < 80)
-			{
-				moveMotorTarget( port_radar, 10, 10);
-				waitUntilMotorStop( port_radar );
-			}
-		}
-
-		if ( joy1Btn( Btn1 ) ) // zapolnenie froze po knopke
-		{
-			frozen( arr_left, len_left_real, ih_left, arr_left_frozen, len_left_frozen );
-			buble_sort(arr_left_frozen,len_left_frozen);
-            filtr_itog_left = arr_left_frozen[ middle_left ];
 
 
-		}
 
-		if ( joy1Btn( Btn3 ) )
-		{
-			frozen( arr_right, len_right_real, ih_right,  arr_right_frozen, len_right_frozen);
-			buble_sort(arr_right_frozen,len_right_frozen);
-            filtr_itog_right = arr_right_frozen[ middle_right ];
 
-		}
 
-		if (  joy1Btn( Btn4 ) )
-		{
-			frozen(arr_nose,len_nose_real, ih_nose, arr_nose_frozen,len_nose_frozen);
-			buble_sort(arr_nose_frozen,len_nose_frozen);
-            filtr_itog_nose = arr_nose_frozen[ middle_nose ];
-		}
 
-	} // while(1)
-} // task_main
+
+
+
+			}// while(2)
+		}// if
+	}// while(1)
+}// task_main
