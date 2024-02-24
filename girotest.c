@@ -32,12 +32,14 @@ task main()
             pointer++;
 
             if ( pointer >= LEN_ARR ) 
-                pointer = 0 ;
-
+             { pointer = 0 ;
+               krug++;
+               playtone(400,50);
+             }
 
             sleep(1000);
-            playtone(400,50);
-            krug++;
+            
+            
         }
 
 
