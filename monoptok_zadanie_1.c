@@ -25,7 +25,7 @@
 }
 
 //massives
-{
+//{
 	const int len_left_real = 17;
 	int arr_left[len_left_real];
 	int ih_left = 0;
@@ -51,7 +51,7 @@
 	const int len_nose_frozen = 11;
 	const int middle_nose = len_nose_frozen/2;
 	int arr_nose_frozen[len_nose_frozen];
-}
+//}
 
 void buble_sort( int *arr, int lenn )
 { // sortirovka puzirkom
@@ -271,7 +271,7 @@ task main()
 				motor[mot_left]=v_max + v_max / 5;
 				motor[mot_right]=v_max - v_max / 5;
 			}//else (if(gyro_real > -5 ))
-		}//if(gyro_real < 5 )	
+		}//if(gyro_real < 5 )
 		else
 		{
 				motor[mot_left]=v_max - v_max / 5;
