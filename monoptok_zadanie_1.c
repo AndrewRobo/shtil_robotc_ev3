@@ -62,7 +62,8 @@ void buble_sort( int *arr, int lenn )
 void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
 { // ficsaruem - zamorajivae  massiv dlya sortirovki
 	int ih = raw_pointer-1 ;
-
+	if ( ih < 0 ) {ih = len_raw - 1;}
+	
 	for( int ii = len_frozen - 1; ii >= 0; ii-- )
 	{
 		frozen[ii] = raw[ih];
