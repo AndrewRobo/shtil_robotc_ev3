@@ -15,7 +15,7 @@ int arr_gyro[2][LEN_ARR];
 
 int pointer=0;
 
-long krug=0
+long krug=0;
 
 task main()
 {
