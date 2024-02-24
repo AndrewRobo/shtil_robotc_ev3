@@ -14,7 +14,7 @@ const int LEN_ARR=120;
 int arr_gyro[2][LEN_ARR];
 
 int pointer=0; 
-int pointer_last=0;
+
 
 
 long krug=0;
@@ -27,11 +27,7 @@ task main()
         {
             arr_gyro[0][pointer] = time1[0];
             arr_gyro[1][pointer]  = SensorValue( port_gyro );
-<<<<<<< HEAD
 
-            displayBigTextLine(1,"%d",arr_gyro[0][pointer]);
-            displayBigTextLine(5,"%d",arr_gyro[1][pointer]);
-=======
 
             if ( pointer== 0 ){
 
@@ -42,7 +38,6 @@ task main()
                 displayBigTextLine(9,"%d",arr_gyro[0][pointer]);
                 displayBigTextLine(11,"%d",arr_gyro[1][pointer]);
 
->>>>>>> a3792cb1697c003ff65eabc77bcebed727957220
 
             pointer++;
 
