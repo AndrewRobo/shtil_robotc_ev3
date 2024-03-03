@@ -83,6 +83,18 @@
 		}//for( int ii = len_frozen - 1; ii >= 0; ii-- )
 	}//void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
 
+	void set_ugol_rul(int ff)
+	{
+		int f=ff;
+		if(f > 60){ f=60;}
+		if(f < -60){ f=-60;}
+
+		setMotorTarget(port_rul, f, SPEED_RUL);
+		waitUntilMotorStop(port_rul);
+
+		rul=getMotorEncoder(port_rul);
+	}
+
 
 //init
 	void init_gyro()
@@ -145,18 +157,7 @@
 		resetMotorEncoder(port_rul);
 	}//init_rul()
 
-void set_ugol_rul(int ff)
-{
-	f=ff;
-	if(f > 60){ f=60;}
-	if(f < -60){ f=-60;}
-	
-	setMotorTarget(port_rul, f, SPEED_RUL);
-	waitUntilMotorStop(port_rul);
 
-	rul=getMotorEncoder(port_rul);
-	
-}
 
 
 //tasks
@@ -235,9 +236,10 @@ task main()
 	//startTask(monnitor);
 
 	playTone(600,100);
+
 	while(1)
 	{
-		if(filtr_itog_right>distans_ot_robota_do_borta)
+/*		if(filtr_itog_right>distans_ot_robota_do_borta)
 		{
 			kurs_rul(-60, 20);
 			motor[mot_left]=v_max + v_max / 5;
@@ -268,5 +270,30 @@ task main()
 			motor[mot_left]=v_max - v_max / 5;
 			motor[mot_right]=v_max + v_max / 5;
 		}//else(if(gyro_real < 5 ))
+*/
+set_ugol_rul(0)
+sleep(1000)
+set_ugol_rul(10)
+sleep(1000)
+set_ugol_rul(90)
+sleep(1000)
+set_ugol_rul(40)
+sleep(1000)
+set_ugol_rul(0)
+sleep(1000)
+set_ugol_rul(-10)
+sleep(1000)
+set_ugol_rul(-90)
+sleep(1000)
+set_ugol_rul(-40)
+sleep(1000)
+
+
+
+
+
+
+
+
 	}// while(1)
 }// task_main
