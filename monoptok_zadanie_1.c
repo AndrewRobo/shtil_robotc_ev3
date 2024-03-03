@@ -64,10 +64,10 @@
 					arr[ n ] = arr[ n-1 ];
 					arr[ n-1 ] = imp;
 					tmp++;
-				}
-			}
+				}//if (arr[ n-1 ] > arr[ n ])
+			}//for( int n = last ;   n > 0 ;   n-- )
 		}while ( tmp > 0 );
-	}
+	}//void buble_sort( int *arr, int lenn )
 
 	void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
 	{ // ficsaruem - zamorajivae  massiv dlya sortirovki
@@ -79,8 +79,8 @@
 			frozen[ii] = raw[ih];
 			ih--;
 			if ( ih < 0 ) {ih = len_raw - 1;}
-		}
-	}
+		}//for( int ii = len_frozen - 1; ii >= 0; ii-- )
+	}//void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
 
 	void kurs_rul(int ugol_rul, int speed)
 	{
@@ -90,7 +90,7 @@
 			moveMotorTarget(port_rul,-ugol_rul,30*(-speed));
 			sleep(2000);
 			ryl = getMotorEncoder(port_rul);
-		}
+		}//if(ryl!=0)
 		else
 		{
 			ugol_rul = ugol_rul+16;
@@ -98,8 +98,8 @@
 			moveMotorTarget(port_rul,-ugol_rul,30*(-speed));
 			sleep(2000);
 			ryl = getMotorEncoder(port_rul);
-		}
-	}
+		}//else
+	}//void kurs_rul(int ugol_rul, int speed)
 
 //init
 	void init_gyro()
@@ -107,60 +107,60 @@
 	sleep(500);
 	resetGyro(port_gyro);
 	sleep(500);
-	}
+	}//init_gyro()
 
 	void init_radar()
 	{// inicializacia naoravlenia radararadara
-	// vraschaem motor radara do ogranichitela
-	// i vistavlyaen nulevim kurs vpered
+		// vraschaem motor radara do ogranichitela
+		// i vistavlyaen nulevim kurs vpered
 
-	int en_radar = 1;
-	int en_radar2 = 2;
+		int en_radar = 1;
+		int en_radar2 = 2;
 
-	motor[port_radar] = -30;
+		motor[port_radar] = -30;
 
-	while (en_radar != en_radar2)
-	{
-		en_radar2 = en_radar;
-		sleep(50);
-		en_radar = getMotorEncoder(port_radar);
-	}
+		while (en_radar != en_radar2)
+		{
+			en_radar2 = en_radar;
+			sleep(50);
+			en_radar = getMotorEncoder(port_radar);
+		}//while (en_radar != en_radar2)
 
-	//	resetMotorEncoder(port_radar);
-	motor[port_radar] = 0;
-	sleep(300);
+		//	resetMotorEncoder(port_radar);
+		motor[port_radar] = 0;
+		sleep(300);
 
-	moveMotorTarget(port_radar, 110, 30); // 100 grad - 90 grad
-	//                 plus experimentalnaya korrektirovka
-	waitUntilMotorStop(port_radar);
+		moveMotorTarget(port_radar, 110, 30); // 100 grad - 90 grad
+		//                 plus experimentalnaya korrektirovka
+		waitUntilMotorStop(port_radar);
 
-	resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
-	}
+		resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
+	}//init_radar()
 
 	void init_rul()
 	{
-	// povopot rulya do fiksatora  vdol zadnego borta
-	int ryl = 1;
-	int ryl2 = 2;
+		// povopot rulya do fiksatora  vdol zadnego borta
+		int ryl = 1;
+		int ryl2 = 2;
 
-	motor[port_rul] = 40;
+		motor[port_rul] = 40;
 
-	while (ryl != ryl2)
-	{
-		ryl2 = ryl;
-		sleep(50);
-		ryl = getMotorEncoder(port_rul);
-	}
-	motor[port_rul] = 0;
-	//	resetMotorEncoder(port_rul);
-	sleep(300);
+		while (ryl != ryl2)
+		{
+			ryl2 = ryl;
+			sleep(50);
+			ryl = getMotorEncoder(port_rul);
+		}//while (ryl != ryl2)
+		motor[port_rul] = 0;
+		//	resetMotorEncoder(port_rul);
+		sleep(300);
 
-	// ustanavlivaem nulevim centralnoe pologenie rula
-	moveMotorTarget(port_rul, -100, -30); // 100 grad - 90 grad
-	//                 plus experimentalnaya korrektirovka
-	waitUntilMotorStop(port_rul);
-	resetMotorEncoder(port_rul);
-	}
+		// ustanavlivaem nulevim centralnoe pologenie rula
+		moveMotorTarget(port_rul, -100, -30); // 100 grad - 90 grad
+		//                 plus experimentalnaya korrektirovka
+		waitUntilMotorStop(port_rul);
+		resetMotorEncoder(port_rul);
+	}//init_rul()
 
 //tasks
 	task sensors()
@@ -223,18 +223,21 @@ task main()
 {
 	init_radar();
 	sleep(300);
+
 	init_rul();
 	sleep(300);
+
 	init_gyro();
 	sleep(300);
 
 	startTask(sensors);
 	sleep(1000);
+
 	startTask(filtr);
 	sleep(1000);
 	//startTask(monnitor);
 
-    playTone(600,100);
+	playTone(600,100);
 	while(1)
 	{
 		if(filtr_itog_right>distans_ot_robota_do_borta)
@@ -257,7 +260,7 @@ task main()
 				motor[mot_left]=v_max;
 				motor[mot_right]=v_max;
 			}//if(gyro_real > -5 )
-			else//
+			else
 			{
 				motor[mot_left]=v_max + v_max / 5;
 				motor[mot_right]=v_max - v_max / 5;
@@ -265,8 +268,8 @@ task main()
 		}//if(gyro_real < 5 )
 		else
 		{
-				motor[mot_left]=v_max - v_max / 5;
-				motor[mot_right]=v_max + v_max / 5;
+			motor[mot_left]=v_max - v_max / 5;
+			motor[mot_right]=v_max + v_max / 5;
 		}//else(if(gyro_real < 5 ))
 	}// while(1)
 }// task_main
