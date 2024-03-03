@@ -22,15 +22,23 @@ long krug=0;
 task main()
 {
 
-    sleep(500);
-	resetGyro(port_gyro);
-	sleep(500);
-    
-    time1[0]=0;
+ 
+  time1[0]=0;
 
-    	sleep(500);
+ 	sleep(500);
 	resetGyro(port_gyro);
 	sleep(500);
+
+  
+            arr_gyro[0][pointer] = time1[0];
+            arr_gyro[1][pointer]  = SensorValue( port_gyro );
+
+  
+                displayBigTextLine(1,"%d",arr_gyro[0][pointer]);
+                displayBigTextLine(3,"%d",arr_gyro[1][pointer]);
+
+            pointer++;        
+
 
         while(krug < 1000 )
         {
@@ -39,13 +47,13 @@ task main()
 
 
             if ( pointer== 0 ){
-
-                displayBigTextLine(1,"%d",arr_gyro[0][pointer]);
-                displayBigTextLine(3,"%d",arr_gyro[1][pointer]);
+                displayBigTextLine(6,"%d",krug)
+                displayBigTextLine(8,"%d",arr_gyro[0][pointer]);
+                displayBigTextLine(10,"%d",arr_gyro[1][pointer]);
               }
               
-                displayBigTextLine(9,"%d",arr_gyro[0][pointer]);
-                displayBigTextLine(11,"%d",arr_gyro[1][pointer]);
+                displayBigTextLine(12,"%d",arr_gyro[0][pointer]);
+                displayBigTextLine(14,"%d",arr_gyro[1][pointer]);
 
 
             pointer++;
