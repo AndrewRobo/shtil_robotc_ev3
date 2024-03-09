@@ -196,7 +196,8 @@
 	{
 		while(1)
 		{
-		displayBigTextLine(11, "%d", gyro_real);
+		sleep(1000)
+		displayBigTextLine(11, "%d", SensorValue(port_gyro));
 		}// while(1)
 	}//task monnitor()
 
@@ -247,11 +248,13 @@ task main()
 
     waitForButtonPress();
 	playTone(600,100);
+	StopTask(monnitor);
 
 	int GiroscopTargetFrozen = 0;
 	int GiroscopTargetDinamik = 0;
 
-	while(filtr_itog_nose >= 50)
+	while(1
+	)
 	{
 		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right);
 		if(abs(GiroscopTargetFrozen-GiroscopTargetDinamik)<10)	
@@ -268,9 +271,4 @@ task main()
 	 GiroscopTargetFrozen = -90;
 	 GiroscopTargetDinamik = -90;
 
-	while(2)
-	{
-		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right);
-		moveProporcional( GiroscopTargetDinamik, 1 , v_max);
-	}// while(2)
 }// task_main;
