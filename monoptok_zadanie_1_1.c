@@ -10,7 +10,7 @@
 
 //global variable
 	int rul;  // tekuschij ugol rulua   global
-	const int SPEED_RUL=30
+	const int SPEED_RUL=30;
 
 	int distans_ot_robota_do_borta=30;
 	int v_max=80;
@@ -97,18 +97,10 @@
 
     void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
     {
-        int GiroscopYgolOnline = SensorValue(port_gyro)
-        int Error_ygol = GiroscopTarget - GiroscopYgolOnline
-        if(Error_ygol>GiroscopTarget)
-        {
-            motor[mot_left]=v_max-Error_ygol*koef_usilenia
-            motor[mot_right]=v_max+Error_ygol*koef_usilenia
-        }//if(Error_ygol>GiroscopTarget)
-        else
-        {
-            motor[mot_left]=v_max+Error_ygol*koef_usilenia
-            motor[mot_right]=v_max-Error_ygol*koef_usilenia
-        }//else
+        int GiroscopYgolOnline = SensorValue(port_gyro);
+        int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
+        motor[mot_left]=v_max+Error_ygol*koef_usilenia;
+        motor[mot_right]=v_max-Error_ygol*koef_usilenia;
     }//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
 //init
@@ -231,7 +223,7 @@
 			displayBigTextLine(10, "%d", my_delta);
 		}// while(1)
 	}//task filtr()
- 
+
 task main()
 {
 	init_radar();
@@ -251,9 +243,19 @@ task main()
 	//startTask(monnitor);
 
 	playTone(600,100);
+	
+    sleep(1000)
+
+    waitForButtonPress();
+	playTone(600,100);
+
+	int GiroscopTargetFrozen = 0
+	int GiroscopTargetDinamik = 0
 
 	while(1)
 	{
-         moveProporcional(0 , 1 , 30)
+		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right)
+		moveProporcional( GiroscopTargetDinamik, 1 , 40)
+
 	}// while(1)
 }// task_main
