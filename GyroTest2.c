@@ -29,8 +29,14 @@ task main()
   time1[0]=0;
 
  	sleep(500);
+    
 	resetGyro(port_gyro);
-	sleep(500);
+	sleep(3000);
+
+	resetGyro(port_gyro);
+	sleep(4000);
+    
+    playtone(400,50);
 
   
             arr_gyro[0][pointer] = time1[0];
