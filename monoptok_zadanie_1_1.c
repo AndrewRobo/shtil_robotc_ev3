@@ -95,19 +95,19 @@
 		rul=getMotorEncoder(port_rul);
 	}
 
-    void moveProporcional(int GiroscopTarget, int koef_usilenia)
+    void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
     {
         int GiroscopYgolOnline = SensorValue(port_gyro)
         int Error_ygol = GiroscopTarget - GiroscopYgolOnline
         if(Error_ygol>GiroscopTarget)
         {
-            motor[mot_left]=80-Error_ygol*koef_usilenia
-            motor[mot_right]=80+Error_ygol*koef_usilenia
+            motor[mot_left]=v_max-Error_ygol*koef_usilenia
+            motor[mot_right]=v_max+Error_ygol*koef_usilenia
         }//if(Error_ygol>GiroscopTarget)
         else
         {
-            motor[mot_left]=80+Error_ygol*koef_usilenia
-            motor[mot_right]=80-Error_ygol*koef_usilenia
+            motor[mot_left]=v_max+Error_ygol*koef_usilenia
+            motor[mot_right]=v_max-Error_ygol*koef_usilenia
         }//else
     }//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
@@ -254,6 +254,6 @@ task main()
 
 	while(1)
 	{
-         moveProporcional(0 , 1)
+         moveProporcional(0 , 1 , 30)
 	}// while(1)
 }// task_main
