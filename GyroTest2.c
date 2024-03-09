@@ -30,7 +30,8 @@ task main()
 
  	sleep(500);
 	resetGyro(port_gyro);
-	sleep(500);
+	sleep(4000);
+    playtone(400,50);
 
   
             arr_gyro[0][pointer] = time1[0];
