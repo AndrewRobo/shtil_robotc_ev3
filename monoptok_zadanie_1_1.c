@@ -13,7 +13,7 @@
 	const int SPEED_RUL=30;
 
 	int distans_ot_robota_do_borta=30;
-	int v_max=80;
+	int v_max=40;
 	int gyro_real;
 
 	int my_timer;
@@ -132,7 +132,7 @@
 		motor[port_radar] = 0;
 		sleep(300);
 
-		moveMotorTarget(port_radar, 110, 30); // 100 grad - 90 grad
+		moveMotorTarget(port_radar, 100, 20); // 100 grad - 90 grad
 		//                 plus experimentalnaya korrektirovka
 		waitUntilMotorStop(port_radar);
 
@@ -196,9 +196,6 @@
 	{
 		while(1)
 		{
-		displayBigTextLine(3, "%d", filtr_itog_nose);
-		displayBigTextLine(5, "%d", filtr_itog_right);
-		displayBigTextLine(7, "%d", filtr_itog_left);
 		displayBigTextLine(11, "%d", gyro_real);
 		}// while(1)
 	}//task monnitor()
@@ -240,28 +237,40 @@ task main()
 
 	startTask(filtr);
 	sleep(1000);
-	//startTask(monnitor);
+
+	startTask(monnitor);
+	sleep(1000);
 
 	playTone(600,100);
 	
-    sleep(1000)
+    sleep(1000);
 
     waitForButtonPress();
 	playTone(600,100);
 
-	int GiroscopTargetFrozen = 0
-	int GiroscopTargetDinamik = 0
+	int GiroscopTargetFrozen = 0;
+	int GiroscopTargetDinamik = 0;
 
-	while(1)
+	while(filtr_itog_nose >= 50)
 	{
-		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right)
-		moveProporcional( GiroscopTargetDinamik, 1 , 40)
-		if(filtr_itog_nose < 100)
+		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right);
+		if(abs(GiroscopTargetFrozen-GiroscopTargetDinamik)<10)	
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
 		{
-
-
-
-
-		}//if(filtr_itog_nose < 100)
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)	
+			{	moveProporcional( GiroscopTargetFrozen+10, 1 , v_max);	}
+			else	
+			{	moveProporcional( GiroscopTargetFrozen-10, 1 , v_max);	}
+		}
 	}// while(1)
-}// task_main
+
+	 GiroscopTargetFrozen = -90;
+	 GiroscopTargetDinamik = -90;
+
+	while(2)
+	{
+		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right);
+		moveProporcional( GiroscopTargetDinamik, 1 , v_max);
+	}// while(2)
+}// task_main;
