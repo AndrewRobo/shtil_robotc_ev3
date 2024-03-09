@@ -256,6 +256,12 @@ task main()
 	{
 		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right)
 		moveProporcional( GiroscopTargetDinamik, 1 , 40)
+		if(filtr_itog_nose < 100)
+		{
 
+
+
+
+		}//if(filtr_itog_nose < 100)
 	}// while(1)
 }// task_main
