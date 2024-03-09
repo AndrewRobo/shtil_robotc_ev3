@@ -29,8 +29,13 @@ task main()
   time1[0]=0;
 
  	sleep(500);
+    
+	resetGyro(port_gyro);
+	sleep(3000);
+
 	resetGyro(port_gyro);
 	sleep(4000);
+    
     playtone(400,50);
 
   
