@@ -12,7 +12,7 @@
 	int rul;  // tekuschij ugol rulua   global
 	const int SPEED_RUL=30;
 
-	int distans_ot_robota_do_borta=30;
+	int distans_ot_robota_do_borta=25;
 	int v_max=40;
 	int gyro_real;
 
@@ -108,7 +108,9 @@
 	{
 	sleep(500);
 	resetGyro(port_gyro);
-	sleep(500);
+	sleep(4000);
+	resetGyro(port_gyro);
+	sleep(4000);
 	}//init_gyro()
 
 	void init_radar()
@@ -197,7 +199,7 @@
 		while(1)
 		{
 		sleep(1000)
-		displayBigTextLine(11, "%d", SensorValue(port_gyro));
+		displayBigTextLine(12, "%d", SensorValue(port_gyro));
 		}// while(1)
 	}//task monnitor()
 
@@ -218,7 +220,7 @@
 
 			my_delta=time1[0]- my_timer ;
 
-			displayBigTextLine(10, "%d", my_delta);
+			//displayBigTextLine(10, "%d", my_delta);
 		}// while(1)
 	}//task filtr()
 
@@ -253,22 +255,18 @@ task main()
 	int GiroscopTargetFrozen = 0;
 	int GiroscopTargetDinamik = 0;
 
-	while(1
-	)
+	while(1)
 	{
-		GiroscopTargetDinamik = GiroscopTargetFrozen - ( 25 - filtr_itog_right);
+		GiroscopTargetDinamik = GiroscopTargetFrozen - ( distans_ot_robota_do_borta - filtr_itog_right);
 		if(abs(GiroscopTargetFrozen-GiroscopTargetDinamik)<10)	
 		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
 		else
 		{
 			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)	
-			{	moveProporcional( GiroscopTargetFrozen+10, 1 , v_max);	}
+			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
 			else	
-			{	moveProporcional( GiroscopTargetFrozen-10, 1 , v_max);	}
+			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
 		}
 	}// while(1)
-
-	 GiroscopTargetFrozen = -90;
-	 GiroscopTargetDinamik = -90;
 
 }// task_main;

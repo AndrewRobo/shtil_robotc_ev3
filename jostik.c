@@ -1,4 +1,4 @@
-#pragma config(Sensor, S1,     port_nose,      sensorEV3_Ultrasonic)
+ #pragma config(Sensor, S1,     port_nose,      sensorEV3_Ultrasonic)
 #pragma config(Sensor, S2,     port_left,      sensorEV3_Ultrasonic)
 #pragma config(Sensor, S3,     port_roght,     sensorEV3_Ultrasonic)
 #pragma config(Sensor, S4,     port_gyro,      sensorEV3_Gyro)
