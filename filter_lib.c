@@ -24,7 +24,7 @@
     int arr_right_frozen[len_right_frozen];
 
     //////////////////////////////////////////////////////////////////////////
-    const int len_nose_real = 20;
+    const int len_nose_real = 50;
     int arr_nose[len_nose_real];
     int ih_nose = 0;
 

@@ -23,7 +23,7 @@
 	{
         while( ugol_povorota != SensorValue(port_gyro))
         {
-        int Error_ygol = ugol_povorota - SensorValue(port_gyro)
+        int Error_ygol = ugol_povorota - SensorValue(port_gyro);
         motor[mot_left]=5*Error_ygol;
         motor[mot_right]=-5*Error_ygol;
 
@@ -66,7 +66,7 @@
 		}// while(1)
 	}//task monnitor()
 
-	
+
 
 
 #include "init_lib.c"
