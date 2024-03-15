@@ -75,10 +75,12 @@ task sensors()
         ih_left++;
         if (ih_left >= len_left_real)	{ih_left = 0;}
         sleep(10);
+
         arr_right[ih_right] = SensorValue(port_right);
         ih_right++;
         if (ih_right >= len_right_real)		{ih_right = 0;}
         sleep(10);
+        
         arr_nose[ih_nose] = SensorValue(port_nose);
         ih_nose++;
         if (ih_nose >= len_nose_real)	{ih_nose = 0;}
