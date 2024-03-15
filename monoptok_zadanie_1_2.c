@@ -75,8 +75,8 @@
         while( ugol_povorota != SensorValue(port_gyro))
         {
         int Error_ygol = ugol_povorota - SensorValue(port_gyro)
-        motor[mot_left]=v_max+Error_ygol;
-        motor[mot_right]=v_max-Error_ygol;
+        motor[mot_left]=5*Error_ygol;
+        motor[mot_right]=-5*Error_ygol;
 
 
         }//while( ugol_povorota != SensorValue(port_gyro))
@@ -196,7 +196,7 @@ task main()
 	startTask(monnitor);
 
 	playTone(600,100);
-	
+
     sleep(1000)
 
     waitForButtonPress();
@@ -207,30 +207,22 @@ task main()
 	int GiroscopTargetFrozen = 0
 	int GiroscopTargetDinamik = 0
 
-    /*	
     while(1)
 	{
-		int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-
-		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-
-		if(abs(delta_distans_right)<10)	
-		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
-		else
+		if(25<filtr_itog_nose)
 		{
-			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)	
-			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-			else	
-			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-		}
-    */
-    povorot(90, 50)
+			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<10)
+			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			else
+			{
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+				else
+				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+		}//if(70<filtr_itog_nose)
     povorot(-90, 50)
-    povorot(90, 50)
-    povorot(-90, 50)
-    povorot(45, 50)
-    povorot(-45, 50)
-    povorot(10, 50)
-    povorot(-10, 50)
 	}// while(1)
 }// task_main;
