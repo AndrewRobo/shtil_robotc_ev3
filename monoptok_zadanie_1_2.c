@@ -70,13 +70,16 @@
 		}while ( tmp > 0 );
 	}//void buble_sort( int *arr, int lenn )
 
-	void povorot(new_kurs)
+	void povorot(int ugol_povorota, int v_max)
 	{
+        while( ugol_povorota != SensorValue(port_gyro))
+        {
+        int Error_ygol = ugol_povorota - SensorValue(port_gyro)
+        motor[mot_left]=v_max+Error_ygol;
+        motor[mot_right]=v_max-Error_ygol;
 
 
-
-
-
+        }//while( ugol_povorota != SensorValue(port_gyro))
 	}//povorot(new_kurs)
 
 	void frozen( int* raw, int len_raw, int raw_pointer, int* frozen, int len_frozen   )
