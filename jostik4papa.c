@@ -28,7 +28,7 @@ struct filter usright;
 struct filter usnose;
 
 
-const int len_left_real = 17;
+const int len_left_real = 19;
 int arr_left[len_left_real];
 int ih_left = 0;
 
@@ -37,7 +37,7 @@ const int middle_left = len_left_frozen/2;
 int arr_left_frozen[len_left_frozen];
 
 //////////////////////////////////////////////////////////////////////////
-const int len_right_real = 19;
+const int len_right_real = 18;
 int arr_right[len_right_real];
 int ih_right = 0;
 
@@ -83,6 +83,7 @@ task sensors()
 		sleep(10);
 	} // while(1)
 } // task sensors()
+
 
 
 void buble_sort( int *arr, int lenn )
@@ -238,8 +239,10 @@ task main() ////////////////////////////////////////////////////////////////////
 		if (  joy1Btn( Btn4 ) )
 		{
 			frozen(arr_nose,len_nose_real, ih_nose, arr_nose_frozen,len_nose_frozen);
-			buble_sort(arr_nose_frozen,len_nose_frozen);
-            filtr_itog_nose = arr_nose_frozen[ middle_nose ];
+			shellSort(arr_nose_frozen, len_nose_frozen);
+
+			//buble_sort(arr_nose_frozen,len_nose_frozen);
+      filtr_itog_nose = arr_nose_frozen[ middle_nose ];
 		}
 
 	} // while(1)
