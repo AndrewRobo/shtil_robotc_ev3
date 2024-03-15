@@ -54,49 +54,12 @@ int gyro_real;
 
 
 
-
-
-
-	task monnitor()
-	{
-		while(1)
-		{
-		sleep(1000)
-		displayBigTextLine(12, "%d", SensorValue(port_gyro));
-		}// while(1)
-	}//task monnitor()
-
-
-
-
 #include "init_lib.c"
 
 task main()
 {
-	init_radar();
-	sleep(300);
+start_init_main();
 
-	init_rul();
-	sleep(300);
-
-	init_gyro();
-	sleep(300);
-
-	startTask(sensors);
-	sleep(1000);
-
-	startTask(filtr);
-	sleep(1000);
-	startTask(monnitor);
-
-	playTone(600,100);
-
-    sleep(1000)
-
-    waitForButtonPress();
-	playTone(600,100);
-
-	StopTask(monnitor)
 
 	int GiroscopTargetFrozen = 0
 	int GiroscopTargetDinamik = 0
