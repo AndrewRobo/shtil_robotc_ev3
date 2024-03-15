@@ -266,9 +266,9 @@ task main()
 	int GiroscopTargetFrozen = 0
 	int GiroscopTargetDinamik = 0
 
-	while(1)
+    /*	
+    while(1)
 	{
-
 		int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
 
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
@@ -282,5 +282,14 @@ task main()
 			else	
 			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
 		}
+    */
+    povorot(90, 50)
+    povorot(-90, 50)
+    povorot(90, 50)
+    povorot(-90, 50)
+    povorot(45, 50)
+    povorot(-45, 50)
+    povorot(10, 50)
+    povorot(-10, 50)
 	}// while(1)
 }// task_main;
