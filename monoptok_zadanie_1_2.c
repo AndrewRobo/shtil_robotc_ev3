@@ -165,4 +165,9 @@ task main()
 	povorot(-270, 70);
 
 	moveKyrsNoStop(-250);
+
+
+///////////////////////////////////////
+	dispEndTimer();
+	
 }

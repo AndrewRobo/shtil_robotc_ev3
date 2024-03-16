@@ -88,5 +88,10 @@ void start_init_main()
 
     StopTask(monnitor)
 
-  //  timer1[3];
+    timer1[3]=0;
+}
+
+void dispEndTimer()
+{
+    displayBigTextLine(10, "%d", timer1[3]);
 }
