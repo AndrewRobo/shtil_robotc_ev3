@@ -83,8 +83,8 @@ void moveKyrs(int giroTagetXZ, int stop)
 
 	void moveKyrsNoStop(int giroTagetXZ)
 	{
-		int GiroscopTargetFrozen = -280
-		int GiroscopTargetDinamik = -280
+		int GiroscopTargetFrozen = giroTagetXZ
+		int GiroscopTargetDinamik = giroTagetXZ
 
 		    while(1)
 		{
