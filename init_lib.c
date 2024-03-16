@@ -61,8 +61,8 @@ void init_rul()
     resetMotorEncoder(port_rul);
 }//init_rul()
 
-start_init_main()
-{  
+void start_init_main()
+{
       init_radar();
     sleep(300);
 
@@ -88,5 +88,5 @@ start_init_main()
 
     StopTask(monnitor)
 
-    timer1[3];
+  //  timer1[3];
 }
