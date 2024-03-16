@@ -16,37 +16,60 @@
 	int distans_ot_robota_do_borta=20;
 	int v_max=60;
 	int gyro_real;
-	 const int K_usil_rula = 1;
+	 const int K_usil_rula = 3;
 
 //include
 	#include "filter_lib.c"
 	#include "init_lib.c"
 //voids
-	void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+	void set_ugol_rul(int ff)
 	{
-		int GiroscopTargetFrozen = giroTagetXZ;
-		int GiroscopTargetDinamik = giroTagetXZ;
-		while(1)
+		int f=ff;
+		if(f > 60){ f=60;}
+		if(f < -60){ f=-60;}
+		setMotorTarget(port_rul, f, SPEED_RUL);
+		waitUntilMotorStop(port_rul);
+		rul=getMotorEncoder(port_rul);
+	}
+
+	void moveProporcionalrul (int GiroscopTarget, int koef_usilenia , int v_max)
+	{
+		int GiroscopYgolOnline = SensorValue(port_gyro);
+		int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
+		motor[mot_left]=v_max
+		//+Error_ygol*koef_usilenia;
+		motor[mot_right]=v_max
+		//-Error_ygol*koef_usilenia;
+		set_ugol_rul(Error_ygol*K_usil_rula)
+	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
+
+void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+{
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	resetMotorEncoder(mot_left);
+	resetMotorEncoder(mot_right);
+	while(1)
+	{
+		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
+		if(SrArifmetikEnkoder<EnkoderTarget)
 		{
-			int SrArifmetikEnkoder = (nMotorEnkoder(mot_left)+nMotorEnkoder(mot_right))/2
-			if(SrArifmetikEnkoder<EnkoderTarget)
+			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<10)
+			{	moveProporcionalrul( GiroscopTargetDinamik, 1 , v_max);	}
+			else
 			{
-				int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-				GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-				if(abs(delta_distans_right)<10)
-				{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	moveProporcionalrul( GiroscopTargetFrozen-15, 1 , v_max);	}
 				else
-				{
-					if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-					{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-					else
-					{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-				}//if(abs(delta_distans_right)<10)
-			}//if(SrArifmetikEnkoder<EnkoderTarget)
-			else//if(SrArifmetikEnkoder<EnkoderTarget)
-			{ break; }
-		}// while(1)
-	}//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+				{	moveProporcionalrul( GiroscopTargetFrozen+15, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+		}//if(SrArifmetikEnkoder<EnkoderTarget)
+		else//if(SrArifmetikEnkoder<EnkoderTarget)
+		{ break; }
+	}// while(1)
+}//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
 	void povorot(int ugol_povorota, int v_max)
 	{
@@ -70,17 +93,6 @@
 		}//else	if(ugol_povorota<0)
 	}//povorot(new_kurs)
 
-
-	void set_ugol_rul(int ff)
-	{
-		int f=ff;
-		if(f > 60){ f=60;}
-		if(f < -60){ f=-60;}
-		setMotorTarget(port_rul, f, SPEED_RUL);
-		waitUntilMotorStop(port_rul);
-		rul=getMotorEncoder(port_rul);
-	}
-
 	void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 	{
 	    int GiroscopYgolOnline = SensorValue(port_gyro);
@@ -88,18 +100,6 @@
 	    motor[mot_left]=v_max+Error_ygol*koef_usilenia;
 	    motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
-
-void moveProporcionalrul (int GiroscopTarget, int koef_usilenia , int v_max)
-	{
-		int GiroscopYgolOnline = SensorValue(port_gyro);
-		int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
-		motor[mot_left]=v_max
-		//+Error_ygol*koef_usilenia;
-		motor[mot_right]=v_max
-		//-Error_ygol*koef_usilenia;
-		set_ugol_rul(Error_ygol*K_usil_rula)
-	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
-
 
 	void moveKyrs(int giroTagetXZ, int stoop)
 	{
@@ -152,6 +152,8 @@ task main()
 {
 	start_init_main();
 
+	EnMoveGir(7000, 0);
+
 	moveKyrs(0,80);
 
 	povorot(-90, 70);
@@ -160,9 +162,11 @@ task main()
 
 	povorot(-180, 70);
 
+	EnMoveGir(7000, -180);
+
 	moveKyrs(-180,80);
 
 	povorot(-270, 70);
 
-	moveKyrsNoStop(-250);
+	EnMoveGir(3000, -270);
 }
