@@ -55,6 +55,53 @@
         motor[mot_right]=v_max-Error_ygol*koef_usilenia;
     }//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
+void moveKyrs(int giroTagetXZ, int stop)
+	{
+		int GiroscopTargetFrozen = giroTagetXZ;
+		int GiroscopTargetDinamik = giroTagetXZ;
+
+		while(1)
+		{
+			if(stop<filtr_itog_nose)
+			{
+				int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+				GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+				if(abs(delta_distans_right)<10)
+				{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+				else
+				{
+					if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+					{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+					else
+					{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+				}//if(abs(delta_distans_right)<10)
+			}//if(70<filtr_itog_nose)
+			else//if(70>filtr_itog_nose)
+			{ break }
+		}// while(1)
+	}//void moveKyrs()
+
+	void moveKyrsNoStop(int giroTagetXZ)
+	{
+		int GiroscopTargetFrozen = -280
+		int GiroscopTargetDinamik = -280
+
+		    while(1)
+		{
+			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<10)
+			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			else
+			{
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+				else
+				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+		}// while(1)
+
+	}
 
 
 
