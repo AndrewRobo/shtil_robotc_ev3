@@ -87,4 +87,6 @@ start_init_main()
     playTone(600,100);
 
     StopTask(monnitor)
+
+    timer1[3];
 }
