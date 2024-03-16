@@ -169,4 +169,9 @@ task main()
 	povorot(-270, 70);
 
 	EnMoveGir(3000, -270);
+
+
+
+	/////////////////
+	dispEndTimer();
 }
