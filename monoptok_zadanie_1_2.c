@@ -18,73 +18,66 @@
 
 #include "filter_lib.c"
 #include "init_lib.c"
-//voids
 
 
-
-	void povorot(int ugol_povorota, int v_max)
-	{
-        while( ugol_povorota != SensorValue(port_gyro))
-        {
-        int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-        motor[mot_left]=Error_ygol;
-        motor[mot_right]=-Error_ygol;
-
-
-        }//while( ugol_povorota != SensorValue(port_gyro))
-	}//povorot(new_kurs)
-
-
-	void set_ugol_rul(int ff)
-	{
-		int f=ff;
-		if(f > 60){ f=60;}
-		if(f < -60){ f=-60;}
-
-		setMotorTarget(port_rul, f, SPEED_RUL);
-		waitUntilMotorStop(port_rul);
-
-		rul=getMotorEncoder(port_rul);
-	}
-
-    void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
+void povorot(int ugol_povorota, int v_max)
+{
+    while( ugol_povorota != SensorValue(port_gyro))
     {
-        int GiroscopYgolOnline = SensorValue(port_gyro);
-        int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
-        motor[mot_left]=v_max+Error_ygol*koef_usilenia;
-        motor[mot_right]=v_max-Error_ygol*koef_usilenia;
-    }//void moveProporcional(int GiroscopTarget, int koef_usilenia)
+       int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+       motor[mot_left]=Error_ygol;
+       motor[mot_right]=-Error_ygol;
+    }//while( ugol_povorota != SensorValue(port_gyro))
+}//povorot(new_kurs)
+
+
+void set_ugol_rul(int ff)
+{
+	int f=ff;
+	if(f > 60){ f=60;}
+	if(f < -60){ f=-60;}
+	setMotorTarget(port_rul, f, SPEED_RUL);
+	waitUntilMotorStop(port_rul);
+	rul=getMotorEncoder(port_rul);
+}
+
+void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
+{
+    int GiroscopYgolOnline = SensorValue(port_gyro);
+    int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
+    motor[mot_left]=v_max+Error_ygol*koef_usilenia;
+    motor[mot_right]=v_max-Error_ygol*koef_usilenia;
+}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
 void moveKyrs(int giroTagetXZ, int stop)
+{
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	while(1)
 	{
-		int GiroscopTargetFrozen = giroTagetXZ;
-		int GiroscopTargetDinamik = giroTagetXZ;
-
-		while(1)
+		if(stop<filtr_itog_nose)
 		{
-			if(stop<filtr_itog_nose)
+			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<10)
+			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			else
 			{
-				int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-				GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-				if(abs(delta_distans_right)<10)
-				{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
 				else
-				{
-					if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-					{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-					else
-					{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-				}//if(abs(delta_distans_right)<10)
-			}//if(70<filtr_itog_nose)
-			else//if(70>filtr_itog_nose)
-			{ break }
-		}// while(1)
-	}//void moveKyrs()
+				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+		}//if(70<filtr_itog_nose)
+		else//if(70>filtr_itog_nose)
+		{ break }
+	}// while(1)
+}//void moveKyrs()
 
 	void moveKyrsNoStop(int giroTagetXZ)
 	{
-		int GiroscopTargetFrozen = giroTagetXZ
-		int GiroscopTargetDinamik = giroTagetXZ
+		int GiroscopTargetFrozen = -280
+		int GiroscopTargetDinamik = -280
 
 		    while(1)
 		{
@@ -106,15 +99,6 @@ void moveKyrs(int giroTagetXZ, int stop)
 
 
 
-
-	task monnitor()
-	{
-		while(1)
-		{
-		sleep(1000)
-		displayBigTextLine(12, "%d", SensorValue(port_gyro));
-		}// while(1)
-	}//task monnitor()
 
 
 
