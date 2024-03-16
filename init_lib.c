@@ -8,7 +8,7 @@ void init_gyro()
     sleep(4000);
 }//init_gyro()
 
-task monnitor()
+task dispGyroInit()
 {
     while(1)
     {
@@ -39,57 +39,65 @@ void init_radar()
     resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
 }//init_radar()
 
+const int SPEED_RUL=30;
+
+void set_ugol_rul(int ff)
+	{
+		int f=ff;
+		if(f > 60){ f=60;}
+		if(f < -60){ f=-60;}
+		setMotorTarget(port_rul, f, SPEED_RUL);
+		waitUntilMotorStop(port_rul);
+	//	rul=getMotorEncoder(port_rul);
+	}
+
 void init_rul()
 {
     // povopot rulya do fiksatora  vdol zadnego borta
     int ryl = 1;
     int ryl2 = 2;
-    motor[port_rul] = 40;
+    motor[port_rul] = SPEED_RUL;
     while (ryl != ryl2)
     {
         ryl2 = ryl;
         sleep(50);
-        ryl = getMotorEncoder(port_rul);
+        ryl = getMotorEncoder( port_rul );
     }//while (ryl != ryl2)
     motor[port_rul] = 0;
     //	resetMotorEncoder(port_rul);
     sleep(300);
     // ustanavlivaem nulevim centralnoe pologenie rula
-    moveMotorTarget(port_rul, -100, -30); // 100 grad - 90 grad
+    moveMotorTarget(port_rul, -100, -SPEED_RUL); // 100 grad - 90 grad
     //                 plus experimentalnaya korrektirovka
     waitUntilMotorStop(port_rul);
     resetMotorEncoder(port_rul);
 }//init_rul()
 
+
+///////////////////////
 void start_init_main()
 {
-      init_radar();
+init_radar();
     sleep(300);
-
-    init_rul();
+init_rul();
     sleep(300);
-
-    init_gyro();
+init_gyro();
     sleep(300);
-
-    startTask(sensors);
+startTask(sensors);
     sleep(1000);
-
-    startTask(filtr);
+startTask(filtr);
     sleep(1000);
+startTask(dispGyroInit);
+playTone(600,100);
 
-    startTask(monnitor);
-    playTone(600,100);
-
-    sleep(1000);
-
+sleep(1000);
 
 waitForButtonPress();
 playTone(600,100);
 
-stopTask(monnitor);
+stopTask(dispGyroInit);
 
-   time1[3]=0;
+time1[3]=0;
 }
 
 

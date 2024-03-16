@@ -10,12 +10,12 @@
 
 //global variable
 
-int rul;  // tekuschij ugol rulua   global
-const int SPEED_RUL=30;
+//int rul;  // tekuschij ugol rulua   global
 
-int distans_ot_robota_do_borta=20;
-int v_max=60;
-int gyro_real;
+
+const int distans_ot_robota_do_borta=20;
+const int v_max=60;
+//int gyro_real;
 
 //include
 #include "filter_lib.c"
@@ -81,15 +81,6 @@ void povorot(int ugol_povorota, int v_max)
 }//povorot(new_kurs)
 
 
-void set_ugol_rul(int ff)
-{
-	int f=ff;
-	if(f > 60){ f=60;}
-	if(f < -60){ f=-60;}
-	setMotorTarget(port_rul, f, SPEED_RUL);
-	waitUntilMotorStop(port_rul);
-	rul=getMotorEncoder(port_rul);
-}
 
 void moveKyrs(int giroTagetXZ, int stoop)
 {
