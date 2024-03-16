@@ -8,6 +8,15 @@ void init_gyro()
     sleep(4000);
 }//init_gyro()
 
+task monnitor()
+{
+    while(1)
+    {
+    sleep(1000)
+    displayBigTextLine(12, "%d", SensorValue(port_gyro));
+    }// while(1)
+}//task monnitor()
+
 void init_radar()
 {// inicializacia naoravlenia radararadara
     // vraschaem motor radara do ogranichitela
@@ -51,3 +60,31 @@ void init_rul()
     waitUntilMotorStop(port_rul);
     resetMotorEncoder(port_rul);
 }//init_rul()
+
+start_init_main()
+{  
+      init_radar();
+    sleep(300);
+
+    init_rul();
+    sleep(300);
+
+    init_gyro();
+    sleep(300);
+
+    startTask(sensors);
+    sleep(1000);
+
+    startTask(filtr);
+    sleep(1000);
+    startTask(monnitor);
+
+    playTone(600,100);
+
+    sleep(1000)
+
+ waitForButtonPress();
+    playTone(600,100);
+
+    StopTask(monnitor)
+}
