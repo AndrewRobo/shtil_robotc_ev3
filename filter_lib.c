@@ -28,7 +28,7 @@ int filtr_itog_right;
     int arr_nose[len_nose_real];
     int ih_nose = 0;
 
-    const int len_nose_frozen = 11;
+    const int len_nose_frozen = 24;
     const int middle_nose = len_nose_frozen/2;
     int arr_nose_frozen[len_nose_frozen];
 
@@ -80,7 +80,7 @@ task sensors()
         ih_right++;
         if (ih_right >= len_right_real)		{ih_right = 0;}
         sleep(10);
-        
+
         arr_nose[ih_nose] = SensorValue(port_nose);
         ih_nose++;
         if (ih_nose >= len_nose_real)	{ih_nose = 0;}
@@ -101,7 +101,7 @@ task filtr()
         frozen( arr_nose, len_nose_real, ih_nose, arr_nose_frozen, len_nose_frozen);
         buble_sort( arr_nose, len_nose_real );
         filtr_itog_nose = arr_nose_frozen[middle_nose];
-        
+
         my_delta_timer=time1[0]- my_timer ;
         //displayBigTextLine(10, "%d", my_delta_timer);
     }// while(1)
