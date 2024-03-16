@@ -12,7 +12,7 @@ task monnitor()
 {
     while(1)
     {
-    sleep(1000)
+    sleep(1000);
     displayBigTextLine(12, "%d", SensorValue(port_gyro));
     }// while(1)
 }//task monnitor()
@@ -77,21 +77,23 @@ void start_init_main()
 
     startTask(filtr);
     sleep(1000);
+
     startTask(monnitor);
-
     playTone(600,100);
 
-    sleep(1000)
+    sleep(1000);
 
- waitForButtonPress();
-    playTone(600,100);
 
-    StopTask(monnitor)
+waitForButtonPress();
+playTone(600,100);
 
- //   timer1[3]=0;
+stopTask(monnitor);
+
+   time1[3]=0;
 }
+
 
 void dispEndTimer()
 {
-    displayBigTextLine(10, "%d", timer1[3]);
+    displayBigTextLine(10, "%d", time1[3]);
 }
