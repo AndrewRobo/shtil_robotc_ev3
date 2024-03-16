@@ -89,7 +89,7 @@
 	    motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
-void moveProporcionalкгд (int GiroscopTarget, int koef_usilenia , int v_max)
+void moveProporcionalrul (int GiroscopTarget, int koef_usilenia , int v_max)
 	{
 		int GiroscopYgolOnline = SensorValue(port_gyro);
 		int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
