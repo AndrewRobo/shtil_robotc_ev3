@@ -107,15 +107,6 @@ void moveKyrs(int giroTagetXZ, int stop)
 
 
 
-	task monnitor()
-	{
-		while(1)
-		{
-		sleep(1000)
-		displayBigTextLine(12, "%d", SensorValue(port_gyro));
-		}// while(1)
-	}//task monnitor()
-
 
 
 
