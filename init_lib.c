@@ -103,5 +103,9 @@ time1[3]=0;
 
 void dispEndTimer()
 {
+    playTone(600,100);
     displayBigTextLine(10, "%d", time1[3]);
+
+    waitForButtonPress();
+
 }
