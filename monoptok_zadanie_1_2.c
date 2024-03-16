@@ -16,6 +16,7 @@
 	int distans_ot_robota_do_borta=20;
 	int v_max=60;
 	int gyro_real;
+	 const int K_usil_rula = 1;
 
 //include
 	#include "filter_lib.c"
@@ -87,6 +88,18 @@
 	    motor[mot_left]=v_max+Error_ygol*koef_usilenia;
 	    motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
+
+void moveProporcionalкгд (int GiroscopTarget, int koef_usilenia , int v_max)
+	{
+		int GiroscopYgolOnline = SensorValue(port_gyro);
+		int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
+		motor[mot_left]=v_max
+		//+Error_ygol*koef_usilenia;
+		motor[mot_right]=v_max
+		//-Error_ygol*koef_usilenia;
+		set_ugol_rul(Error_ygol*K_usil_rula)
+	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
+
 
 	void moveKyrs(int giroTagetXZ, int stoop)
 	{
