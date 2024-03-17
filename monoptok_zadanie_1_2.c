@@ -18,6 +18,8 @@ const int v_max=60;
 
 const int K_usil_rula = 3 ;
 
+const int LIMIT_delta = 35 ;
+
 #include "filter_lib.c"
 #include "init_lib.c"
 
@@ -25,20 +27,22 @@ const int K_usil_rula = 3 ;
 
 
 void moveProporcionalrul (int GiroscopTarget,  int v_max)
-	{  // dvigenie s upravleniem rulen proporcionalno otklonenia ot kursa po giroskopu
-		int GiroscopYgolOnline = SensorValue(port_gyro);
-		int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
-		motor[mot_left]=v_max ;
-		//+Error_ygol*koef_usilenia;
-		motor[mot_right]=v_max ;
-		//-Error_ygol*koef_usilenia;
-		set_ugol_rul(Error_ygol*K_usil_rula) ;
+{  // dvigenie s upravleniem rulen proporcionalno otklonenia ot kursa po giroskopu
+	int GiroscopYgolOnline = SensorValue(port_gyro);
+	int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
+	motor[mot_left]=v_max ;
+	//+Error_ygol*koef_usilenia;
+	motor[mot_right]=v_max ;
+	//-Error_ygol*koef_usilenia;
+	set_ugol_rul(Error_ygol*K_usil_rula) ;
 }//void moveProporcionalRul(int GiroscopTarget, int koef_usilenia)
+
+
 
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 {  // dvigaemcya poka enkoder otschitavaet zadannij ugol povorota vala dvigatelya
 
-	int limit_delta = 35 ;
+
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
@@ -51,11 +55,11 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 		SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right)) ;
 		
 		int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-		if(delta_distans_right > limit_delta)
-		{   delta_distans_right=limit_delta;  }
+		if( delta_distans_right > LIMIT_delta )
+		{   delta_distans_right = LIMIT_delta;  }
 		else
-		{ if(delta_distans_right < -limit_delta ) 
-					{delta_distans_right = -limit_delta;}
+		{ if( delta_distans_right < -LIMIT_delta ) 
+			{ delta_distans_right = -LIMIT_delta; }
 		}
 
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
@@ -88,36 +92,35 @@ void povorot(int ugol_povorota, int v_max)
 		}//else	if(ugol_povorota<0)
 	}//povorot(new_kurs)
 
-	void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
-	{
+void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
+	{  // upravlenie povorotami ranoj moshnostiyu na grebie vinti
 	    int GiroscopYgolOnline = SensorValue(port_gyro);
 	    int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
 	    motor[mot_left]=v_max+Error_ygol*koef_usilenia;
 	    motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 	}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
 
-	void moveKyrs(int giroTagetXZ, int stoop)
-	{
+void moveKyrs(int giroTagetXZ, int stoop)
+	{ // digenie po kursu s pomoschyu giroskopa vdol
+	//   borta po pravomu datchku bez rula toko vintami
+	// bez encodera do togo kak nosovoi datchik uvidit bort
 		int GiroscopTargetFrozen = giroTagetXZ;
 		int GiroscopTargetDinamik = giroTagetXZ;
-		while(1)
+		while(stoop<filtr_itog_nose)
 		{
-			if(stoop<filtr_itog_nose)
-			{
-				int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-				GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-				if(abs(delta_distans_right)<10)
-				{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
-				else
-				{
-					if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-					{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-					else
-					{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-				}//if(abs(delta_distans_right)<10)
-			}//if(70<filtr_itog_nose)
-			else//if(70>filtr_itog_nose)
-			{ break; }
+			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+				
+			if( delta_distans_right > LIMIT_delta )
+			{   delta_distans_right=LIMIT_delta;  }
+			else
+			{ if( delta_distans_right < -LIMIT_delta ) 
+				{delta_distans_right = -LIMIT_delta; }
+			}
+
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			moveProporcional( GiroscopTargetDinamik, 1 , v_max);
+			
+			
 		}// while(1)
 	}//void moveKyrs()
 
