@@ -48,9 +48,9 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+				{	moveProporcional( GiroscopTargetFrozen-15, 2 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+				{	moveProporcional( GiroscopTargetFrozen+15, 2 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(SrArifmetikEnkoder<EnkoderTarget)
 		else//if(SrArifmetikEnkoder<EnkoderTarget)
@@ -114,19 +114,35 @@ task main()
 
 	EnMoveGir(7000, 0);
 
+	playTone(600,10);
+
 	moveKyrs(0,80);
+
+	playTone(600,10);
 
 	povorot(-90, 70);
 
+	playTone(600,10);
+
 	moveKyrs(-90,80);
+
+	playTone(600,10);
 
 	povorot(-180, 70);
 
-	EnMoveGir(7000, -180);
+	playTone(600,10);
+
+	EnMoveGir(6000, -180);
+
+	playTone(600,10);
 
 	moveKyrs(-180,80);
 
+	playTone(600,10);
+
 	povorot(-270, 70);
+
+	playTone(600,100);
 
 	EnMoveGir(3000, -270);
 
