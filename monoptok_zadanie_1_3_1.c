@@ -12,7 +12,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 const int distans_ot_robota_do_borta=20;
-const int v_max=80;
+const int v_max=100;
 //int gyro_real;
 
 //include
