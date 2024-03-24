@@ -30,6 +30,8 @@ void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 {
+	setLEDColor(ledRed);
+
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
@@ -68,6 +70,7 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
 void povorot(int ugol_povorota, int v_max)
 {
+	setLEDColor(ledGreen);
 	if(ugol_povorota<0)
 	{
 		while( ugol_povorota+5 != SensorValue(port_gyro))
@@ -92,6 +95,7 @@ void povorot(int ugol_povorota, int v_max)
 
 void moveKyrs(int giroTagetXZ, int stoop)
 {
+	setLEDColor(ledOrange);
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	while(1)
@@ -154,7 +158,7 @@ task main()
 
 	povorot(-270, 70);
 
-	playTone(600,100);
+	playTone(600,10);
 
 	EnMoveGir(3000, -270);
 
