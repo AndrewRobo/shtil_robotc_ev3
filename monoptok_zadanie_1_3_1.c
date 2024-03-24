@@ -12,7 +12,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 const int distans_ot_robota_do_borta=20;
-const int v_max=60;
+const int v_max=80;
 //int gyro_real;
 
 //include
@@ -131,7 +131,7 @@ task main()
 
 	playTone(600,10);
 
-	moveKyrs(0,70);
+	moveKyrs(0,80);
 
 	playTone(600,10);
 
@@ -159,11 +159,11 @@ task main()
 
 	playTone(600,10);
 
-	povorot(-270, 70);
+	povorot(-280, 70);
 
 	playTone(600,10);
 
-	EnMoveGir(3000, -270);
+	EnMoveGir(50, -270);
 
 	////////////////   END
 	dispEndTimer();
