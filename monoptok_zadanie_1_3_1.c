@@ -124,7 +124,8 @@ task main()
 {
 	start_init_main();
 
-	
+    stopTask(filtr);
+    stopTask(sensors);
 
 	EnMoveGir(6000, 0);
 
