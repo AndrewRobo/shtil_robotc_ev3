@@ -31,7 +31,7 @@ int filtr_itog_right;
     int ih_nose = 0;
     int last_count_nose-0;
 
-    const int len_nose_frozen = 24;
+    const int len_nose_frozen = 11;
     const int middle_nose = len_nose_frozen/2;
     int arr_nose_frozen[len_nose_frozen];
 

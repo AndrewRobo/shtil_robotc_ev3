@@ -12,7 +12,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 const int distans_ot_robota_do_borta=20;
-const int v_max=60;
+const int v_max=80;
 //int gyro_real;
 
 //include
@@ -119,22 +119,45 @@ void moveKyrs(int giroTagetXZ, int stoop)
 	}// while(1)
 }//void moveKyrs()
 
+void povorot_na_1_motore(int ugol_povorota, int v_max)
+{
+	setLEDColor(ledGreen);
+	if(ugol_povorota<0)
+	{
+		while( ugol_povorota+5 != SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=Error_ygol;
+			motor[mot_right]=v_max;
+		}//while( ugol_povorota+5 != SensorValue(port_gyro))
+	}//if(ugol_povorota<0)
+	else
+	{
+		while( ugol_povorota-5 != SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=v_max;
+			motor[mot_right]=Error_ygol;
+		}//while( ugol_povorota-5 != SensorValue(port_gyro))
+	}//else	if(ugol_povorota<0)
+}//void povopot_na_1_motore()
 
 task main()
 {
 	start_init_main();
 
-	
+    stopTask(filtr);
+    stopTask(sensors);
 
 	EnMoveGir(6000, 0);
 
 	playTone(600,10);
 
-	moveKyrs(0,70);
+	moveKyrs(0,80);
 
 	playTone(600,10);
 
-	povorot(-90, 70);
+	povorot_na_1_motore(-90, 70);
 
 	playTone(600,10);
 
@@ -146,7 +169,7 @@ task main()
 
 	playTone(600,10);
 
-	povorot(-180, 70);
+	povorot_na_1_motore(-180, 70);
 
 	playTone(600,10);
 
@@ -158,11 +181,11 @@ task main()
 
 	playTone(600,10);
 
-	povorot(-270, 70);
+	povorot_na_1_motore(-280, 70);
 
 	playTone(600,10);
 
-	EnMoveGir(3000, -270);
+	EnMoveGir(700, -270);
 
 	////////////////   END
 	dispEndTimer();
