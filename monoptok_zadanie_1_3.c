@@ -158,7 +158,7 @@ task main()
 
 	povorot(-270, 70);
 
-	playTone(600,100);
+	playTone(600,10);
 
 	EnMoveGir(3000, -270);
 
