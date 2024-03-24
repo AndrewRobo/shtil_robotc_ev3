@@ -13,7 +13,7 @@
 //int rul;  // tekuschij ugol rulua   global
 
 
-const int distans_ot_robota_do_borta=20;
+const int distans_ot_robota_do_borta=40;
 const int v_max=60;
 //int gyro_real;
 
@@ -36,25 +36,35 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
+	datalogClear();
 	while(1)
 	{
+		int delta_distans_right;
+		int ff;
 		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
 		if(SrArifmetikEnkoder<EnkoderTarget)
 		{
-			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
+			ff = filtr_itog_right;
+			delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
 			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 2 , v_max);	}
+				{	moveProporcional( GiroscopTargetFrozen-15, 4 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 2 , v_max);	}
+				{	moveProporcional( GiroscopTargetFrozen+15, 4 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(SrArifmetikEnkoder<EnkoderTarget)
 		else//if(SrArifmetikEnkoder<EnkoderTarget)
 		{ break; }
+	datalogDataGroupStart();
+	datalogAddValue(0, SrArifmetikEnkoder);
+  datalogAddValue(1, ff);
+  datalogAddValue(2, GiroscopTargetDinamik);
+  datalogAddValue(3, delta_distans_right);
+  datalogDataGroupEnd();
 	}// while(1)
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
@@ -113,7 +123,7 @@ task main()
 	start_init_main();
 
 	EnMoveGir(7000, 0);
-
+/*
 	playTone(600,10);
 
 	moveKyrs(0,80);
@@ -146,7 +156,7 @@ task main()
 
 	EnMoveGir(3000, -270);
 
-
+*/
 	////////////////   END
 	dispEndTimer();
 	}

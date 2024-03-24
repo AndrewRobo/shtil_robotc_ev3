@@ -47,24 +47,24 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-   
+
 	int et = EnkoderTarget * 2; //dly togo chtobi v cikle ne delit na 2
 	int SrArifmetikEnkoder;
 	do
 	{
 		SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right)) ;
-		
+
 		int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
 		if( delta_distans_right > LIMIT_delta )
 		{   delta_distans_right = LIMIT_delta;  }
 		else
-		{ if( delta_distans_right < -LIMIT_delta ) 
+		{ if( delta_distans_right < -LIMIT_delta )
 			{ delta_distans_right = -LIMIT_delta; }
 		}
 
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 		moveProporcionalrul( GiroscopTargetDinamik,  v_max);
-		
+
 	} while( SrArifmetikEnkoder < et ) ;
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
@@ -109,18 +109,18 @@ void moveKyrs(int giroTagetXZ, int stoop)
 		while(stoop<filtr_itog_nose)
 		{
 			int delta_distans_right =  distans_ot_robota_do_borta - filtr_itog_right;
-				
+
 			if( delta_distans_right > LIMIT_delta )
 			{   delta_distans_right=LIMIT_delta;  }
 			else
-			{ if( delta_distans_right < -LIMIT_delta ) 
+			{ if( delta_distans_right < -LIMIT_delta )
 				{delta_distans_right = -LIMIT_delta; }
 			}
 
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			moveProporcional( GiroscopTargetDinamik, 1 , v_max);
-			
-			
+
+
 		}// while(1)
 	}//void moveKyrs()
 
@@ -129,13 +129,19 @@ task main()
 {
 	start_init_main();
 
+
+
 	EnMoveGir(7000, 0);
+	playtone(400,10);
 
 	moveKyrs(0,80);
+	playTone(600,10);
 
 	povorot(-90, 70);
+	playTone(800,10);
 
 	moveKyrs(-90,80);
+	playtone(600,10);
 
 	povorot(-180, 70);
 
