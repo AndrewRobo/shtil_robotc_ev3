@@ -103,9 +103,14 @@ time1[3]=0;
 
 void dispEndTimer()
 { // posle zapliva  pischim, vivodim na ekran timer i gdem knopku
-    playTone(600,100);
-    displayBigTextLine(10, "%d", time1[3]);
+    playTone(1200,40);
+
+    eraseDisplay();
+
+
+    displayBigTextLine(5, "%d", time1[3]);
 
     waitForButtonPress();
+    sleep(5000);
 
 }
