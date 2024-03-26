@@ -99,8 +99,8 @@ time1[3]=0;
 
 void dispEndTimer()
 { // posle zapliva  pischim, vivodim na ekran timer i gdem knopku
-    motor[mot_left]=0
-    motor[mot_right]=0  
+    motor[mot_left]=0 ;
+    motor[mot_right]=0 ; 
 
     
     playTone(1200,40);
