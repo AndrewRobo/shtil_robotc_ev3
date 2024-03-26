@@ -115,7 +115,7 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	{
 		int delta_distans_right;
 		int ff;
-		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
+		float SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
 		if(SrArifmetikEnkoder<EnkoderTarget)
 		{
 			ff = SensorValue(port_right);
@@ -136,27 +136,27 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	}// while(1)
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
-void EnMoveRul(int EnkoderTarget, int giroTagetXZ)
+void EnMoveRul(int EnkoderTarget, int GiroscopTargetFrozen)
 {
 	setLEDColor(ledRed);
 
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
+	int GiroscopTargetDinamik = SensorValue(port_gyro);
 
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
 	
-	int SrArifmetikEnkoder
+	float SrArifmetikEnkoder
 
-	do
-	{
-	
+	do{//while(SrArifmetikEnkoder<EnkoderTarget)
+        GiroscopTargetDinamik = SensorValue(port_gyro);
+        if(GiroscopTargetDinamik>GiroscopTargetFrozen)
+        {
 
 
-
-
+        }
+        SrArifmetikEnkoder=(getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
 	}while(SrArifmetikEnkoder<EnkoderTarget)
-}//EnMoveRul(int EnkoderTarget, int giroTagetXZ)
+}//EnMoveRul(int EnkoderTarget, int GiroscopTargetFrozen)
 
 
 task main()
