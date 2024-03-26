@@ -133,9 +133,10 @@ task main()
 	start_filter_main();
 
 
-	EnMoveGir(7000, 0);
-	playtone(400,10);
+	EnMoveGir(6000, 0);
+			playtone(400,10);
 
+/*
 	moveKyrs(0,80);
 	playTone(600,10);
 
@@ -154,7 +155,7 @@ task main()
 	povorot(-270, 70);
 
 	EnMoveGir(1000, -270);
-
+*/
 
 
 	/////////////////
