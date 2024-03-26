@@ -81,22 +81,22 @@ void povorot_na_1_motore(int ugol_povorota, int v_max)
 	setLEDColor(ledGreen);
 	if(ugol_povorota<0)
 	{
+        set_ugol_rul(-40)
 		while( ugol_povorota+5 < SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=Error_ygol;
 			motor[mot_right]=v_max;
-			set_ugol_rul(-40)
 		}//while( ugol_povorota+5 != SensorValue(port_gyro))
 	}//if(ugol_povorota<0)
 	else
 	{
+        set_ugol_rul(40)
 		while( ugol_povorota-5 > SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=v_max;
 			motor[mot_right]=Error_ygol;
-			set_ugol_rul(40)
 		}//while( ugol_povorota-5 != SensorValue(port_gyro))
 	}//else	if(ugol_povorota<0)
 	set_ugol_rul(0)
@@ -136,7 +136,7 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	}// while(1)
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
-void EnMoveRul(int EnkoderTarget, int GiroscopTargetFrozen)
+void EnMoveRulGir(int EnkoderTarget, int GiroscopTargetFrozen)
 {
 	setLEDColor(ledRed);
 
@@ -144,19 +144,35 @@ void EnMoveRul(int EnkoderTarget, int GiroscopTargetFrozen)
 
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	
-	float SrArifmetikEnkoder
 
-	do{//while(SrArifmetikEnkoder<EnkoderTarget)
+	float SrArifmetikEnkoder=(getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
+    while(SrArifmetikEnkoder<EnkoderTarget)
+	{
+			motor[mot_left]=v_max;
+			motor[mot_right]=v_max;
         GiroscopTargetDinamik = SensorValue(port_gyro);
-        if(GiroscopTargetDinamik>GiroscopTargetFrozen)
+        if(GiroscopTargetDinamik>GiroscopTargetFrozen+5)
+        {set_ugol_rul(20);}
+        else
         {
-
-
-        }
+            if(GiroscopTargetDinamik<GiroscopTargetFrozen-5)
+            {set_ugol_rul(-20);}
+            else
+            {
+                int otklonenie = distans_ot_robota_do_borta - SensorValue(port_right);
+                if(otklonenie > distans_ot_robota_do_borta+3)
+                {set_ugol_rul(20);}
+                else
+                {
+                if(otklonenie < distans_ot_robota_do_borta-3)
+                {set_ugol_rul(-20);}
+                }
+            }//else  if(GiroscopTargetDinamik<GiroscopTargetFrozen-5)
+        }//else  if(GiroscopTargetDinamik>GiroscopTargetFrozen+5)
         SrArifmetikEnkoder=(getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
-	}while(SrArifmetikEnkoder<EnkoderTarget)
-}//EnMoveRul(int EnkoderTarget, int GiroscopTargetFrozen)
+	}//while(SrArifmetikEnkoder<EnkoderTarget)
+    set_ugol_rul(0);
+}//EnMoveRulGir(int EnkoderTarget, int GiroscopTargetFrozen)
 
 
 task main()
@@ -166,7 +182,7 @@ task main()
     stopTask(filtr);
     stopTask(sensors);
 
-	EnMoveGir(6000, 0);
+	EnMoveRulGir(6000, 0)
 
 	playTone(600,10);
 
