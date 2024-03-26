@@ -29,7 +29,7 @@ int filtr_itog_right;
     const int len_nose_real = 300;
     int arr_nose[len_nose_real];
     int ih_nose = 0;
-    int last_count_nose-0;
+    int last_count_nose=0;
 
     const int len_nose_frozen = 11;
     const int middle_nose = len_nose_frozen/2;
@@ -106,7 +106,7 @@ task filtr()
 
         if( last_count_nose >= len_nose_frozen) {
             last_count_nose=0;
-        
+
             frozen( arr_nose, len_nose_real, ih_nose, arr_nose_frozen, len_nose_frozen);
             buble_sort( arr_nose, len_nose_real );
             filtr_itog_nose = arr_nose_frozen[middle_nose];
