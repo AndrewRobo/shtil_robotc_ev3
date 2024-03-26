@@ -1,5 +1,5 @@
-int my_timer;
-int my_delta_timer;
+// int my_timer;
+// int my_delta_timer;
 
 int filtr_itog_left;
 int filtr_itog_nose;
@@ -115,3 +115,14 @@ task filtr()
         //displayBigTextLine(10, "%d", my_delta_timer);
     }// while(1)
 }//task filtr()
+
+
+void start_filter_main()
+{
+    
+startTask(sensors);
+            sleep(1000);
+startTask(filtr);
+             sleep(1000);
+
+}

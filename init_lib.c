@@ -83,14 +83,10 @@ init_rul();
     sleep(300);
 init_gyro();
     sleep(300);
-startTask(sensors);
-    sleep(1000);
-startTask(filtr);
-    sleep(1000);
 startTask(dispGyroInit);
-playTone(600,100);
 
-sleep(1000);
+    playTone(600,100);
+    sleep(1000);
 
 waitForButtonPress();
 playTone(600,100);
