@@ -106,41 +106,36 @@ void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 {
 	setLEDColor(ledRed);
 
+	int et = EnkoderTarget * 2;
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
+	int delta_distans_right;
+	int SrArifmetikEnkoder;
+
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	//datalogClear();
-	while(1)
-	{
-		int delta_distans_right;
-		int ff;
-		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
-		if(SrArifmetikEnkoder<EnkoderTarget)
+
+	do{
+		SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+		delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+		if(abs(delta_distans_right)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
 		{
-			ff = SensorValue(port_right);
-			delta_distans_right =  distans_ot_robota_do_borta - ff;
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen-15, 4 , v_max);	}
 			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 4 , v_max);	}
-				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 4 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-		}//if(SrArifmetikEnkoder<EnkoderTarget)
-		else//if(SrArifmetikEnkoder<EnkoderTarget)
-		{ break; }
-	}// while(1)
+			{	moveProporcional( GiroscopTargetFrozen+15, 4 , v_max);	}
+		}//if(abs(delta_distans_right)<10)
+	}while(SrArifmetikEnkoder<et);
 }//EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
 void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 {
 	setLEDColor(ledRed);
 
-	int et = EnkoderTarget * 2
+	int et = EnkoderTarget * 2;
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	int SrArifmetikEnkoder;
@@ -148,10 +143,8 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	//datalogClear();
-	do
-	{
 
+	do{
 		SrArifmetikEnkoder= (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
 		delta_distans_left =  distans_ot_robota_do_borta - SensorValue(port_left);
 		GiroscopTargetDinamik = GiroscopTargetFrozen + delta_distans_left;
@@ -164,7 +157,7 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 			else
 			{	moveProporcional( GiroscopTargetFrozen + 15, 4 , v_max);  }
 		}//if(abs(delta_distans_left)<10)
-	}	while( SrArifmetikEnkoder < et )
+	}while( SrArifmetikEnkoder < et );
 }//EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
 task main()
@@ -174,7 +167,7 @@ task main()
 	//    stopTask(filtr);
 	//    stopTask(sensors);
 
-EnMoveGirLeft(7000, 0)
+	EnMoveGirLeft(7000, 0);
 
 
 
