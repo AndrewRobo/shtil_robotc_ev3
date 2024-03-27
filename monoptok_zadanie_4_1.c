@@ -110,7 +110,7 @@ void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	datalogClear();
+	//datalogClear();
 	while(1)
 	{
 		int delta_distans_right;
@@ -140,34 +140,31 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 {
 	setLEDColor(ledRed);
 
+	int et = EnkoderTarget * 2
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
+	int SrArifmetikEnkoder;
+	int delta_distans_left;
+
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	datalogClear();
-	while(1)
+	//datalogClear();
+	do
 	{
-		int delta_distans_right;
-		int ff;
-		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
-		if(SrArifmetikEnkoder<EnkoderTarget)
+
+		SrArifmetikEnkoder= (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+		delta_distans_left =  distans_ot_robota_do_borta - SensorValue(port_left);
+		GiroscopTargetDinamik = GiroscopTargetFrozen + delta_distans_left;
+		if(abs(delta_distans_left)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
 		{
-			ff = SensorValue(port_left);
-			delta_distans_right =  distans_ot_robota_do_borta - ff;
-			GiroscopTargetDinamik = GiroscopTargetFrozen +delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen - 15, 4 , v_max);	}
 			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 4 , v_max);	}
-				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 4 , v_max);  }
-			}//if(abs(delta_distans_right)<10)
-		}//if(SrArifmetikEnkoder<EnkoderTarget)
-		else//if(SrArifmetikEnkoder<EnkoderTarget)
-		{ break; }
-	}// while(1)
+			{	moveProporcional( GiroscopTargetFrozen + 15, 4 , v_max);  }
+		}//if(abs(delta_distans_left)<10)
+	}	while( SrArifmetikEnkoder < et )
 }//EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
 task main()
@@ -177,7 +174,7 @@ task main()
 	//    stopTask(filtr);
 	//    stopTask(sensors);
 
-	EnMoveGirLeft(7000, 0);
+EnMoveGirLeft(7000, 0)
 
 
 
