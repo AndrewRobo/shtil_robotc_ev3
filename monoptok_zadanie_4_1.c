@@ -179,6 +179,8 @@ task main()
 
 	EnMoveGirLeft(7000, 0);
 
+
+
 	////////////////   END
 	dispEndTimer();
 
