@@ -77,12 +77,17 @@ void init_rul()
 ///////////////////////
 void start_init_main()
 {
+resetAllSensorAutoID();
+sleep (4000);
+
 init_radar();
     sleep(300);
 init_rul();
     sleep(300);
 init_gyro();
     sleep(300);
+
+
 startTask(dispGyroInit);
 
     playTone(600,100);
@@ -99,10 +104,10 @@ time1[3]=0;
 
 void dispEndTimer()
 { // posle zapliva  pischim, vivodim na ekran timer i gdem knopku
-    motor[mot_left]=0
-    motor[mot_right]=0  
+    motor[mot_left]=0 ;
+    motor[mot_right]=0 ;
 
-    
+
     playTone(1200,40);
 
     eraseDisplay();
