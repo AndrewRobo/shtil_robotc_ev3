@@ -189,23 +189,27 @@ task main()
 
 	povorot_na_1_motore(-180, -210 , 100 );
 
-	EnMoveGir( 1900 , -210 );
+	EnMoveGir( 2200 , -210 );
 
 	povorot_na_1_motore(-210, -180 , 100 );
 
-	EnMoveGirLeft( 2000 , -180 );
+	EnMoveGirLeft( 1600 , -180 );
 
-	moveKyrsLeft(-180 , 75);
+	moveKyrsLeft(-180 , 85);
 
 	povorot_na_1_motore(-180 , -90 , 100);
+
+	EnMoveGirLeft( 200 , -90 );
 
 	moveKyrsLeft(-90 , 75);
 
 	povorot_na_1_motore(-90 , 0 , 100);
-/////
 
+	EnMoveGirLeft( 2000 , 0 );
 
+	povorot_na_1_motore(0 , 25 , 100) ;
 
+	EnMoveGir( 1700 , 25 );
 
 	////////////////   END
 	dispEndTimer();
