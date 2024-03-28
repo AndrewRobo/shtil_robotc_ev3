@@ -154,8 +154,8 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 }//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
-{	setLEDColor(ledRedPulse);
-
+{	
+	setLEDColor(ledRedPulse);
 
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
