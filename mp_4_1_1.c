@@ -209,7 +209,7 @@ task main()
 
 	povorot_na_1_motore(0 , 25 , 100) ;
 
-	EnMoveGir( 2200 , -210 );
+	EnMoveGir( 1700 , 25 );
 
 	////////////////   END
 	dispEndTimer();
