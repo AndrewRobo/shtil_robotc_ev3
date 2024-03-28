@@ -100,23 +100,23 @@ void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
 {
 	setLEDColor(ledGreen);
 	if(ugol_povorota<prohlii_ygol)
-	{
+	{	set_ugol_rul(-40) ;
 		while( ugol_povorota+5 < SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=Error_ygol;
 			motor[mot_right]=v_max;
-			set_ugol_rul(-40) ;
+		
 		}//while( ugol_povorota+5 != SensorValue(port_gyro))
 	}//if(ugol_povorota<0)
 	else
-	{
+	{	set_ugol_rul(40) ;
 		while( ugol_povorota-5 > SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=v_max;
 			motor[mot_right]=Error_ygol;
-			set_ugol_rul(40) ;
+		
 		}//while( ugol_povorota-5 != SensorValue(port_gyro))
 	}//else	if(ugol_povorota<0)
 	set_ugol_rul(0) ;
@@ -181,7 +181,9 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 }//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
-{
+{	setLEDColor(ledRedPulse);
+
+
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
 
