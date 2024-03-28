@@ -18,7 +18,7 @@ void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 	int GiroscopYgolOnline = SensorValue(port_gyro);
 	int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
     
-	set_ugol_rul(Error_ygol);
+	// set_ugol_rul(Error_ygol);
 
 	motor[mot_left]=v_max+Error_ygol*koef_usilenia;
 	motor[mot_right]=v_max-Error_ygol*koef_usilenia;
