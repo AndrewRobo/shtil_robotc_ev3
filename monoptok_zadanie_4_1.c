@@ -47,7 +47,7 @@ void moveKyrsRight(int giroTagetXZ, int stoop)
 void moveKyrsLeft(int giroTagetXZ, int stoop)
 {
 	setLEDColor(ledOrange);
-	
+
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	int delta_distans_left
@@ -71,7 +71,8 @@ void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
 {
 	setLEDColor(ledGreen);
 	if(ugol_povorota<prohlii_ygol)
-	{	set_ugol_rul(-40) ;
+	{	
+		set_ugol_rul(-40) ;
 		while( ugol_povorota+5 < SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
@@ -81,7 +82,8 @@ void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
 		}//while( ugol_povorota+5 != SensorValue(port_gyro))
 	}//if(ugol_povorota<0)
 	else
-	{	set_ugol_rul(40) ;
+	{	
+		set_ugol_rul(40) ;
 		while( ugol_povorota-5 > SensorValue(port_gyro))
 		{
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
