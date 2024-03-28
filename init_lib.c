@@ -77,8 +77,8 @@ void init_rul()
 ///////////////////////
 void start_init_main()
 {
-manuallySetConnectionType(port_gyro, conn_none);
-sleep(4000);
+//manuallySetConnectionType(port_gyro, conn_none);
+//sleep(4000);
 
 resetAllSensorAutoID();
 sleep (4000);
