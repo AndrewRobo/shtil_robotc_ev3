@@ -13,7 +13,7 @@
 int distans_ot_robota_do_borta=30;
 const int v_max=100;
 
-void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
+void moveProporcional( int GiroscopTarget, int koef_usilenia , int v_max )
 {
 	int GiroscopYgolOnline = SensorValue(port_gyro);
 	int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
@@ -21,7 +21,7 @@ void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 	motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 }//void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 
-void moveKyrsRight(int giroTagetXZ, int stoop)
+void moveKyrsRight( int giroTagetXZ, int stoop )
 {
 	setLEDColor(ledOrange);
 
@@ -44,7 +44,7 @@ void moveKyrsRight(int giroTagetXZ, int stoop)
 	}while(stoop<SensorValue(port_nose));
 }//void moveKyrsRight(int giroTagetXZ, int stoop)
 
-void moveKyrsLeft(int giroTagetXZ, int stoop)
+void moveKyrsLeft( int giroTagetXZ, int stoop )
 {
 	setLEDColor(ledOrange);
 
@@ -67,7 +67,7 @@ void moveKyrsLeft(int giroTagetXZ, int stoop)
 	}while(stoop<SensorValue(port_nose));
 }//void moveKyrsLeft(int giroTagetXZ, int stoop)
 
-void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
+void povorot_na_1_motore( int prohlii_ygol ,int ugol_povorota, int v_max )
 {
 	setLEDColor(ledGreen);
 	if(ugol_povorota<prohlii_ygol)
@@ -78,7 +78,6 @@ void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=0;
 			motor[mot_right]=v_max;
-
 		}//while( ugol_povorota+5 != SensorValue(port_gyro))
 	}//if(ugol_povorota<0)
 	else
@@ -89,13 +88,12 @@ void povorot_na_1_motore(int prohlii_ygol ,int ugol_povorota, int v_max)
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=v_max;
 			motor[mot_right]=0;
-
 		}//while( ugol_povorota-5 != SensorValue(port_gyro))
 	}//else	if(ugol_povorota<0)
 	set_ugol_rul(0) ;
 }//void povopot_na_1_motore(int ugol_povorota, int v_max)
 
-void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
+void EnMoveGirRight( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRed);
 
@@ -124,7 +122,7 @@ void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
-void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
+void EnMoveGirLeft( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRed);
 
@@ -153,7 +151,7 @@ void EnMoveGirLeft(int EnkoderTarget, int giroTagetXZ)
 	}while( SrArifmetikEnkoder < et );
 }//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
-void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRedPulse);
 
@@ -169,67 +167,25 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
+void EnMoveGirByi( int giroTagetXZ )
+{
+	while(1)
+	{
 
+
+
+	}
+}
 
 task main()
 {
 	start_init_main();
 
-	EnMoveGirRight( 6000 , 0 );
+	
 
-	moveKyrsRight( 0 , 70 );
 
-	povorot_na_1_motore(0, -90 , 100 );
 
-	EnMoveGirRight( 200 , -90 );
 
-	moveKyrsRight( -90 , 60 );
-
-	povorot_na_1_motore(-90, -170 , 100 );
-
-	EnMoveGirRight( 1700 , -180 );
-
-	povorot_na_1_motore(-180, -210 , 100 );
-
-	EnMoveGir( 1900 , -210 );
-
-	povorot_na_1_motore(-210, -180 , 100 );
-
-	EnMoveGirLeft( 2300 , -180 );
-
-	moveKyrsLeft(-180 , 60);
-
-	povorot_na_1_motore(-180 , -90 , 100);
-
-	EnMoveGirLeft( 200 , -90 );
-
-	moveKyrsLeft(-90 , 60);
-
-	povorot_na_1_motore(-90 , 0 , 100);
-
-	distans_ot_robota_do_borta=20;
-
-	EnMoveGirLeft( 2000 , 0 );
-
-	povorot_na_1_motore(0 , 25 , 100) ;
-
-	EnMoveGir( 2000 , 25 );
-
-	povorot_na_1_motore( 25 , 0 , 100) ;
-
-	EnMoveGirRight( 1500 , 0 );
-
-	moveKyrsRight( 0 , 70 );
-
-	povorot_na_1_motore(0, -90 , 100 );
-
-	EnMoveGirRight( 200 , -90 );
-
-	moveKyrsRight( -90 , 60 );
-
-	povorot_na_1_motore(-90, -170 , 100 );
-
-	EnMoveGirRight( 7000 , -180 );
 
 	////////////////   END
 	dispEndTimer();
