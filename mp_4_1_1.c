@@ -205,11 +205,16 @@ task main()
 	povorot_na_1_motore(-180, -210 , 100 );
 			// povorachvaem na diagonal vosmerki  s -180 na -210   so skorostyu 100 
 
-	EnMoveGir( 1900 , -210 );
+	EnMoveGir( 1900 , -210 );  
+			// dvigemsya po pervoj diagonali ( kurs -210) enkoder 1700
+			// US ne smotrim
 
 	povorot_na_1_motore(-210, -180 , 100 );
+			//pravij povorot s diagolali (s kursa -210 na kurs -180) so skorostiyu 100
 
 	EnMoveGirLeft( 2300 , -180 );
+			// dvigaemsya po pravoj stenke basseina levim bortom robota
+			// otslegivaem  distanci
 
 	moveKyrsLeft(-180 , 60);
 
