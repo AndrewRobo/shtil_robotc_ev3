@@ -42,14 +42,14 @@ void init_radar()
 const int SPEED_RUL=30;
 
 void set_ugol_rul(int ff)
-	{
-		int f=ff;
-		if(f > 60){ f=60;}
-		if(f < -60){ f=-60;}
-		setMotorTarget(port_rul, f, SPEED_RUL);
-		waitUntilMotorStop(port_rul);
-	//	rul=getMotorEncoder(port_rul);
-	}
+{
+	int f=ff;
+	if(f > 60){ f=60;}
+	if(f < -60){ f=-60;}
+	setMotorTarget(port_rul, f, SPEED_RUL);
+	waitUntilMotorStop(port_rul);
+    //	rul=getMotorEncoder(port_rul);
+}
 
 void init_rul()
 {
@@ -74,36 +74,34 @@ void init_rul()
 }//init_rul()
 
 
-///////////////////////
 void start_init_main()
 {
-//manuallySetConnectionType(port_gyro, conn_none);
-//sleep(4000);
+    //manuallySetConnectionType(port_gyro, conn_none);
+    //sleep(4000);
 
-resetAllSensorAutoID();
-sleep (4000);
+    resetAllSensorAutoID();
+    sleep (4000);
 
-init_radar();
-    sleep(300);
-init_rul();
-    sleep(300);
-init_gyro();
-    sleep(300);
+    init_radar();
+        sleep(300);
+    init_rul();
+        sleep(300);
+    init_gyro();
+        sleep(300);
 
 
-startTask(dispGyroInit);
+    startTask(dispGyroInit);
 
+        playTone(600,100);
+        sleep(1000);
+
+    waitForButtonPress();
     playTone(600,100);
-    sleep(1000);
 
-waitForButtonPress();
-playTone(600,100);
+    stopTask(dispGyroInit);
 
-stopTask(dispGyroInit);
-
-time1[3]=0;
+    time1[3]=0;
 }
-
 
 void dispEndTimer()
 { // posle zapliva  pischim, vivodim na ekran timer i gdem knopku

@@ -180,18 +180,30 @@ task main()
 		   // raasoyanie do borta v globalnoj    const int distans_ot_robota_do_borta=30
 
 	moveKyrsRight( 0 , 70 );
+			// plivem po gyru kurs 0, otslegivaya pravij bort po US datchiku
+			// do  borta speredi po nosovomu radarnomu US datchiku do 70 santimetrov
 
-	povorot_na_1_motore(0, -90 , 100 );
+	povorot_na_1_motore(0, -90 , 100 );  
+			// povorachivaem  s kursa 0 na kurs -90 ( nalevo ) ns skorosti 100 %
 
 	EnMoveGirRight( 200 , -90 );
+			//edem do enkodera 200 gradusov po kursu  -90,  otslejivaya pravij bort
 
 	moveKyrsRight( -90 , 60 );
+			//  po kusu -90 vdol zadnej stenki bassina, do obnarugenij radarnim US datchikom
+			//  levoi stenki basseina na rasstoyanii 60 santimetro
+
 
 	povorot_na_1_motore(-90, -170 , 100 );
+			// povorot s kursa -90 na kurs -170 (-180 s zapasom) so skoroctyu 1000.
 
 	EnMoveGirRight( 1700 , -180 );
+			//  edei nazad (kurs -180) vdol levoj stenki bassina 
+			// otstlegivaem levuyu stenku pravim US datchikom
+			// do 1/3 bassejna (encoder 1700)
 
 	povorot_na_1_motore(-180, -210 , 100 );
+			// povorachvaem na diagonal vosmerki  s -180 na -210   so skorostyu 100 
 
 	EnMoveGir( 1900 , -210 );
 
