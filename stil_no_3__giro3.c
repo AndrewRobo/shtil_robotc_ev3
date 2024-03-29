@@ -114,63 +114,6 @@ void kyrs_rul(int ygol_r,int speed)
 	}
 }
 
-/*
-///////////////////////////////////////
-void dvig_po_bort(int v_max,int cel_yg,int ice)
-{
-int shet = 1;
-while(1)
-{
-
-nose_z = SensorValue(port_nose);
-if(real_yg>-260)
-{
-real_yg =SensorValue(port_giro);
-distants_real = SensorValue(port_right);
-if(nose_z<ice)
-{
-shet = shet + 1;
-if(shet>5)
-{
-while(nose_z<80)
-{
-real_yg =SensorValue(port_giro);
-if(real_yg<-260)
-{
-break;
-}
-nose_z = SensorValue(port_nose);
-motor[mot_left]=0;
-setMotorTarget(port_rul, -45, 100);
-}
-shet = 1;
-}
-}
-else
-{
-motor[mot_left]=v_max;
-motor[mot_right]=v_max;
-distants_real = SensorValue(port_right);
-int distants_eror =distants_reg - distants_real;
-kurs_war = distants_k * distants_eror;
-real_yg =SensorValue(port_giro);
-set_rul_zero(-kurs_war);
-}
-}
-else
-{
-motor[mot_left]=v_max;
-motor[mot_right]=v_max;
-distants_real = SensorValue(port_right);
-int distants_eror =distants_reg - distants_real;
-kurs_war = distants_k * distants_eror;
-real_yg =SensorValue(port_giro);
-set_rul_zero(-kurs_war);
-
-}
-}
-}
-*/
 void giro_kurs(int cel_yg, int byu, int v_max)
 {
 	while(nose_z>byu)

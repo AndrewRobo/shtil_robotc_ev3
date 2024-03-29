@@ -167,6 +167,8 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
+
+
 void EnMoveGirByi( int giroTagetXZ , int distants_byi)
 {
 
