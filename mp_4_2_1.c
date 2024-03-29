@@ -166,18 +166,18 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 		moveProporcional( giroTagetXZ, 1 , 100);
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+ 
+void SetYgolRadar()
 
-
-
-void EnMoveGirByi( int giroTagetXZ , int distants_byi)
-{
-
-	while(1)
-	{
-
-	}
-
-}
+//void EnMoveGirByi( int giroTagetXZ , int distants_byi)
+//{
+//
+//	while(1)
+//	{
+//
+//	}
+//
+//}
 
 task main()
 {
