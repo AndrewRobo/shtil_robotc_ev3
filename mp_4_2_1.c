@@ -169,15 +169,13 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
+
+
 task main()
 {
 	start_init_main();
-	//-------------------------------------------
 
 	EnMoveGirRight( 6000 , 0 );
-	       // edem do srednego encodera   6000 gradusov (5.5mbassein) po gyro kurs 0 gradusov
-		   // vdol pravogo borta po pravomu UltraSonic datchuku
-		   // raasoyanie do borta v globalnoj    const int distans_ot_robota_do_borta=30
 
 	moveKyrsRight( 0 , 70 );
 
