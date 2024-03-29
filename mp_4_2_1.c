@@ -10,6 +10,9 @@
 #include "init_lib.c"
 //global variable
 
+//		setMotorTarget(port_rul, f, SPEED_RUL);
+//		waitUntilMotorStop(port_rul);
+
 int distans_ot_robota_do_borta=30;
 const int v_max=100;
 
@@ -166,28 +169,116 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 		moveProporcional( giroTagetXZ, 1 , 100);
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
- 
-void SetYgolRadar()
 
-//void EnMoveGirByi( int giroTagetXZ , int distants_byi)
-//{
-//
-//	while(1)
-//	{
-//
-//	}
-//
-//}
+void SetYgolRadar( int ygol_roadar )
+{
+	if(ygol_roadar>0)
+	{
+		if( ygol_roadar > 85 )
+		{ ygol_roadar= 85 }
+	}//if(ygol_roadar>0)
+	else//if(ygol_roadar>0)
+	{
+		if( ygol_roadar < -85 )
+		{ ygol_roadar= -85 }
+	}//else if(ygol_roadar>0)
+	setMotorTarget(port_radar, ygol_roadar, v_max);
+	waitUntilMotorStop(port_radar);
+}
 
 task main()
 {
 	start_init_main();
 
-	
-
-
-
-
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 90 );
+sleep(1000);
+	SetYgolRadar( 45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( -90 );
+sleep(1000);
+	SetYgolRadar( -45 );
+sleep(1000);
+	SetYgolRadar( 0 );
+sleep(1000);
 
 	////////////////   END
 	dispEndTimer();
