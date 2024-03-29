@@ -252,7 +252,7 @@ task main()
 			// otstlegivaem levuyu stenku pravim US datchikom
 			// do 1/3 bassejna (encoder 1700)
 
-    moveKyrsRight(-180,80)
+    moveKyrsRight_doBuy(-180,60)
 
 
 
@@ -287,7 +287,7 @@ task main()
 
 	//EnMoveGirLeft( 2000 , 0 );
 
-    moveKyrsLeft_doBuy(0 , 80);
+    moveKyrsLeft_doBuy(0 , 60);
 
 
 
