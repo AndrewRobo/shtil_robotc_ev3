@@ -24,7 +24,7 @@ void moveProporcional( int GiroscopTarget, int koef_usilenia , int v_max )
 	motor[mot_right]=v_max-Error_ygol*koef_usilenia;
 }//void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 
-void moveKyrsRight( int giroTagetXZ, int stoop )
+void moveKyrsRight( int giroTagetXZ, int pregrada )
 {
 	setLEDColor(ledOrange);
 
@@ -44,10 +44,10 @@ void moveKyrsRight( int giroTagetXZ, int stoop )
 			else
 			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
 		}//if(abs(delta_distans_right)<10)
-	}while(stoop<SensorValue(port_nose));
-}//void moveKyrsRight(int giroTagetXZ, int stoop)
+	}while(pregrada<SensorValue(port_nose));
+}//void moveKyrsRight(int giroTagetXZ, int pregrada)
 
-void moveKyrsLeft( int giroTagetXZ, int stoop )
+void moveKyrsLeft( int giroTagetXZ, int pregrada )
 {
 	setLEDColor(ledOrange);
 
@@ -67,8 +67,8 @@ void moveKyrsLeft( int giroTagetXZ, int stoop )
 			else
 			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
 		}//if(abs(delta_distans_left)<10)
-	}while(stoop<SensorValue(port_nose));
-}//void moveKyrsLeft(int giroTagetXZ, int stoop)
+	}while(pregrada<SensorValue(port_nose));
+}//void moveKyrsLeft(int giroTagetXZ, int pregrada)
 
 void povorot_na_1_motore( int prohlii_ygol ,int ugol_povorota, int v_max )
 {
@@ -172,113 +172,56 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 
 void SetYgolRadar( int ygol_roadar )
 {
-	if(ygol_roadar>0)
-	{
-		if( ygol_roadar > 85 )
-		{ ygol_roadar= 85 }
-	}//if(ygol_roadar>0)
-	else//if(ygol_roadar>0)
-	{
-		if( ygol_roadar < -85 )
-		{ ygol_roadar= -85 }
-	}//else if(ygol_roadar>0)
-	setMotorTarget(port_radar, ygol_roadar, v_max);
+
+	if( ygol_roadar > 85 )
+	{ ygol_roadar = 85 ; }
+
+	if( ygol_roadar < -85 )
+	{ ygol_roadar = -85 ; }
+
+	setMotorTarget(port_radar, ygol_roadar, 30);
 	waitUntilMotorStop(port_radar);
-}
+
+}//void SetYgolRadar( int ygol_roadar )
+
+void povorot_po_diametru( int prohlii_ygol , int ugol_povorota , int v_max , int koef)
+{
+	setLEDColor(ledGreen);
+	if(ugol_povorota<prohlii_ygol)
+	{
+		set_ugol_rul(-20) ;
+		while( ugol_povorota+5 < SensorValue(port_gyro))
+		{
+			motor[mot_left]=v_max/koef;
+			motor[mot_right]=v_max;
+		}//while( ugol_povorota+5 != SensorValue(port_gyro))
+	}//if(ugol_povorota<0)
+	else
+	{
+		set_ugol_rul(20) ;
+		while( ugol_povorota-5 > SensorValue(port_gyro))
+		{
+			motor[mot_left]=v_max;
+			motor[mot_right]=v_max/koef;
+		}//while( ugol_povorota-5 != SensorValue(port_gyro))
+	}//else	if(ugol_povorota<0)
+	set_ugol_rul(0) ;
+}//void povorot_po_diametru(int ugol_povorota, int v_max)
+
+
+
 
 task main()
 {
 	start_init_main();
 
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
 	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 90 );
-sleep(1000);
-	SetYgolRadar( 45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( -90 );
-sleep(1000);
-	SetYgolRadar( -45 );
-sleep(1000);
-	SetYgolRadar( 0 );
-sleep(1000);
+
+	EnMoveGirRight( 0 , 3000 );
+
+	moveKyrsRight( 0, 50 );
+
+	povorot_po_diametru( 0 , -180 , 100 , 4 );
 
 	////////////////   END
 	dispEndTimer();
