@@ -173,45 +173,6 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
-void SetYgolRadar( int ygol_roadar )
-{
-
-	if( ygol_roadar > 85 )
-	{ ygol_roadar = 85 ; }
-
-	if( ygol_roadar < -85 )
-	{ ygol_roadar = -85 ; }
-
-	setMotorTarget(port_radar, ygol_roadar, 30);
-	waitUntilMotorStop(port_radar);
-
-}//void SetYgolRadar( int ygol_roadar )
-
-void povorot_po_diametru( int prohlii_ygol , int ugol_povorota , int v_max , int koef)
-{
-	setLEDColor(ledGreen);
-	if(ugol_povorota<prohlii_ygol)
-	{
-		set_ugol_rul(-20) ;
-		while( ugol_povorota+5 < SensorValue(port_gyro))
-		{
-			motor[mot_left]=v_max/koef;
-			motor[mot_right]=v_max;
-		}//while( ugol_povorota+5 != SensorValue(port_gyro))
-	}//if(ugol_povorota<0)
-	else
-	{
-		set_ugol_rul(20) ;
-		while( ugol_povorota-5 > SensorValue(port_gyro))
-		{
-			motor[mot_left]=v_max;
-			motor[mot_right]=v_max/koef;
-		}//while( ugol_povorota-5 != SensorValue(port_gyro))
-	}//else	if(ugol_povorota<0)
-	set_ugol_rul(0) ;
-}//void povorot_po_diametru(int ugol_povorota, int v_max)
-
-
 
 task main()
 {
