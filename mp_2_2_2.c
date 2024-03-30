@@ -216,6 +216,7 @@ void moveKyrsRight_doBuy(int giroTagetXZ, int stoop)
 			else
 			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
 		}//if(abs(delta_distans_right)<10)
+        sleep(10);
 	}while(stoop<SensorValue(port_left));
 }//void moveKyrsRight(int giroTagetXZ, int stoop)
 
