@@ -173,6 +173,52 @@ void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
+void moveKyrsLeft_doBuy(int giroTagetXZ, int stoop)
+{
+	setLEDColor(ledOrangePulse);
+
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	int delta_distans_left;
+
+	do{
+		delta_distans_left =  distans_ot_robota_do_borta - SensorValue(port_left);
+		GiroscopTargetDinamik = GiroscopTargetFrozen + delta_distans_left;
+		if(abs(delta_distans_left)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
+		{
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+			else
+			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+		}//if(abs(delta_distans_left)<10)
+	}while(stoop<SensorValue(port_right));
+}//void moveKyrsLeft(int giroTagetXZ, int stoop)
+
+void moveKyrsRight_doBuy(int giroTagetXZ, int stoop)
+{
+	setLEDColor(ledOrangePulse);
+
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	int delta_distans_right;
+
+	do{
+		delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+		if(abs(delta_distans_right)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
+		{
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+			else
+			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+		}//if(abs(delta_distans_right)<10)
+	}while(stoop<SensorValue(port_left));
+}//void moveKyrsRight(int giroTagetXZ, int stoop)
+
 
 task main()
 {
