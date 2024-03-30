@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-const int distans_ot_robota_do_borta=40;
+const int distans_ot_robota_do_borta=30;
 const int v_max=100;
 //int gyro_real;
 
@@ -216,6 +216,7 @@ void moveKyrsRight_doBuy(int giroTagetXZ, int stoop)
 			else
 			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
 		}//if(abs(delta_distans_right)<10)
+		sleep(10)
 	}while(stoop<SensorValue(port_left));
 }//void moveKyrsRight(int giroTagetXZ, int stoop)
 
@@ -227,11 +228,28 @@ task main()
 	stopTask(filtr);
 	stopTask(sensors);
 
-	EnMoveGirRight( 0 , 1000 )	
+	EnMoveGirRight( 0 , 2000 )
 
-	moveKyrsRight_doBuy(0,50)
+	moveKyrsRight_doBuy(0,60)
 
-	void povorot_na_1_motore( 0 ,-80, 100 )
+		EnMoveGirRight( 0 , 1500 )
+
+			moveKyrsRight_doBuy(0,60)
+
+			EnMoveGirRight( 0 , 1000 )
+
+			povorot_na_1_motore( 0 ,-80, 100 )
+
+			EnMoveGir(-90,1000)
+
+						povorot_na_1_motore( -90 ,-170, 100 )
+
+						moveKyrsRight_doBuy(-180,60)
+
+							EnMoveGirRight( -180 , 1500 )
+
+			moveKyrsRight_doBuy(-180,60)
+
 
 	////////////////   END
 	dispEndTimer();
