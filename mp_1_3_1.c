@@ -166,7 +166,7 @@ task main()
     stopTask(filtr);
     stopTask(sensors);
 
-	EnMoveGir(6000, 0);
+	EnMoveGir(7000, 0);
 
 	playTone(600,10);
 
@@ -178,7 +178,7 @@ task main()
 
 	playTone(600,10);
 
-	EnMoveGir(10, -90);
+	EnMoveGir(700, -90);
 
 	playTone(600,10);
 
@@ -190,7 +190,7 @@ task main()
 
 	playTone(600,10);
 
-	EnMoveGir(5000, -180);
+	EnMoveGir(6000, -180);
 
 	playTone(600,10);
 
