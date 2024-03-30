@@ -281,7 +281,7 @@ task main()
 
 	povorot_na_1_motore(-90 , 0 , 100);
 
-	distans_ot_robota_do_borta=20;
+	distans_ot_robota_do_borta=20;  // ???????
 
 
 
