@@ -96,10 +96,10 @@ void povorot_na_1_motore(int ugol_povorota, int v_max)
 			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
 			motor[mot_left]=v_max;
 			motor[mot_right]=Error_ygol;
-			set_ugol_rul(40)
+			set_ugol_rul(40);
 		}//while( ugol_povorota-5 != SensorValue(port_gyro))
 	}//else	if(ugol_povorota<0)
-	set_ugol_rul(0)
+	set_ugol_rul(0);
 }//void povopot_na_1_motore()
 
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
@@ -166,7 +166,7 @@ task main()
     stopTask(filtr);
     stopTask(sensors);
 
-	EnMoveGir(6000, 0);
+	EnMoveGir(8000, 0);
 
 	playTone(600,10);
 
@@ -174,11 +174,11 @@ task main()
 
 	playTone(600,10);
 
-	povorot_na_1_motore(-90, 70);
+	povorot_na_1_motore(-80, 70);
 
 	playTone(600,10);
 
-	EnMoveGir(10, -90);
+	EnMoveGir(1000, -90);
 
 	playTone(600,10);
 
@@ -186,15 +186,15 @@ task main()
 
 	playTone(600,10);
 
-	povorot_na_1_motore(-180, 70);
+	povorot_na_1_motore(-170, 70);
 
 	playTone(600,10);
 
-	EnMoveGir(5000, -180);
+	EnMoveGir(6500, -180);
 
 	playTone(600,10);
 
-	moveKyrs(-180,70);
+	moveKyrs(-180,40);
 
 	playTone(600,10);
 
