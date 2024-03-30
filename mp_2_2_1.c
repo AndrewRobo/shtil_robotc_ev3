@@ -19,16 +19,87 @@ const int v_max=100;
 #include "filter_lib.c"
 #include "init_lib.c"
 //voids
-
-void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
+void moveProporcional( int GiroscopTarget, int koef_usilenia , int v_max )
 {
 	int GiroscopYgolOnline = SensorValue(port_gyro);
 	int Error_ygol = GiroscopTarget - GiroscopYgolOnline;
 	motor[mot_left]=v_max+Error_ygol*koef_usilenia;
 	motor[mot_right]=v_max-Error_ygol*koef_usilenia;
-}//void moveProporcional(int GiroscopTarget, int koef_usilenia)
+}//void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 
-void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
+void moveKyrsRight( int giroTagetXZ, int pregrada )
+{
+	setLEDColor(ledOrange);
+
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	int delta_distans_right;
+
+	do{
+		delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+		if(abs(delta_distans_right)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
+		{
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+			else
+			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+		}//if(abs(delta_distans_right)<10)
+	}while(pregrada<SensorValue(port_nose));
+}//void moveKyrsRight(int giroTagetXZ, int pregrada)
+
+void moveKyrsLeft( int giroTagetXZ, int pregrada )
+{
+	setLEDColor(ledOrange);
+
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	int delta_distans_left;
+
+	do{
+		delta_distans_left =  distans_ot_robota_do_borta - SensorValue(port_left);
+		GiroscopTargetDinamik = GiroscopTargetFrozen + delta_distans_left;
+		if(abs(delta_distans_left)<10)
+		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+		else
+		{
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+			else
+			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+		}//if(abs(delta_distans_left)<10)
+	}while(pregrada<SensorValue(port_nose));
+}//void moveKyrsLeft(int giroTagetXZ, int pregrada)
+
+void povorot_na_1_motore( int prohlii_ygol ,int ugol_povorota, int v_max )
+{
+	setLEDColor(ledGreen);
+	if(ugol_povorota<prohlii_ygol)
+	{
+		set_ugol_rul(-40) ;
+		while( ugol_povorota+5 < SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=0;
+			motor[mot_right]=v_max;
+		}//while( ugol_povorota+5 != SensorValue(port_gyro))
+	}//if(ugol_povorota<0)
+	else
+	{
+		set_ugol_rul(40) ;
+		while( ugol_povorota-5 > SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=v_max;
+			motor[mot_right]=0;
+		}//while( ugol_povorota-5 != SensorValue(port_gyro))
+	}//else	if(ugol_povorota<0)
+	set_ugol_rul(0) ;
+}//void povopot_na_1_motore(int ugol_povorota, int v_max)
+
+void EnMoveGirRight( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRed);
 
@@ -57,140 +128,36 @@ void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
-
-void povorot(int ugol_povorota, int v_max)
-{
-	setLEDColor(ledGreen);
-	if(ugol_povorota<0)
-	{
-		while( ugol_povorota+5 > SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=Error_ygol;
-			motor[mot_right]=-Error_ygol;
-		}//while( ugol_povorota+5 != SensorValue(port_gyro))
-	}//if(ugol_povorota<0)
-	else
-	{
-		while( ugol_povorota-5 < SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=Error_ygol;
-			motor[mot_right]=-Error_ygol;
-		}//while( ugol_povorota-5 != SensorValue(port_gyro))
-	}//else	if(ugol_povorota<0)
-}//povorot(new_kurs)
-
-void moveKyrs(int giroTagetXZ, int stoop)
-{
-	setLEDColor(ledOrange);
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
-	while(1)
-	{
-		if(stoop<SensorValue(port_nose))
-		{
-			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
-			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-		}//if(70<filtr_itog_nose)
-		else//if(70>filtr_itog_nose)
-		{ break; }
-	}// while(1)
-}//void moveKyrs()
-
-void povorot_na_1_motore(int ugol_povorota, int v_max)
-{
-	setLEDColor(ledGreen);
-	if(ugol_povorota<0)
-	{
-		while( ugol_povorota+5 < SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=Error_ygol;
-			motor[mot_right]=v_max;
-			set_ugol_rul(-40)
-		}//while( ugol_povorota+5 != SensorValue(port_gyro))
-	}//if(ugol_povorota<0)
-	else
-	{
-		while( ugol_povorota-5 > SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=v_max;
-			motor[mot_right]=Error_ygol;
-			set_ugol_rul(40);
-		}//while( ugol_povorota-5 != SensorValue(port_gyro))
-	}//else	if(ugol_povorota<0)
-	set_ugol_rul(0);
-}//void povopot_na_1_motore()
-
-void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+void EnMoveGirLeft( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRed);
 
+	int et = EnkoderTarget * 2;
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
+	int SrArifmetikEnkoder;
+	int delta_distans_left;
+
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	datalogClear();
-	while(1)
-	{
-		int delta_distans_right;
-		int ff;
-		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
-		if(SrArifmetikEnkoder<EnkoderTarget)
-		{
-			ff = SensorValue(port_right);
-			delta_distans_right =  distans_ot_robota_do_borta - ff;
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
-			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 4 , v_max);	}
-				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 4 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-		}//if(SrArifmetikEnkoder<EnkoderTarget)
-		else//if(SrArifmetikEnkoder<EnkoderTarget)
-		{ break; }
-	}// while(1)
-}//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
-
-void moveKyrsRight_doBuy(int giroTagetXZ, int stoop)
-{
-	setLEDColor(ledOrangePulse);
-
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
-	int delta_distans_right;
 
 	do{
-		delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
-		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-		if(abs(delta_distans_right)<10)
+		SrArifmetikEnkoder= (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+		delta_distans_left =  distans_ot_robota_do_borta - SensorValue(port_left);
+		GiroscopTargetDinamik = GiroscopTargetFrozen + delta_distans_left;
+		if(abs(delta_distans_left)<10)
 		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
 		else
 		{
 			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+			{	moveProporcional( GiroscopTargetFrozen - 15, 4 , v_max);	}
 			else
-			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-		}//if(abs(delta_distans_right)<10)
-	}while(stoop<SensorValue(port_left));
-}//void moveKyrsRight(int giroTagetXZ, int stoop)
+			{	moveProporcional( GiroscopTargetFrozen + 15, 4 , v_max);  }
+		}//if(abs(delta_distans_left)<10)
+	}while( SrArifmetikEnkoder < et );
+}//void EnMoveGirRight(int EnkoderTarget, int giroTagetXZ)
 
-void EnMoveGirLol(int EnkoderTarget, int giroTagetXZ)
+void EnMoveGir( int giroTagetXZ , int EnkoderTarget )
 {
 	setLEDColor(ledRedPulse);
 
@@ -206,19 +173,45 @@ void EnMoveGirLol(int EnkoderTarget, int giroTagetXZ)
 	}while(SrArifmetikEnkoder<et);
 }//void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
-task bui()
+void SetYgolRadar( int ygol_roadar )
 {
-	sleep(3000)
-	while(1)
+
+	if( ygol_roadar > 85 )
+	{ ygol_roadar = 85 ; }
+
+	if( ygol_roadar < -85 )
+	{ ygol_roadar = -85 ; }
+
+	setMotorTarget(port_radar, ygol_roadar, 30);
+	waitUntilMotorStop(port_radar);
+
+}//void SetYgolRadar( int ygol_roadar )
+
+void povorot_po_diametru( int prohlii_ygol , int ugol_povorota , int v_max , int koef)
+{
+	setLEDColor(ledGreen);
+	if(ugol_povorota<prohlii_ygol)
 	{
-		if(SensorValue(port_left)<50)
+		set_ugol_rul(-20) ;
+		while( ugol_povorota+5 < SensorValue(port_gyro))
 		{
-			stopAllTasks()
-			playtone(600 , 1000)
-			sleep(1000)
-		}
-	}
-}
+			motor[mot_left]=v_max/koef;
+			motor[mot_right]=v_max;
+		}//while( ugol_povorota+5 != SensorValue(port_gyro))
+	}//if(ugol_povorota<0)
+	else
+	{
+		set_ugol_rul(20) ;
+		while( ugol_povorota-5 > SensorValue(port_gyro))
+		{
+			motor[mot_left]=v_max;
+			motor[mot_right]=v_max/koef;
+		}//while( ugol_povorota-5 != SensorValue(port_gyro))
+	}//else	if(ugol_povorota<0)
+	set_ugol_rul(0) ;
+}//void povorot_po_diametru(int ugol_povorota, int v_max)
+
+
 
 task main()
 {
@@ -226,9 +219,10 @@ task main()
 
 	stopTask(filtr);
 	stopTask(sensors);
-	startTask(Bui)
 
-	EnMoveGir(40000, 0);
+
+
+
 
 	////////////////   END
 	dispEndTimer();
