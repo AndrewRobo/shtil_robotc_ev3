@@ -15,7 +15,7 @@ int arr_gyro[2][LEN_ARR];
 
 int pointer=0;
 
-const int v_max = 50;
+const int v_max = 10;
 
 long krug=0;
 int kk = 1;
@@ -36,7 +36,7 @@ task main()
 	resetGyro(port_gyro);
 	sleep(4000);
 
-    playtone(400,50);
+   // playtone(400,50);
 
 
             arr_gyro[0][pointer] = time1[0];
@@ -73,13 +73,11 @@ task main()
                 if ( kk > 0 ) { kk = -1; }else{ kk = 1; }
                 motor[mot_left] = v_max *  kk ;
                 motor[mot_right] = - v_max * kk;
-               playtone(400,50);
+             //  playtone(400,50);
              }
 
             sleep(1000);
 
 
         }
-
-
 }

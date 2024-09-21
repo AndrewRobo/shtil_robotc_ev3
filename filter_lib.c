@@ -103,7 +103,7 @@ task filtr()
             buble_sort( arr_right, len_right_real );
             filtr_itog_right = arr_right_frozen[middle_right];
         } else {sleep(100)}
-   {
+   //{
         //my_timer=time1[0];
         if ( last_count_left >= len_left_frozen){
              last_count_left =0;
@@ -123,6 +123,21 @@ task filtr()
         //displayBigTextLine(10, "%d", my_delta_timer);
     }// while(1)
 }//task filtr()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void start_filter_main()

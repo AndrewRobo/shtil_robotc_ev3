@@ -228,11 +228,7 @@ task main()
 	stopTask(filtr);
 	stopTask(sensors);
 
-	EnMoveGirRight( 0 , 1000 )	
-
-	moveKyrsRight_doBuy(0,50)
-
-	void povorot_na_1_motore( 0 ,-80, 100 )
+	EnMoveGirRight( 0 , 10000 )
 
 	////////////////   END
 	dispEndTimer();

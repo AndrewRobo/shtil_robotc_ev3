@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-const int distans_ot_robota_do_borta=30;
+const int distans_ot_robota_do_borta=35;
 const int v_max=100;
 //int gyro_real;
 
@@ -232,58 +232,61 @@ task main()
 
 	moveKyrsRight_doBuy(0,60)
 
-		EnMoveGirRight( 0 , 1500 )
+		EnMoveGirRight( 0 , 1750 )
 
 			moveKyrsRight_doBuy(0,60)
 
-			EnMoveGirRight( 0 , 500 )
+			EnMoveGirRight( 0 , 725 )
 
 			povorot_na_1_motore( 0 ,-80, 100 )
 
 			EnMoveGir(-90,1000)
 
-						povorot_na_1_motore( -90 ,-170, 100 )
+			povorot_na_1_motore( -90 ,-170, 100 )
 
-						moveKyrsRight_doBuy(-180,60)
+			///////////////////////////////////
 
-							EnMoveGirRight( -180 , 1500 )
+			EnMoveGir(-180,1500)
 
-			moveKyrsRight_doBuy(-180,60)
+			povorot_na_1_motore( -180 ,-260, 100 )
 
-				EnMoveGirRight( -180 , 750 )
+			EnMoveGir(-270,1000)
 
-				povorot_na_1_motore( -180 ,-260, 100 )
+			povorot_na_1_motore( -270 ,-190, 100 )
 
-			moveKyrsRight_doBuy(-270,60)
+			EnMoveGir(-180,1000)
+/////////////////////////////////////////////////////
+	    moveKyrsLeft_doBuy(-180,60)
 
-				EnMoveGirRight( -270 , 250 )
+	    EnMoveGirLeft( -180 , 1225 )
 
-							povorot_na_1_motore( -270 ,-350, 100 )
+	    povorot_na_1_motore( -180 ,-100, 100 )
 
-														moveKyrsRight_doBuy(-360,60)
+	    EnMoveGir(-90,1000)
 
-														EnMoveGirRight( -360 , 1500 )
+	    povorot_na_1_motore( -90 ,-10, 100 )
 
-														moveKyrsRight_doBuy(-360,60)
+	    EnMoveGirLeft( 0 , 2000 )
 
-														EnMoveGirRight( -360 , 500 )
+	    ///////////////////////////////////////
+	    povorot_na_1_motore( 0 ,80, 100 )
 
-														povorot_na_1_motore( -360 ,-440, 100 )
+	    EnMoveGir(90,700)
 
+	    povorot_na_1_motore( 90 ,10, 100 )
 
-														EnMoveGirRight( -450 , 750 )
+	    EnMoveGir(0,2000)
 
-		povorot_na_1_motore( -450 ,-530, 100 )
+	    //////////////////////////////////////////
 
-			EnMoveGirRight( -540 , 1000 )
+	    povorot_na_1_motore( 0 ,-80, 100 )
 
-			moveKyrsRight_doBuy(-540,60)
+	    EnMoveGir( -90 , 1000 )
 
-			EnMoveGirRight( -540 , 1000 )
+	    povorot_na_1_motore( -90 ,-170, 100 )
 
-			moveKyrsRight_doBuy(-540,60)
+	    EnMoveGirRight( -180 ,7000 )
 
-						EnMoveGirRight( -540 , 4000 )
 	////////////////   END
 	dispEndTimer();
 

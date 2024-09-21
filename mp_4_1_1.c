@@ -1,3 +1,4 @@
+
 #pragma config(Sensor, S1, port_nose, sensorEV3_Ultrasonic)
 #pragma config(Sensor, S2, port_left, sensorEV3_Ultrasonic)
 #pragma config(Sensor, S3, port_right, sensorEV3_Ultrasonic)
@@ -11,7 +12,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-const int distans_ot_robota_do_borta=30;
+const int distans_ot_robota_do_borta=35;
 const int v_max=100;
 //int gyro_real;
 
@@ -251,11 +252,11 @@ task main()
 
 	EnMoveGirRight( 0 , 2000 )
 
-	moveKyrsRight_doBuy(0,60)
+	moveKyrsRight_doBuy(0,50)
 
 		EnMoveGirRight( 0 , 1500 )
 
-			moveKyrsRight_doBuy(0,60)
+			moveKyrsRight_doBuy(0,50)
 
 			EnMoveGirRight( 0 , 500 )
 
@@ -265,13 +266,17 @@ task main()
 
 						povorot_na_1_motore( -90 ,-170, 100 )
 
-						moveKyrsRight_doBuy(-180,60)
-
-									EnMoveGirRight( -180 , 1500 )
+									EnMoveGirRight( -180 , 2500 )
 
 povorot_na_1_motore( -180 ,-260, 100 )
 
 moveKyrs(-270 , 50)
+
+	povorot_na_1_motore( -270 ,-170, 100 )
+
+
+
+
 	////////////////   END
 	dispEndTimer();
 
