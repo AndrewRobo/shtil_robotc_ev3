@@ -16,8 +16,8 @@ const int v_max=50;
 //int gyro_real;
 
 //include
-#include "filter_lib.c"
 #include "init_lib.c"
+
 //voids
 void moveProporcional(int GiroscopTarget, int koef_usilenia , int v_max)
 {
@@ -123,8 +123,6 @@ void moveKyrs(int giroTagetXZ, int stoop)
 task main()
 {
 	start_init_main();
-
-
 
 	EnMoveGir(6000, 0);
 
