@@ -143,7 +143,7 @@ task main()
 
 	playTone(600,10);
 
-	moveKyrs(-180,50);
+	moveKyrs(-180,70);
 
 	playTone(600,10);
 

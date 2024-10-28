@@ -220,7 +220,7 @@ task main()
 	start_init_main();
 	//-------------------------------------------
 
-	EnMoveGirRight( 6000 , 0 );
+	EnMoveGirRight( 3000 , 0 );
 	       // edem do srednego encodera   6000 gradusov (5.5mbassein) po gyro kurs 0 gradusov
 		   // vdol pravogo borta po pravomu UltraSonic datchuku
 		   // raasoyanie do borta v globalnoj    const int distans_ot_robota_do_borta=30
@@ -229,13 +229,13 @@ task main()
 			// plivem po gyru kurs 0, otslegivaya pravij bort po US datchiku
 			// do  borta speredi po nosovomu radarnomu US datchiku do 70 santimetrov
 
-	povorot_na_1_motore(0, -90 , 100 );  
+	povorot_na_1_motore(0, -90 , 100 );
 			// povorachivaem  s kursa 0 na kurs -90 ( nalevo ) ns skorosti 100 %
 
-	EnMoveGirRight( 200 , -90 );
+	EnMoveGirRight( 150 , -90 );
 			//edem do enkodera 200 gradusov po kursu  -90,  otslejivaya pravij bort
 
-	moveKyrsRight( -90 , 60 );
+	moveKyrsRight( -90 , 75 );
 			//  po kusu -90 vdol zadnej stenki bassina, do obnarugenij radarnim US datchikom
 			//  levoi stenki basseina na rasstoyanii 60 santimetro
 
@@ -248,7 +248,7 @@ task main()
 
 
 	//EnMoveGirRight( 1700 , -180 );
-			//  edei nazad (kurs -180) vdol levoj stenki bassina 
+			//  edei nazad (kurs -180) vdol levoj stenki bassina
 			// otstlegivaem levuyu stenku pravim US datchikom
 			// do 1/3 bassejna (encoder 1700)
 
@@ -257,31 +257,31 @@ task main()
 
 
 
-	povorot_na_1_motore(-180, -210 , 100 );
-			// povorachvaem na diagonal vosmerki  s -180 na -210   so skorostyu 100 
+	povorot_na_1_motore(-180, -240 , 100 );
+			// povorachvaem na diagonal vosmerki  s -180 na -210   so skorostyu 100
 
-	EnMoveGir( 1900 , -210 );  
+	EnMoveGir( 1300 , -240 );
 			// dvigemsya po pervoj diagonali ( kurs -210) enkoder 1700
 			// US ne smotrim
 
-	povorot_na_1_motore(-210, -180 , 100 );
+	povorot_na_1_motore(-240, -180 , 100 );
 			//pravij povorot s diagolali (s kursa -210 na kurs -180) so skorostiyu 100
 
-	EnMoveGirLeft( 2300 , -180 );
+	EnMoveGirLeft( 1500 , -180 );
 			// dvigaemsya po pravoj stenke basseina levim bortom robota
 			// otslegivaem  distanci
 
-	moveKyrsLeft(-180 , 60);
+	moveKyrsLeft(-180 , 70);
 
 	povorot_na_1_motore(-180 , -90 , 100);
 
-	EnMoveGirLeft( 200 , -90 );
+	EnMoveGirLeft( 150 , -90 );
 
 	moveKyrsLeft(-90 , 60);
 
 	povorot_na_1_motore(-90 , 0 , 100);
 
-	distans_ot_robota_do_borta=20;  // ???????
+	distans_ot_robota_do_borta=30;  // ???????
 
 
 
@@ -292,13 +292,13 @@ task main()
 
 
 
-	povorot_na_1_motore(0 , 25 , 100) ;
+	povorot_na_1_motore(0 , 50 , 100) ;
 
-	EnMoveGir( 2000 , 25 );
+	EnMoveGir( 2000 , 50 );
 
-	povorot_na_1_motore( 25 , 0 , 100) ;
+	povorot_na_1_motore( 50 , 0 , 100) ;
 
-	EnMoveGirRight( 1500 , 0 );
+	EnMoveGirRight( 500 , 0 );
 
 	moveKyrsRight( 0 , 70 );
 
