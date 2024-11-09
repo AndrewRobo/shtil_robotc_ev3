@@ -3,6 +3,7 @@
 
 void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 
+{
 /*   funkciya razovoi korrektirovki kursa po GYROdatchiku:
 
 vistavlyaet ugol rulya i moshnosti motorov na vintah
@@ -10,7 +11,7 @@ v zavisimosti ot otklonenii ot celevogo kurca
 
 v prediduschi versiyah nazivalas moveproporcional() */
 
-{
+
 	const int k_gyro_rul = 1;
 	int dynamic_speed = v_max;
 
@@ -33,3 +34,68 @@ v prediduschi versiyah nazivalas moveproporcional() */
 
 }
 
+
+void mvGyroRightToNose(int giroTagetXZ, int stoop)
+{
+  /* plivem po generalnomu kursu 
+  korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
+  do frontalnogo borta po nosovomu radarnomu ultrazvukovomu datchiku*/
+
+	setLEDColor(ledOrange);
+    
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	while(1)
+	{
+		if(stoop<SensorValue(port_nose))
+		{
+			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<10)
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
+			else
+			{
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
+				else
+				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+		}//if(70<filtr_itog_nose)
+		else//if(70>filtr_itog_nose)
+		{ break; }
+	}// while(1)
+}//void mvGyroRightToNose()
+
+
+
+void turn(int ugol_povorota, int v_max)
+{
+    /*  povorot  
+    
+    est oshibra s pologitelnimi i otricatelnimi povorotami*/
+
+
+	setLEDColor(ledGreen);
+
+	if(ugol_povorota<0)
+	{
+		while( ugol_povorota+5 < SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=Error_ygol;
+			motor[mot_right]=v_max;
+			set_ugol_rul(-40);
+		}//while( ugol_povorota+5 != SensorValue(port_gyro))
+	}//if(ugol_povorota<0)
+	else
+	{
+		while( ugol_povorota-5 > SensorValue(port_gyro))
+		{
+			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
+			motor[mot_left]=v_max;
+			motor[mot_right]=Error_ygol;
+			set_ugol_rul(40);
+		}//while( ugol_povorota-5 != SensorValue(port_gyro))
+	}//else	if(ugol_povorota<0)
+	set_ugol_rul(0);
+}//   turn()      void povopot_na_1_motore()
