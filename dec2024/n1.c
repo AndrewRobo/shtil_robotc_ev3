@@ -17,7 +17,9 @@ const int v_max=1000;
 
 //include
 #include "lib/init_lib.c"
+#include "lib/move_lib.c"
 //voids
+/*
 
 void moveProporcional( int GiroscopTarget, int koef_usilenia  , int v_max )
 
@@ -43,7 +45,7 @@ void moveProporcional( int GiroscopTarget, int koef_usilenia  , int v_max )
 	set_ugol_rul ( k_gyro_rul * ugol_error);
 
 }
-
+*/
 
 
 void moveKyrs(int giroTagetXZ, int stoop)
@@ -58,13 +60,13 @@ void moveKyrs(int giroTagetXZ, int stoop)
 			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(70<filtr_itog_nose)
 		else//if(70>filtr_itog_nose)

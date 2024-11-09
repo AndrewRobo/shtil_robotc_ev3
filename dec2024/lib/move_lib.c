@@ -1,11 +1,15 @@
 
 
 
-void move( int GiroscopTarget, int koef_usilenia  , int v_max )
+void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 
-/* funkciyz razovoi korrektirovki kursa po GYROdatchiku: 
+/*   funkciya razovoi korrektirovki kursa po GYROdatchiku:
+
 vistavlyaet ugol rulya i moshnosti motorov na vintah
-v zavisimosti ot otklonenii ot celevogo kurca*/
+v zavisimosti ot otklonenii ot celevogo kurca 
+
+v prediduschi versiyah nazivalas moveproporcional() */
+
 {
 	const int k_gyro_rul = 1;
 	int dynamic_speed = v_max;
@@ -28,3 +32,4 @@ v zavisimosti ot otklonenii ot celevogo kurca*/
 	set_ugol_rul ( k_gyro_rul * ugol_error);
 
 }
+
