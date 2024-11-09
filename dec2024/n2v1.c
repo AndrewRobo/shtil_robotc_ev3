@@ -16,31 +16,10 @@ const int v_max=1000;
 //int gyro_real;
 
 //include
-#include "init_lib.c"
+#include "lib/init_lib.c"
+#include "lib/move_lib.c"
 //voids
-void moveKyrsRight_doBuy(int giroTagetXZ, int stoop)
-{
-	setLEDColor(ledOrangePulse);
-
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
-	int delta_distans_right;
-
-	do{
-		delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
-		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-		if(abs(delta_distans_right)<10)
-		{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
-		else
-		{
-			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-			{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
-			else
-			{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
-		}//if(abs(delta_distans_right)<10)
-		sleep(10)
-	}while(stoop<SensorValue(port_left));
-}//void moveKyrsRight(int giroTagetXZ, int stoop)
+/*
 
 void moveProporcional( int GiroscopTarget, int koef_usilenia  , int v_max )
 
@@ -66,7 +45,7 @@ void moveProporcional( int GiroscopTarget, int koef_usilenia  , int v_max )
 	set_ugol_rul ( k_gyro_rul * ugol_error);
 
 }
-
+*/
 
 
 void moveKyrs(int giroTagetXZ, int stoop)
@@ -81,13 +60,13 @@ void moveKyrs(int giroTagetXZ, int stoop)
 			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-15, 1 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+15, 1 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(70<filtr_itog_nose)
 		else//if(70>filtr_itog_nose)
@@ -140,13 +119,13 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen-30, 3.5 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(SrArifmetikEnkoder<EnkoderTarget)
 		else//if(SrArifmetikEnkoder<EnkoderTarget)
@@ -154,37 +133,62 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 	}// while(1)
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 
+
+
 task main()
 {
+	start_init_main();
+
+  distans_ot_robota_do_borta=30;
+
+	EnMoveGir(6000, 0);
+
+  distans_ot_robota_do_borta=30;
+
+	playTone(600,10);
+
+	moveKyrs(0,70);
+
+	playTone(600,10);
+
+	turn(-80, 100);
+
+	playTone(600,10);
+
+	EnMoveGir(500, -90);
+
+	playTone(600,10);
+
+	moveKyrs(-90,70);
+
+	playTone(600,10);
+
+	turn(-170, 100);
+
+	playTone(600,10);
+
+	EnMoveGir(5000, -180);
+
+	playTone(600,70);
+
+	moveKyrs(-180,70);
+
+	playTone(600,50);
+
+	turn(-260, 100);
+
+	playTone(600,70);
+
+	moveKyrs(-270,50);
+
+	playTone(600,70);
 
 
 
 
 
 
+	////////////////   END
+	dispEndTimer();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	}
