@@ -171,22 +171,7 @@ task main()
 
 	playTone(600,70);
 
-	moveKyrs(-180,70);
-
-	playTone(600,50);
-
-	turn(-260, 100);
-
-	playTone(600,70);
-
-	moveKyrs(-270,50);
-
-	playTone(600,70);
-
-
-
-
-
+	moveKyrs(-180,40);
 
 	////////////////   END
 	dispEndTimer();
