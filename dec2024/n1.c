@@ -16,7 +16,7 @@ const int v_max=1000;
 //int gyro_real;
 
 //include
-#include "init_lib.c"
+#include "lib/init_lib.c"
 //voids
 
 void moveProporcional( int GiroscopTarget, int koef_usilenia  , int v_max )
