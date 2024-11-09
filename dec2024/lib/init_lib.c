@@ -117,6 +117,6 @@ void dispEndTimer()
     displayBigTextLine(5, "%d", time1[3]);
 
     waitForButtonPress();
-    sleep(5000);
+    sleep(25000);
 
 }
