@@ -139,11 +139,11 @@ task main()
 {
 	start_init_main();
 
-distans_ot_robota_do_borta=30;
+  distans_ot_robota_do_borta=30;
 
 	EnMoveGir(6000, 0);
 
-distans_ot_robota_do_borta=30;
+  distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
@@ -151,7 +151,7 @@ distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
-	povorot_na_1_motore(-80, 100);
+	turn(-80, 100);
 
 	playTone(600,10);
 
@@ -163,7 +163,7 @@ distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
-	povorot_na_1_motore(-170, 100);
+	turn(-170, 100);
 
 	playTone(600,10);
 
@@ -175,11 +175,11 @@ distans_ot_robota_do_borta=30;
 
 	playTone(600,50);
 
-	povorot_na_1_motore(-260, 100);
+	turn(-260, 100);
 
 	playTone(600,70);
 
-	EnMoveGir(2500, -270);
+	moveKyrs(-270,50);
 
 	playTone(600,70);
 
