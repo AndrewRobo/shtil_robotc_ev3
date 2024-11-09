@@ -3,16 +3,16 @@ void init_gyro()
 {
     sleep(500);
     resetGyro(port_gyro);
-    sleep(4000);
+    sleep(3000);
     resetGyro(port_gyro);
-    sleep(4000);
+    sleep(400);
 }//init_gyro()
 
 task dispGyroInit()
 {
     while(1)
     {
-    sleep(1000);
+    sleep(500);
     displayBigTextLine(12, "%d", SensorValue(port_gyro));
     }// while(1)
 }//task monnitor()
