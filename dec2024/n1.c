@@ -119,13 +119,13 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
-			{	moveProporcional( GiroscopTargetDinamik, 1 , v_max);	}
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	moveProporcional( GiroscopTargetFrozen-30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen-30, 3.5 , v_max);	}
 				else
-				{	moveProporcional( GiroscopTargetFrozen+30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 		}//if(SrArifmetikEnkoder<EnkoderTarget)
 		else//if(SrArifmetikEnkoder<EnkoderTarget)
@@ -139,9 +139,9 @@ task main()
 {
 	start_init_main();
 
-distans_ot_robota_do_borta=40;
+distans_ot_robota_do_borta=30;
 
-	EnMoveGir(3000, 0);
+	EnMoveGir(6000, 0);
 
 distans_ot_robota_do_borta=30;
 
@@ -155,7 +155,7 @@ distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
-	EnMoveGir(700, -90);
+	EnMoveGir(500, -90);
 
 	playTone(600,10);
 
@@ -167,11 +167,11 @@ distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
-	EnMoveGir(2000, -180);
+	EnMoveGir(5000, -180);
 
 	playTone(600,70);
 
-	moveKyrs(-180,50);
+	moveKyrs(-180,70);
 
 	playTone(600,50);
 
