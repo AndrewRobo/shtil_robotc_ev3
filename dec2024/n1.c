@@ -141,23 +141,23 @@ task main()
 
 	mvGyroRightToEncoder(6000, 0);				playTone(600,10);
 
-	moveKyrs(0,70);												playTone(600,10);
+	mvGyroRightToNose(0,70);							playTone(600,10);
 
 	turn(-80, 100);												playTone(600,10);
 
 	mvGyroRightToEncoder(500, -90);				playTone(600,10);
 
-	moveKyrs(-90,70);		  								playTone(600,10);
+	mvGyroRightToNose(-90,70);		  			playTone(600,10);
 
 	turn(-170, 100);											playTone(600,10);
 
 	mvGyroRightToEncoder(5000, -180);			playTone(600,70);
 
-	moveKyrs(-180,40);										playTone(600,70);
+	mvGyroRightToNose(-180,40);						playTone(600,70);
 
 	turn(-260, 100);											playTone(600,70);
 
-	mvGyroRightToEncoder(-270,50);				playTone(600,70);
+	mvGyroRightToNose(-270,50);						playTone(600,70);
 
 
 
