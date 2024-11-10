@@ -74,6 +74,8 @@ void moveKyrs(int giroTagetXZ, int stoop)
 	}// while(1)
 }//void moveKyrs()
 
+
+/*
 void povorot_na_1_motore(int ugol_povorota, int v_max)
 {
 	setLEDColor(ledGreen);
@@ -99,7 +101,7 @@ void povorot_na_1_motore(int ugol_povorota, int v_max)
 	}//else	if(ugol_povorota<0)
 	set_ugol_rul(0);
 }//void povopot_na_1_motore()
-
+/*
 void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 {
 	setLEDColor(ledRed);
@@ -132,7 +134,7 @@ void EnMoveGir(int EnkoderTarget, int giroTagetXZ)
 		{ break; }
 	}// while(1)
 }//EnMoveGir(int EnkoderTarget, int giroTagetXZ)
-
+*/
 
 
 task main()
@@ -141,7 +143,7 @@ task main()
 
   distans_ot_robota_do_borta=30;
 
-	EnMoveGir(6000, 0);
+	mvGyroRightToEncoder(6000, 0);
 
   distans_ot_robota_do_borta=30;
 
@@ -155,7 +157,7 @@ task main()
 
 	playTone(600,10);
 
-	EnMoveGir(500, -90);
+	mvGyroRightToEncoder(500, -90);
 
 	playTone(600,10);
 
@@ -167,7 +169,12 @@ task main()
 
 	playTone(600,10);
 
-	EnMoveGir(5000, -180);
+
+
+
+
+
+	mvGyroRightToEncoder(5000, -180);
 
 	playTone(600,70);
 
