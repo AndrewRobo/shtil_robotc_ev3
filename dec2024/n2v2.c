@@ -141,44 +141,21 @@ task main()
 {
 	start_init_main();
 
-  distans_ot_robota_do_borta=30;
+	mvGyroRightToEncoder(6000, 0);				playTone(600,10);
 
-	mvGyroRightToEncoder(6000, 0);
+	moveKyrs(0,70);												playTone(600,10);
 
-  distans_ot_robota_do_borta=30;
+	turn(-80, 100);												playTone(600,10);
 
-	playTone(600,10);
+	mvGyroRightToEncoder(500, -90);				playTone(600,10);
 
-	moveKyrs(0,70);
+	moveKyrs(-90,70);		  								playTone(600,10);
 
-	playTone(600,10);
+	turn(-170, 100);											playTone(600,10);
 
-	turn(-80, 100);
+	mvGyroRightToEncoder(5000, -180);			playTone(600,70);
 
-	playTone(600,10);
-
-	mvGyroRightToEncoder(500, -90);
-
-	playTone(600,10);
-
-	moveKyrs(-90,70);
-
-	playTone(600,10);
-
-	turn(-170, 100);
-
-	playTone(600,10);
-
-
-
-
-
-
-	mvGyroRightToEncoder(5000, -180);
-
-	playTone(600,70);
-
-	moveKyrs(-180,40);
+	moveKyrs(-180,40);										playTone(600,70);
 
 	////////////////   END
 	dispEndTimer();

@@ -139,11 +139,7 @@ task main()
 {
 	start_init_main();
 
-  distans_ot_robota_do_borta=30;
-
 	EnMoveGir(6000, 0);
-
-  distans_ot_robota_do_borta=30;
 
 	playTone(600,10);
 
