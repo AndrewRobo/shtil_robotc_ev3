@@ -68,16 +68,21 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 
 
 
-void turn(int ugol_povorota, int v_max)
+void turn(int new_kurs, int v_max)
 {
     /*  povorot  
     
     est oshibra s pologitelnimi i otricatelnimi povorotami*/
-
+  
 
 	setLEDColor(ledGreen);
 
-	if(ugol_povorota<0)
+	int ugol_povorota = new_kurs;
+
+	int delta_ugol = ugol_povorota - SensorValue(port_gyro);
+
+
+	if( delta_ugol < 0 )
 	{
 		while( ugol_povorota+5 < SensorValue(port_gyro))
 		{
