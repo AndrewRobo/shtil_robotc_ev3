@@ -39,6 +39,8 @@ task main()
 	turn(-170, 100);							  	/*(int new_kurs, int v_max)*/							 playTone(600,10);
 
 
+	distans_ot_robota_do_borta=30;
+
 	mvGyroRightToNose(-180,50);				/*(int giroTagetXZ, int stoop)*/				   playTone(600,10);
 
 
