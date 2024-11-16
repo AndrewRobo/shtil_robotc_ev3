@@ -4,12 +4,12 @@
 void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 
 {
-/*   funkciya razovoi korrektirovki kursa po GYROdatchiku:
+	/*   funkciya razovoi korrektirovki kursa po GYROdatchiku:
 
-vistavlyaet ugol rulya i moshnosti motorov na vintah
-v zavisimosti ot otklonenii ot celevogo kurca
+	vistavlyaet ugol rulya i moshnosti motorov na vintah
+	v zavisimosti ot otklonenii ot celevogo kurca
 
-v prediduschi versiyah nazivalas moveproporcional() */
+	v prediduschi versiyah nazivalas moveproporcional() */
 
 
 	const int k_gyro_rul = 1;
@@ -37,9 +37,9 @@ v prediduschi versiyah nazivalas moveproporcional() */
 
 void mvGyroRightToNose(int giroTagetXZ, int stoop)
 {
-  /* plivem po generalnomu kursu
-  korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
-  do frontalnogo borta po nosovomu radarnomu ultrazvukovomu datchiku*/
+	/* plivem po generalnomu kursu
+	korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
+	do frontalnogo borta po nosovomu radarnomu ultrazvukovomu datchiku*/
 
 	setLEDColor(ledOrange);
 
@@ -68,9 +68,9 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 
 void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 {
-  /* plivem po generalnomu kursu
-  korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
-  do buy (left ultrazvukovomu datchiku)*/
+	/* plivem po generalnomu kursu
+	korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
+	do buy (left ultrazvukovomu datchiku)*/
 
 	setLEDColor(ledOrange);
 
@@ -98,12 +98,32 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 	}// while(1)
 }//void mvGyroRightToNose()
 
+void TurnAnRadius(int v_left, int v_right, int giroTagetXZ)
+{
+	/* povorachiwaem po radiusu poka ye dosignem nujnogo ygla giriskopa */
+	if(SensorValue(port_gyro)<giroTagetXZ)
+	{
+		while(SensorValue(port_gyro)<giroTagetXZ)
+		{
+			motor[mot_left]=v_left;
+			motor[mot_right]=v_right;
+		}
+	}
+	else
+	{
+		while((SensorValue(port_gyro)>giroTagetXZ))
+		{
+			motor[mot_left]=v_left;
+			motor[mot_right]=v_right;
+		}
+	}
+}
 
 void turn(int new_kurs, int v_max)
 {
-    /*  povorot
+	/*  povorot
 
-    est oshibra s pologitelnimi i otricatelnimi povorotami*/
+	est oshibra s pologitelnimi i otricatelnimi povorotami*/
 
 
 	setLEDColor(ledGreen);
