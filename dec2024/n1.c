@@ -37,9 +37,9 @@ task main()
 
 	turn(-170, 100);											playTone(600,10);
 
-	mvGyroRightToEncoder(5000, -180);			playTone(600,70);
+	mvGyroRightToEncoder(4500, -180);			playTone(600,70);
 
-	mvGyroRightToNose(-180,40);						playTone(600,70);
+	mvGyroRightToNose(-180,50);						playTone(600,70);
 
 	turn(-260, 100);											playTone(600,70);
 
