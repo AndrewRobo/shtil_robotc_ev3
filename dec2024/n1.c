@@ -13,7 +13,7 @@
 //int rul;  // tekuschij ugol rulua   global
 int distans_ot_robota_do_borta=30;
 const int v_max=1000;
-//int gyro_real;
+
 
 //include
 #include "lib/init_lib.c"
@@ -22,10 +22,12 @@ const int v_max=1000;
 task main()
 {
 	start_init_main();
+	//--------------------------------------------
 
-	mvGyroRightToEncoder(6000, 0);				playTone(600,10);
 
-	mvGyroRightToNose(0,70);							playTone(600,10);
+	mvGyroRightToEncoder(6000, 0);	/*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
+
+	mvGyroRightToNose(0,70);													playTone(600,10);
 
 	turn(-80, 100);												playTone(600,10);
 
