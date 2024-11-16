@@ -70,7 +70,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 {
   /* plivem po generalnomu kursu
   korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
-  do frontalnogo borta po nosovomu radarnomu ultrazvukovomu datchiku*/
+  do buy (left ultrazvukovomu datchiku)*/
 
 	setLEDColor(ledOrange);
 
@@ -80,6 +80,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 	{
 		if(LeftBui<SensorValue(port_left))
 		{
+			sleep(10)
 			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)
