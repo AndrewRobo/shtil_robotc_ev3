@@ -31,18 +31,21 @@ task main()
 
 	turn(-80, 100);												playTone(600,10);
 
+	
 	mvGyroRightToEncoder(500, -90);				playTone(600,10);
 
 	mvGyroRightToNose(-90,70);		  			playTone(600,10);
 
 	turn(-170, 100);											playTone(600,10);
 
+	
 	mvGyroRightToEncoder(4500, -180);			playTone(600,70);
 
 	mvGyroRightToNose(-180,50);						playTone(600,70);
 
 	turn(-260, 100);											playTone(600,70);
 
+	
 	mvGyroRightToNose(-270,50);						playTone(600,70);
 
 
