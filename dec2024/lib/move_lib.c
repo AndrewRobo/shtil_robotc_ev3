@@ -45,32 +45,33 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
-	while(1)
+
+	while( stoop < SensorValue(port_nose) )
 	{
-		if(stoop<SensorValue(port_nose))
-		{
-			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
+		int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+		if(abs(delta_distans_right)<10)
 			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
+		else
+		{
+			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+			{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
 			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
-				else
-				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-		}//if(70<filtr_itog_nose)
-		else//if(70>filtr_itog_nose)
-		{ break; }
-	}// while(1)
+			{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	
+			}
+		}//if(abs(delta_distans_right)<10)
+		
+	}// while(stoop<SensorValue(port_nose))
+
 }//void mvGyroRightToNose()
 
+
+/*
 void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 {
-	/* plivem po generalnomu kursu
-	korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
-	do buy (left ultrazvukovomu datchiku)*/
+	// plivem po generalnomu kursu
+	// korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
+	// do buy (left ultrazvukovomu datchiku)
 
 	setLEDColor(ledOrange);
 
@@ -97,11 +98,12 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 		{ break; }
 	}// while(1)
 }//void mvGyroRightToNose()
+*/
 
-
+/*
 void TurnAnRadius(int v_left, int v_right, int giroTagetXZ)
 {
-	/* povorachiwaem po radiusu poka ye dosignem nujnogo ygla giriskopa */
+	// povorachiwaem po radiusu poka ye dosignem nujnogo ygla giriskopa 
 	if(SensorValue(port_gyro)<giroTagetXZ)
 	{
 		while(SensorValue(port_gyro)<giroTagetXZ)
@@ -119,12 +121,11 @@ void TurnAnRadius(int v_left, int v_right, int giroTagetXZ)
 		}
 	}
 }
+*/
 
 void turn(int new_kurs, int v_max)
 {
-	/*  povorot
-
-	est oshibra s pologitelnimi i otricatelnimi povorotami*/
+	//  povorot
 
 
 	setLEDColor(ledGreen);
@@ -167,13 +168,16 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
-	datalogClear();
-	while(1){
+	//datalogClear();
+	int SumEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+	int	encoder2 = EnkoderTarget * 2 ; // chtobi summu encoderov ne delit vnutri cikla
+	
+	while( SumEncoder < encoder2 )
+	{
 		int delta_distans_right;
 		int ff;
-		int SrArifmetikEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right))/2;
-		if(SrArifmetikEnkoder<EnkoderTarget)
-		{
+		
+		
 			ff = SensorValue(port_right);
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
@@ -186,9 +190,9 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 				else
 				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
-		}//if(SrArifmetikEnkoder<EnkoderTarget)
-		else//if(SrArifmetikEnkoder<EnkoderTarget)
-		{ break; }
-	}// while(1)
+
+		SumEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+	} // while( SumEncoder < encoder2 )
+
 }// mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 //   EnMoveGir(int EnkoderTarget, int giroTagetXZ)
