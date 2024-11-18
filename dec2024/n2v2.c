@@ -18,7 +18,7 @@ const int v_max=100;
 //include
 #include "lib/init_lib.c"
 #include "lib/move_lib.c"
-#include "lib/move_lib_n2v2.c"
+#include "lib/mvGyroRightToLeftBui.c"
 
 task main()
 {
@@ -27,16 +27,11 @@ task main()
 
 
 	mvGyroRightToLeftBui(0, 50); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
-
 	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
-
 	turn(-80, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-
 	mvGyroRightToEncoder(500, -90); /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-
 	mvGyroRightToNose(-90,70);		/*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-
 	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 

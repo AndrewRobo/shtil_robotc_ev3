@@ -12,7 +12,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 int distans_ot_robota_do_borta=30;
-const int v_max=1000;
+const int v_max=100;
 //int gyro_real;
 
 //include
@@ -21,47 +21,26 @@ const int v_max=1000;
 
 
 
-
-
 task main()
 {
-	start_init_main();
+start_init_main(); //------------------
 
-  distans_ot_robota_do_borta=30;
 
-	EnMoveGir(6000, 0);
+distans_ot_robota_do_borta=30;
 
-  distans_ot_robota_do_borta=30;
+mvGyroRightToEncoder(6000,0); /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
+mvGyroRightToNose(0,70); /*(int giroTagetXZ, int stoop)	moveKyrs*/		playTone(600,10);
+turn(-80, 100);				/*(int new_kurs, int v_max)*/				playTone(600,10);
 
-	playTone(600,10);
+mvGyroRightToEncoder(500, -90);	/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroRightToNose(-90,70);/*(int giroTagetXZ, int stoop)	moveKyrs*/	playTone(600,10);
+turn(-170, 100);		/*(int new_kurs, int v_max)*/					playTone(600,10);
 
-	moveKyrs(0,70);
+mvGyroRightToEncoder(5000, -180);/*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,70);
+mvGyroRightToNose(-180,40);  /*(int giroTagetXZ, int stoop)	moveKyrs*/
 
-	playTone(600,10);
 
-	turn(-80, 100);
+////////////////   END
+dispEndTimer();
 
-	playTone(600,10);
-
-	EnMoveGir(500, -90);
-
-	playTone(600,10);
-
-	moveKyrs(-90,70);
-
-	playTone(600,10);
-
-	turn(-170, 100);
-
-	playTone(600,10);
-
-	EnMoveGir(5000, -180);
-
-	playTone(600,70);
-
-	moveKyrs(-180,40);
-
-	////////////////   END
-	dispEndTimer();
-
-	}
+}
