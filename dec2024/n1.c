@@ -16,8 +16,9 @@ const int v_max=1000;
 
 
 //include
-#include "lib/init_lib.c"
-#include "lib/move_lib.c"
+#include "lib/init_lib.c";
+#include "lib/move_lib.c";
+#include "lib/lib_turn.c";
 
 task main()
 {

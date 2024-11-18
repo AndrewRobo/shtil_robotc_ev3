@@ -57,106 +57,17 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
 			{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
 			else
-			{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	
+			{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);
 			}
 		}//if(abs(delta_distans_right)<10)
-		
+
 	}// while(stoop<SensorValue(port_nose))
 
 }//void mvGyroRightToNose()
 
 
-/*
-void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
-{
-	// plivem po generalnomu kursu
-	// korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
-	// do buy (left ultrazvukovomu datchiku)
-
-	setLEDColor(ledOrange);
-
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
-	while(1)
-	{
-		if(LeftBui<SensorValue(port_left))
-		{
-			sleep(10);
-			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
-			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
-				else
-				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-		}//if(70<filtr_itog_nose)
-		else//if(70>filtr_itog_nose)
-		{ break; }
-	}// while(1)
-}//void mvGyroRightToNose()
-*/
-
-/*
-void TurnAnRadius(int v_left, int v_right, int giroTagetXZ)
-{
-	// povorachiwaem po radiusu poka ye dosignem nujnogo ygla giriskopa 
-	if(SensorValue(port_gyro)<giroTagetXZ)
-	{
-		while(SensorValue(port_gyro)<giroTagetXZ)
-		{
-			motor[mot_left]=v_left;
-			motor[mot_right]=v_right;
-		}
-	}
-	else
-	{
-		while((SensorValue(port_gyro)>giroTagetXZ))
-		{
-			motor[mot_left]=v_left;
-			motor[mot_right]=v_right;
-		}
-	}
-}
-*/
-
-void turn(int new_kurs, int v_max)
-{
-	//  povorot
 
 
-	setLEDColor(ledGreen);
-
-	int ugol_povorota = new_kurs;
-
-	int delta_ugol = ugol_povorota - SensorValue(port_gyro);
-
-
-	if( delta_ugol < 0 )
-	{
-		while( ugol_povorota+5 < SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=Error_ygol;
-			motor[mot_right]=v_max;
-			set_ugol_rul(-40);
-		}//while( ugol_povorota+5 != SensorValue(port_gyro))
-	}//if(ugol_povorota<0)
-	else
-	{
-		while( ugol_povorota-5 > SensorValue(port_gyro))
-		{
-			int Error_ygol = ugol_povorota - SensorValue(port_gyro);
-			motor[mot_left]=v_max;
-			motor[mot_right]=Error_ygol;
-			set_ugol_rul(40);
-		}//while( ugol_povorota-5 != SensorValue(port_gyro))
-	}//else	if(ugol_povorota<0)
-	set_ugol_rul(0);
-}//   turn()      void povopot_na_1_motore()
 
 
 
@@ -169,15 +80,15 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
 	//datalogClear();
-	int SumEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+	int SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
 	int	encoder2 = EnkoderTarget * 2 ; // chtobi summu encoderov ne delit vnutri cikla
-	
+
 	while( SumEncoder < encoder2 )
 	{
 		int delta_distans_right;
 		int ff;
-		
-		
+
+
 			ff = SensorValue(port_right);
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
@@ -191,7 +102,7 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 
-		SumEnkoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+		SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
 	} // while( SumEncoder < encoder2 )
 
 }// mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)

@@ -9,10 +9,10 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
-    
+
 	while(LeftBui<SensorValue(port_left))
 	{
-			sleep(15)
+			sleep(15);
 			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<10)

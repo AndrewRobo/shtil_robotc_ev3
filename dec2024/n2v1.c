@@ -16,9 +16,9 @@ const int v_max=100;
 //int gyro_real;
 
 //include
-#include "lib/init_lib.c"
-#include "lib/move_lib.c"
-
+#include "lib/init_lib.c";
+#include "lib/move_lib.c";
+#include "lib/lib_turn.c";
 
 
 task main()
