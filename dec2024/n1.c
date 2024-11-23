@@ -15,6 +15,7 @@ int distans_ot_robota_do_borta=30;
 const int v_max=100;
 
 
+
 //include
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
