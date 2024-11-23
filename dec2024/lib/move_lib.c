@@ -2,7 +2,6 @@
 
 
 void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
-
 {
 	/*   funkciya razovoi korrektirovki kursa po GYROdatchiku:
 
@@ -10,7 +9,6 @@ void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 	v zavisimosti ot otklonenii ot celevogo kurca
 
 	v prediduschi versiyah nazivalas moveproporcional() */
-
 
 	const int k_gyro_rul = 1;
 	int dynamic_speed = v_max;
