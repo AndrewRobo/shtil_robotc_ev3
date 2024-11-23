@@ -21,7 +21,7 @@ void TurnAnRadius(int v_left, int v_right, int giroTagetXZ)
 		}
 	}
 }
-void set_ugol_rul(int ff)
+/*void set_ugol_rul(int ff)
 {
 	int f=ff;
 	if(f > 60){ f=60;}
@@ -30,3 +30,4 @@ void set_ugol_rul(int ff)
 	waitUntilMotorStop(port_rul);
     //	rul=getMotorEncoder(port_rul);
 }
+*/
