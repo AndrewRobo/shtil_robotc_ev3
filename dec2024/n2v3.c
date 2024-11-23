@@ -35,7 +35,7 @@ task main()
 
 	TurnAnRadius(-80, 100, -170);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-	
+
 	distans_ot_robota_do_borta=30;
 
 	mvGyroRightToEncoder(700, -180); /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
