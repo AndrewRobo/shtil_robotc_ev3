@@ -1,9 +1,7 @@
-void mvGyroToEncoder(int EnkoderTarget, int giroTagetXZ)
+void mvGyroToEncoder(int EnkoderTarget, int gyroTaget)
 {
 	setLEDColor(ledRed);
 
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
 	//datalogClear();
@@ -12,24 +10,7 @@ void mvGyroToEncoder(int EnkoderTarget, int giroTagetXZ)
 
 	while( SumEncoder < encoder2 )
 	{
-		int delta_distans_right;
-		int ff;
-
-
-			ff = SensorValue(port_right);
-			delta_distans_right =  distans_ot_robota_do_borta - ff;
-			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
-			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
-			else
-			{
-				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	correct_kurs( GiroscopTargetFrozen-30, 3.5 , v_max);	}
-				else
-				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
-			}//if(abs(delta_distans_right)<10)
-
+		correct_kurs( gyroTarget, 1 , v_max);	//
 		SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
 	} // while( SumEncoder < encoder2 )
-}// mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
-//   EnMoveGir(int EnkoderTarget, int giroTagetXZ)
+}
