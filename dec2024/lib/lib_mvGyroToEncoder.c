@@ -1,4 +1,4 @@
-void mvGyroToEncoder(int EnkoderTarget, int gyroTaget)
+void mvGyroToEncoder(int EnkoderTarget, int gyroTarget)
 {
 	setLEDColor(ledRed);
 
