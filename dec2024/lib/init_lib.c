@@ -17,9 +17,9 @@ task dispGyroInit()
     displayBigTextLine(1, "gyro = %d grad", SensorValue(port_gyro));
 
     displayBigTextLine(5, "rigth= %d sm", SensorValue(port_right));
+    
     displayBigTextLine(9, "left = %d sm", SensorValue(port_left));
-
-    displayBigTextLine(12, "nose = %d grad", SensorValue(port_nose));
+    displayBigTextLine(12, "nose = %d sm", SensorValue(port_nose));
     }// while(1)
 }//task monnitor()
 
@@ -96,10 +96,10 @@ void start_init_main()
         sleep(300);
 
 
-    startTask(dispGyroInit);    playTone(1600,10);
+    startTask(dispGyroInit);    playTone(600,50);
         sleep(1000);
 
-    waitForButtonPress();    playTone(600,20);
+    waitForButtonPress();    playTone(1600,20);
 
     stopTask(dispGyroInit);
 
