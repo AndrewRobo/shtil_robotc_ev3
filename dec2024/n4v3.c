@@ -57,15 +57,6 @@ TurnAnRadius(-90, 100, -180);	/*(int v_left, int v_right, int giroTagetXZ)*/play
 
 
 
-
-
-
-
-
-
-
-
-
   ////////////////   END
 	dispEndTimer();
 
