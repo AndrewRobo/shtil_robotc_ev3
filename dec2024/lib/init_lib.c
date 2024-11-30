@@ -16,7 +16,7 @@ task dispGyroInit()
     sleep(300);
     displayBigTextLine(1, "gyro = %d grad", SensorValue(port_gyro));
 
-    displayBigTextLine(5, "rigth= %d sm", SensorValue(port_right));
+    displayBigTextLine(5, "rigth= %d (%d) sm", SensorValue(port_right),distans_ot_robota_do_borta);
     
     displayBigTextLine(9, "left = %d sm", SensorValue(port_left));
     displayBigTextLine(12, "nose = %d sm", SensorValue(port_nose));
