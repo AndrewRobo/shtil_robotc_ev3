@@ -80,7 +80,6 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 	//datalogClear();
 	int SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
 	int	encoder2 = EnkoderTarget * 2 ; // chtobi summu encoderov ne delit vnutri cikla
-
 	while( SumEncoder < encoder2 )
 	{
 		int delta_distans_right;
