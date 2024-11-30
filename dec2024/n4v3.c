@@ -21,6 +21,7 @@ const int v_max=100;
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
 #include "lib/lib_mvGyroRightToLeftBui.c"
+#include "lib/lib_mvGyroleftToRightBui.c"
 #include "lib/lib_mvGyroToEncoder.c";
 #include "lib/lib_TurnAnRadius.c"
 
@@ -36,14 +37,35 @@ task main()
 	mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToLeftBui(0, 30); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
-	TurnAnRadius(-90, 100, -200);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-90, 100, -220);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
   mvGyroToEncoder(2000, -200);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
 
-  mvGyroRightToLeftBui(-180, 30); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+  mvGyroLeftToRightBui(-180, 30); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
   TurnAnRadius(100, -90, 20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
-	////////////////   END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ////////////////   END
 	dispEndTimer();
 
 	}
