@@ -10,10 +10,16 @@ void init_gyro()
 
 task dispGyroInit()
 {
+    eraseDisplay();
     while(1)
     {
-    sleep(500);
-    displayBigTextLine(12, "%d", SensorValue(port_gyro));
+    sleep(300);
+    displayBigTextLine(1, "gyro = %d grad", SensorValue(port_gyro));
+
+    displayBigTextLine(5, "rigth= %d sm", SensorValue(port_right));
+    displayBigTextLine(9, "left = %d sm", SensorValue(port_left));
+
+    displayBigTextLine(12, "nose = %d grad", SensorValue(port_nose));
     }// while(1)
 }//task monnitor()
 
@@ -79,8 +85,8 @@ void start_init_main()
     //manuallySetConnectionType(port_gyro, conn_none);
     //sleep(4000);
 
-    resetAllSensorAutoID();
-    sleep (4000);
+    //resetAllSensorAutoID();
+    //sleep (4000);
 
     init_radar();
         sleep(300);
@@ -90,13 +96,10 @@ void start_init_main()
         sleep(300);
 
 
-    startTask(dispGyroInit);
-
-        playTone(600,100);
+    startTask(dispGyroInit);    playTone(1600,10);
         sleep(1000);
 
-    waitForButtonPress();
-    playTone(600,100);
+    waitForButtonPress();    playTone(600,20);
 
     stopTask(dispGyroInit);
 
@@ -108,13 +111,11 @@ void dispEndTimer()
     motor[mot_left]=0 ;
     motor[mot_right]=0 ;
 
-
-    playTone(1200,40);
+                                playTone(1200,40);
 
     eraseDisplay();
 
-
-    displayBigTextLine(5, "%d", time1[3]);
+    displayBigTextLine(5, "time %d sek", time1[3]);
 
     waitForButtonPress();
     sleep(25000);
