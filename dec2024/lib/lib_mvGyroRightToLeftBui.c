@@ -9,7 +9,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
-
+	sleep(15);
 	while(LeftBui<SensorValue(port_left))
 	{
 			sleep(15);
@@ -23,7 +23,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 				{	correct_kurs( GiroscopTargetFrozen-15, 1 , v_max);	}
 				else
 				{	correct_kurs( GiroscopTargetFrozen+15, 1 , v_max);	}
-			}
+			}//if(abs(delta_distans_right)<10)
 	sleep(15);
 	}// while( LeftBui<SensorValue(port_left) )
 }//void mvGyroRightToNose()
