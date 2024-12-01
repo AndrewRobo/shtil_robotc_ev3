@@ -89,14 +89,14 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 			ff = SensorValue(port_right);
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
-			if(abs(delta_distans_right)<10)
+			if(abs(delta_distans_right)<15)
 			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
 			else
 			{
 				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-				{	correct_kurs( GiroscopTargetFrozen-30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen-15, 3.5 , v_max);	}
 				else
-				{	correct_kurs( GiroscopTargetFrozen+30, 3.5 , v_max);	}
+				{	correct_kurs( GiroscopTargetFrozen+15, 3.5 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 
 		SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
