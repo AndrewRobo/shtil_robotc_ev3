@@ -9,7 +9,7 @@ void mvGyroLeftToRightBui(int giroTagetXZ, int LeftBui)
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
-
+	sleep(15);
 	while(LeftBui<SensorValue(port_right))
 	{
 			sleep(15);
