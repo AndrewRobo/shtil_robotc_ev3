@@ -28,7 +28,7 @@ void turn(int new_kurs, int v_max)
 		{
 			Error_ygol = new_kurs - SensorValue(port_gyro);
 			motor[mot_left]=v_max;
-			motor[mot_right]=Error_ygol;
+			motor[mot_right]=-Error_ygol;
 			set_ugol_rul(Error_ygol);
 		}//while( ugol_povorota-5 != SensorValue(port_gyro))
 	}//else	if(ugol_povorota<0)

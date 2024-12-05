@@ -43,15 +43,15 @@ mvGyroRightToEncoder(500, -90);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTo
 
 turn(-170, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroRightToEncoder(3000, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroRightToEncoder(2500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 turn(-260, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroToEncoder(250, -270);	/*(int EnkoderTarget, int gyroTaget)*/playTone(600,10);
+mvGyroToEncoder(500, -270);	/*(int EnkoderTarget, int gyroTaget)*/playTone(600,10);
 
 turn(-190, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroLeftToEncoder(3000, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroLeftToEncoder(2500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 turn(-100, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
@@ -59,7 +59,7 @@ mvGyroLeftToEncoder(500, -90);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTon
 
 turn(-10, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroLeftToEncoder(3000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroLeftToEncoder(2500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 turn(80, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
@@ -67,7 +67,7 @@ mvGyroToEncoder(500, 90);	/*(int EnkoderTarget, int gyroTaget)*/playTone(600,10)
 
 turn(10, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroRightToEncoder(3000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroRightToEncoder(2500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 turn(-80, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
@@ -75,7 +75,11 @@ mvGyroRightToEncoder(500, -90);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTo
 
 turn(-170, 100);				/*(int new_kurs, int v_max)*/playTone(600,10);
 
-mvGyroRightToEncoder(7000, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroRightToEncoder(5500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+
+
+mvGyroRightToNose(-180,35);		/*(int giroTagetXZ, int stoop)*/ 	playTone(600,10);
+
 
 
 
