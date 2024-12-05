@@ -70,6 +70,9 @@ mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(600,10)
 TurnAnRadius(-100, 90, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 // domoi
+
+mvGyroRightToEncoder(( (dist_1bui + dist_2bui )*k_encoder + 1250), 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+
 mvGyroRightToNose(-180,30);		/*(int giroTagetXZ, int stoop)*/playTone(600,10);
 
 
