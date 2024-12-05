@@ -19,9 +19,9 @@ const int v_max=100;
 //include
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
-#include "lib/lib_turn.c";
+//#include "lib/lib_turn.c";
 #include "lib/lib_mvGyroRightToLeftBui.c"
-#include "lib/lib_mvGyroToEncoder.c";
+//#include "lib/lib_mvGyroToEncoder.c";
 #include "lib/lib_TurnAnRadius.c"
 
 

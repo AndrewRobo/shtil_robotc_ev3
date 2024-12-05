@@ -40,13 +40,13 @@ mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTon
 mvGyroRightToLeftBui(0, 33); 	/*(int giroTagetXZ, int LeftBui)*/playTone(600,10);
 TurnAnRadius(-90, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-/ pervaya diagonal
-vGyroRightToEncoder(500, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+// pervaya diagonal
+mvGyroRightToEncoder(500, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 TurnAnRadius(-90, 100, -220);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
-vGyroToEncoder(800, -220);	/*(int EnkoderTarget, int gyroTaget)*/playTone(600,10);
+mvGyroToEncoder(800, -220);	/*(int EnkoderTarget, int gyroTaget)*/playTone(600,10);
 TurnAnRadius(100, -100, -190);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-// vtoroi bui   ( blignij k staetu )
+// vtoroi bui   ( blignij k startu )
 mvGyroLeftToRightBui(-180, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(600,10);
 TurnAnRadius(100, -100, -20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 

@@ -1,5 +1,7 @@
 void mvGyroToEncoder(int EnkoderTarget, int gyroTarget)
-{
+{   // dvigenie po kursu s korrekciei tolko po Gyro
+	// do Enkodera
+
 	setLEDColor(ledRed);
 
 	resetMotorEncoder(mot_left);
