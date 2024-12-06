@@ -39,14 +39,14 @@ int dist_1bui = SensorValue(port_nose);
 
 
 mvGyroRightToEncoder(dist_1bui*k_encoder, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
-mvGyroRightToLeftBui(0, 30); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
-mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
+mvGyroRightToEncoder(750, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 int dist_2bui = SensorValue(port_nose);
 
 mvGyroRightToEncoder(dist_2bui*k_encoder, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
-mvGyroRightToLeftBui(0, 33); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
+mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
 TurnAnRadius(-90, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 // pervaya diagonal

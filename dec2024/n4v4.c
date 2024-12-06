@@ -48,7 +48,7 @@ TurnAnRadius(100, -100, -190);	/*(int v_left, int v_right, int giroTagetXZ)*/pla
 
 // vtoroi bui   ( blignij k startu )
 mvGyroLeftToRightBui(-180, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(600,10);
-TurnAnRadius(100, -100, -20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+TurnAnRadius(90, -100, -20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 // obratnaya diagonal
 mvGyroLeftToEncoder(1000, 0);	/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
