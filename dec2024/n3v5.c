@@ -32,6 +32,8 @@ task main()
 int k_encoder=1000/66;
 int enk = 0;
 
+set_ugol_radar(-20);
+
 int dist_1bui = SensorValue(port_nose);
 if (dist_1bui > 60)
 {
@@ -47,14 +49,19 @@ if (dist_2bui > 60){
 mvGyroRightToEncoder(enk, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 }
 
-	TurnAnRadius(-80, 100, -150);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-90, 100, -150);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-	mvGyroRightToEncoder(1500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+if (dist_2bui > 60){
+	enk = (dist_1bui-40) * k_encoder;
+	mvGyroRightToEncoder(enk, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+}
 	mvGyroRightToLeftBui(-180, 40); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-90, 100, -320);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
-
-	mvGyroRightToEncoder(1500, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+if (dist_2bui > 60){
+	enk = (dist_1bui-40) * k_encoder;
+	mvGyroRightToEncoder(enk, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+}
 	mvGyroRightToLeftBui(-360, 40); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-80, 100, -530);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
