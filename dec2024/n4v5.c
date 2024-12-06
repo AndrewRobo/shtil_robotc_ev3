@@ -47,7 +47,7 @@ mvGyroRightToEncoder(750, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone
 
 int dist_2bui = SensorValue(port_nose);
 if (dist_2bui > 60){
-	enk = dist_2bui*k_encoder - 40;
+	enk = (dist_2bui-40)*k_encoder;
 mvGyroRightToEncoder(enk, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 }
 mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
