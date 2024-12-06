@@ -23,13 +23,15 @@ task dispGyroInit()
     }// while(1)
 }//task monnitor()
 
+const int SPEED_radar = 30;
+
 void init_radar()
 {// inicializacia naoravlenia radararadara
     // vraschaem motor radara do ogranichitela
     // i vistavlyaen nulevim kurs vpered
     int en_radar = 1;
     int en_radar2 = 2;
-    motor[port_radar] = -30;
+    motor[port_radar] = - SPEED_radar;
     while (en_radar != en_radar2)
     {
         en_radar2 = en_radar;
@@ -39,11 +41,21 @@ void init_radar()
     //	resetMotorEncoder(port_radar);
     motor[port_radar] = 0;
     sleep(300);
-    moveMotorTarget(port_radar, 100, 30); // 100 grad - 90 grad
+    moveMotorTarget(port_radar, 100, SPEED_radar); // 100 grad - 90 grad
     //                 plus experimentalnaya korrektirovka
     waitUntilMotorStop(port_radar);
     resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
 }//init_radar()
+
+void set_ugol_radar(int ff)
+{
+	int f=ff;
+	if(f > 90){ f=90;}
+	if(f < -90){ f=-90;}
+	setMotorTarget(port_radar, f, SPEED_radar);
+	waitUntilMotorStop(port_radar);
+    //	rul=getMotorEncoder(port_rul);
+}
 
 const int SPEED_RUL=30;
 
