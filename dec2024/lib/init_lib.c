@@ -54,7 +54,7 @@ void set_ugol_radar(int ff)
 	if(f < -90){ f=-90;}
 	setMotorTarget(port_radar, f, SPEED_radar);
 	waitUntilMotorStop(port_radar);
-    //	rul=getMotorEncoder(port_rul);
+  
 }
 
 const int SPEED_RUL=30;
@@ -66,7 +66,7 @@ void set_ugol_rul(int ff)
 	if(f < -60){ f=-60;}
 	setMotorTarget(port_rul, f, SPEED_RUL);
 	waitUntilMotorStop(port_rul);
-    //	rul=getMotorEncoder(port_rul);
+  
 }
 
 void init_rul()
