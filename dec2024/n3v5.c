@@ -62,6 +62,7 @@ if (dist_2bui > 60){
 	enk = (dist_1bui-40) * k_encoder;
 	mvGyroRightToEncoder(enk, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 }
+
 	mvGyroRightToLeftBui(-360, 40); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-80, 100, -530);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
