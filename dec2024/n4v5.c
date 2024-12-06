@@ -34,18 +34,22 @@ task main()
 
 //mvGyroleftToEncoder(7000, 0);/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 int k_encoder=1000/66;
+int enk = 0;
+
 int dist_1bui = SensorValue(port_nose);
-
-
-
-mvGyroRightToEncoder(dist_1bui*k_encoder, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+if (dist_1bui > 60)
+{
+ enk=(dist_1bui-40) * k_encoder    // encoder otkluchat pered buem
+ mvGyroRightToEncoder(enk , 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+}
 mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
 mvGyroRightToEncoder(750, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 
 int dist_2bui = SensorValue(port_nose);
-
-mvGyroRightToEncoder(dist_2bui*k_encoder, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
-
+if (dist_2bui > 60){
+	enk = dist_2bui*k_encoder - 40;
+mvGyroRightToEncoder(enk, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
+}
 mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/playTone(1600,50);
 TurnAnRadius(-90, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
