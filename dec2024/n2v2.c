@@ -26,7 +26,7 @@ task main()
 	start_init_main();
 	//--------------------------------------------
 
-
+	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
 	mvGyroRightToLeftBui(0, 50); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
 	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
 	turn(-80, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
@@ -38,7 +38,7 @@ task main()
 
 	distans_ot_robota_do_borta=30;
 
-	mvGyroRightToNose(-180,50);	/*(int giroTagetXZ, int stoop)*/			playTone(600,10);
+	mvGyroRightToNose(-180,30);	/*(int giroTagetXZ, int stoop)*/			playTone(600,10);
 
 
 	////////////////   END

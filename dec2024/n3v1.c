@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=30;
+int distans_ot_robota_do_borta=25;
 const int v_max=100;
 
 
@@ -51,7 +51,7 @@ task main()
 	mvGyroRightToNose(-450,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
 	turn(-540, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
-	mvGyroRightToEncoder(500, -540);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
+	mvGyroRightToEncoder(4750, -540);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
 	mvGyroRightToNose(-540,50);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
 
 

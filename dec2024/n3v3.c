@@ -32,9 +32,9 @@ task main()
 
 
 	mvGyroRightToEncoder(500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 30); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 35); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 30); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 35); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-80, 100, -150);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
