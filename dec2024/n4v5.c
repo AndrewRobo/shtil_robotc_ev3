@@ -30,8 +30,10 @@ task main()
 {
 	start_init_main();
 	//--------------------------------------------
+set_ugol_radar(-15);
+sleep(500)
+ waitForButtonPress();    playTone(1600,20);
 
-set_ugol_radar(-20);
 
 //mvGyroleftToEncoder(7000, 0);/*(int EnkoderTarget, int giroTagetXZ)*/playTone(600,10);
 int k_encoder=1000/66;

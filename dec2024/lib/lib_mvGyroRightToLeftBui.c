@@ -4,13 +4,23 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
   /* plivem po generalnomu kursu
   korrektiruyas po GYRO i pravomu ultazvukovomu datchiku
   do bui (left ultrazvukovomu datchiku)*/
+	datalogDataGroupStart();
+
+
+
+
+
+
+
 
 	setLEDColor(ledOrange);
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	sleep(15);
-	while(LeftBui<SensorValue(port_left))
+	int SVPL=SensorValue(port_left);
+	datalogAddValue(0, SVPL);
+	while(LeftBui<SVPL)
 	{
 			sleep(15);
 			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
@@ -25,5 +35,9 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 				{	correct_kurs( GiroscopTargetFrozen+20, 1 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 	sleep(15);
+	SVPL=SensorValue(port_left);
+	datalogAddValue(0, SVPL);
 	}// while( LeftBui<SensorValue(port_left) )
+datalogDataGroupEnd();
+
 }//void mvGyroRightToNose()
