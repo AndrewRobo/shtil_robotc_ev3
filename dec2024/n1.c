@@ -20,11 +20,11 @@ const int v_max=100;
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
-
+    
 task main()
 {
 	start_init_main();
-	//--------------------------------------------
+	//------------------------------------------------------------------------------------------
 
 
 	mvGyroRightToEncoder(7000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
