@@ -28,16 +28,11 @@ const int v_max=100;
 
 task main()
 {
-	setSensorMode(port_nose, modeEV3Ultrasonic_SI_Cm)
 	start_init_main();
 	//--------------------------------------------
 
 
-
-
-	mvGyroRightToEncoder(750, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 50); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(1500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToEncoder(3000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToLeftBui(0, 40); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-90, 100, -170);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
