@@ -16,14 +16,24 @@ task dispGyroInit()
     sleep(300);
     displayBigTextLine(1, "gyro = %d grad", SensorValue(port_gyro));
 
-    displayBigTextLine(5, "rigth= %d (%d) sm", SensorValue(port_right),distans_ot_robota_do_borta);
-    
-    displayBigTextLine(9, "left = %d sm", SensorValue(port_left));
-    displayBigTextLine(12, "nose = %d sm", SensorValue(port_nose));
+    displayBigTextLine(5, "rigth= %d (%d) sm", us_right(),distans_ot_robota_do_borta);
+
+    displayBigTextLine(9, "left = %d sm", us_left());
+    displayBigTextLine(12, "nose = %d sm", us_nose());
     }// while(1)
 }//task monnitor()
 
 const int SPEED_radar = 30;
+void set_ugol_radar(int ff)
+{
+	int f=ff;
+	if(f > 90){ f=90;}
+	if(f < -90){ f=-90;}
+	setMotorTarget(port_radar, f, SPEED_radar);
+	waitUntilMotorStop(port_radar);
+
+}
+
 
 void init_radar()
 {// inicializacia naoravlenia radararadara
@@ -45,17 +55,9 @@ void init_radar()
     //                 plus experimentalnaya korrektirovka
     waitUntilMotorStop(port_radar);
     resetMotorEncoder(port_radar); // nulevim oschetom graduvov napravlinia radara delaem kurs vpered
-}//init_radar()
+	  set_ugol_radar(0);
+    }//init_radar()
 
-void set_ugol_radar(int ff)
-{
-	int f=ff;
-	if(f > 90){ f=90;}
-	if(f < -90){ f=-90;}
-	setMotorTarget(port_radar, f, SPEED_radar);
-	waitUntilMotorStop(port_radar);
-  
-}
 
 const int SPEED_RUL=30;
 
@@ -66,7 +68,7 @@ void set_ugol_rul(int ff)
 	if(f < -60){ f=-60;}
 	setMotorTarget(port_rul, f, SPEED_RUL);
 	waitUntilMotorStop(port_rul);
-  
+
 }
 
 void init_rul()
@@ -94,8 +96,8 @@ void init_rul()
 
 void start_init_main()
 {
-    // funcii zapuska inicialisaciu 
-    
+    // funcii zapuska inicialisaciu
+
     resetAllSensorAutoID();
     sleep (3000);
 
@@ -106,7 +108,7 @@ void start_init_main()
     init_gyro();
         sleep(300);
 
-
+    startTask(sensors);
     startTask(dispGyroInit);    playTone(600,50);
         sleep(1000);
 

@@ -13,29 +13,31 @@
 //int rul;  // tekuschij ugol rulua   global
 int distans_ot_robota_do_borta=33;
 const int v_max=100;
- 
+
 
 
 //include
+#include "lib/sensors_lib.c"
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
-    
+
 task main()
 {
+//	startTask(sensors);
 	start_init_main();
 	//------------------------------------------------------------------------------------------
 
 
-	mvGyroRightToEncoder(7000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToEncoder(4000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToNose(0,70);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 	turn(-80, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(1000, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
+	mvGyroRightToEncoder(500, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
 	mvGyroRightToNose(-90,70);		 /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(6500, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
+	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
 	mvGyroRightToNose(-180,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
 	turn(-260, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
@@ -44,5 +46,5 @@ task main()
 
 	////////////////   END
 	dispEndTimer();
-
+	stopTask(sensors);
 	}

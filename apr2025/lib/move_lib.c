@@ -40,13 +40,14 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 	do frontalnogo borta po nosovomu radarnomu ultrazvukovomu datchiku*/
 
 	setLEDColor(ledOrange);
+	prog = 2 ;
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 
-	while( stoop < SensorValue(port_nose) )
+	while( stoop < us_nose() )
 	{
-		int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+		int delta_distans_right =  distans_ot_robota_do_borta - us_right();
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 		if(abs(delta_distans_right)<20)
 			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
@@ -72,6 +73,7 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 {
 	setLEDColor(ledRed);
+	prog = 1 ;
 
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
@@ -86,7 +88,7 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 		int ff;
 
 
-			ff = SensorValue(port_right);
+			ff = us_right();
 			delta_distans_right =  distans_ot_robota_do_borta - ff;
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<20)
