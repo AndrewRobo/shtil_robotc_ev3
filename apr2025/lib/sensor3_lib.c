@@ -3,15 +3,14 @@ int prog = 0;
 int us_left()
 {
 	int R_left = SensorValue(port_left);
-
+#ifdef dlog
 	datalogDataGroupStart();
-
-	datalogAddValue(0,time1[3]);
-	datalogAddValue(1,R_left);
-
-	datalogAddValue(7,prog);
-
+		datalogAddValue(0,time1[3]);
+		datalogAddValue(1,R_left);
+		datalogAddValue(7,prog);
 	datalogDataGroupEnd();
+#endif
+
 	return R_left;
 }
 int us_right()
