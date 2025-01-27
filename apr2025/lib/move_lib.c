@@ -13,7 +13,7 @@ void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 	const int k_gyro_rul = 1;
 	int dynamic_speed = v_max;
 
-	int ugol_error = GiroscopTarget -  SensorValue(port_gyro);
+	int ugol_error = GiroscopTarget -  gyro();
 	dynamic_speed -= koef_usilenia * ( abs( ugol_error ) );
 	if ( dynamic_speed > v_max ) 	    dynamic_speed=v_max;
 	else if (dynamic_speed < -v_max )	dynamic_speed=-v_max;

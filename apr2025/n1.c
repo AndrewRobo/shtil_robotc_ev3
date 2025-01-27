@@ -17,7 +17,7 @@ const int v_max=100;
 
 
 //include
-#include "lib/sensors_lib.c"
+#include "lib/sensor3_lib.c";
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
@@ -46,5 +46,4 @@ task main()
 
 	////////////////   END
 	dispEndTimer();
-	stopTask(sensors);
 	}

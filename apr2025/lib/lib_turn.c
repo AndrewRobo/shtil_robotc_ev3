@@ -8,14 +8,14 @@ void turn(int new_kurs, int v_max)
 	prog = 3 ;
 
 
-	int delta_ugol = new_kurs - SensorValue(port_gyro);
+	int delta_ugol = new_kurs - gyro();
 	int Error_ygol = delta_ugol;
 
 	if( delta_ugol < 0 )
 	{
 		while( Error_ygol < (-5) )
 		{
-			Error_ygol = new_kurs - SensorValue(port_gyro);
+			Error_ygol = new_kurs - gyro();
 			motor[mot_left]=Error_ygol;
 			motor[mot_right]=v_max;
 			set_ugol_rul(Error_ygol);
@@ -26,7 +26,7 @@ void turn(int new_kurs, int v_max)
 	{
 		while( Error_ygol > 5 )
 		{
-			Error_ygol = new_kurs - SensorValue(port_gyro);
+			Error_ygol = new_kurs - gyro();
 			motor[mot_left]=v_max;
 			motor[mot_right]=-Error_ygol;
 			set_ugol_rul(Error_ygol);

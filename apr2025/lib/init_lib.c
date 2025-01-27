@@ -1,4 +1,6 @@
 //init
+//int prog =0;
+
 void init_gyro()
 {
     sleep(500);
@@ -108,7 +110,6 @@ void start_init_main()
     init_gyro();
         sleep(300);
 
-    startTask(sensors);
     startTask(dispGyroInit);    playTone(600,50);
         sleep(1000);
 
