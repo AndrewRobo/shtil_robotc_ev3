@@ -55,3 +55,22 @@ int gyro()
 	datalogDataGroupEnd();
 	return R_gyro;
 }
+
+int sum_encoder()
+{
+	int L_enc = getMotorEncoder(mot_left) ;
+	int R_enc = getMotorEncoder(mot_right) ;
+
+  datalogDataGroupStart();
+
+		datalogAddValue(0,time1[3]);
+		datalogAddValue(5,R_gyro);
+ 		datalogAddValue(6,R_gyro);
+
+		datalogAddValue(7,prog);
+
+	datalogDataGroupEnd();
+
+return L_enc + R_enc ;
+
+}
