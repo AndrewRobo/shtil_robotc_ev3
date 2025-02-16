@@ -73,6 +73,7 @@ void set_ugol_rul(int ff)
 
 }
 
+
 void init_rul()
 {
     // povopot rulya do fiksatora  vdol zadnego borta
