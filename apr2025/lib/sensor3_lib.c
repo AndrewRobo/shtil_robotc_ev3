@@ -47,7 +47,7 @@ int gyro()
 #ifdef dlog
 	datalogDataGroupStart();
 
-	datalogAddValue(0,time1[3]);
+//	datalogAddValue(0,time1[3]);
 	datalogAddValue(4,R_gyro);
 
 	datalogAddValue(7,prog);
