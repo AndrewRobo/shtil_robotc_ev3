@@ -33,7 +33,7 @@ void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 }
 
 
-void mvGyroRightToNose(int giroTagetXZ, int stoop)
+void mvGyroRightToNose(int gyroTaget, int stop_nose)
 {
 	/* plivem po generalnomu kursu
 	korrektiruyas po GYROskopu i pravomu ultazvukovomu datchiku
@@ -42,10 +42,10 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 	setLEDColor(ledOrange);
 	prog = 2 ;
 
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
+	int GiroscopTargetFrozen = gyroTaget;
+	int GiroscopTargetDinamik = gyroTaget;
 
-	while( stoop < us_nose() )
+	while( stop_nose < us_nose() )
 	{
 		int delta_distans_right =  distans_ot_robota_do_borta - us_right();
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
@@ -70,18 +70,18 @@ void mvGyroRightToNose(int giroTagetXZ, int stoop)
 
 
 
-void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
+void mvGyroRightToEncoder(int EnkoderTarget, int gyroTaget)
 {
 	setLEDColor(ledRed);
 	prog = 1 ;
 
-	int GiroscopTargetFrozen = giroTagetXZ;
-	int GiroscopTargetDinamik = giroTagetXZ;
+	int GiroscopTargetFrozen = gyroTaget;
+	int GiroscopTargetDinamik = gyroTaget;
 	resetMotorEncoder(mot_left);
 	resetMotorEncoder(mot_right);
 	//datalogClear();
-	int SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
-	int	encoder2 = EnkoderTarget * 2 ; // chtobi summu encoderov ne delit vnutri cikla
+	int SumEncoder = sum_encoder();
+	int	encoderTarget2 = EnkoderTarget * 2 ; // chtobi summu encoderov ne delit vnutri cikla
 	while( SumEncoder < encoder2 )
 	{
 		int delta_distans_right;
@@ -101,7 +101,7 @@ void mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
 				{	correct_kurs( GiroscopTargetFrozen+20, 2 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 
-		SumEncoder = (getMotorEncoder(mot_left)+getMotorEncoder(mot_right));
+		SumEncoder = sum_encoder();
 	} // while( SumEncoder < encoder2 )
 
 }// mvGyroRightToEncoder(int EnkoderTarget, int giroTagetXZ)
