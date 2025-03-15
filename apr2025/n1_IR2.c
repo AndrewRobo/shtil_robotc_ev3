@@ -44,6 +44,10 @@ task main()
 	mvGyroRightToNose(-270,40);			/*(int giroTagetXZ, int stoop)*/ 		   playTone(600,10);
 
 
+
+
+
+
 	////////////////   END
 	dispEndTimer();
 	}
