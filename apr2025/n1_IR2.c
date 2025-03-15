@@ -31,17 +31,21 @@ task main()
 
 	mvGyroRightToEncoder(4000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToNose(0,80);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-	turn(-50, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(500, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
+	mvGyroRightToEncoder(150, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
 	mvGyroRightToNose(-90,70);		 /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-	turn(-120, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-180, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
 	mvGyroRightToNose(-180,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
-	turn(-260, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
+	turn(-270, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
 	mvGyroRightToNose(-270,40);			/*(int giroTagetXZ, int stoop)*/ 		   playTone(600,10);
+
+
+
+
 
 
 	////////////////   END
