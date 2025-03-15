@@ -65,8 +65,8 @@ int sum_encoder()
   datalogDataGroupStart();
 
 		datalogAddValue(0,time1[3]);
-		datalogAddValue(5,R_gyro);
- 		datalogAddValue(6,R_gyro);
+		datalogAddValue(5,L_enc);
+ 		datalogAddValue(6,R_enc);
 
 		datalogAddValue(7,prog);
 
