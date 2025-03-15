@@ -14,7 +14,7 @@ with open('D:\shtil_robotc_ev3\\13ir.csv', 'r') as csvfile:
 
  
 	
-import csv
+#import csv
  
 data = [['Name', 'Age', 'City'],
         ['Alice', '30', 'New York'],
