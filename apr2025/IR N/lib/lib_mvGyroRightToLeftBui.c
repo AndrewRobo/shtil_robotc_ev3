@@ -18,12 +18,12 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 	int GiroscopTargetFrozen = giroTagetXZ;
 	int GiroscopTargetDinamik = giroTagetXZ;
 	sleep(15);
-	int SVPL=SensorValue(port_left);
+	int SVPL=us_left();
 	datalogAddValue(0, SVPL);
 	while(LeftBui<SVPL)
 	{
 			sleep(15);
-			int delta_distans_right =  distans_ot_robota_do_borta - SensorValue(port_right);
+			int delta_distans_right =  distans_ot_robota_do_borta - us_right();
 			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
 			if(abs(delta_distans_right)<20)
 			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
@@ -35,7 +35,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 				{	correct_kurs( GiroscopTargetFrozen+20, 1 , v_max);	}
 			}//if(abs(delta_distans_right)<10)
 	sleep(15);
-	SVPL=SensorValue(port_left);
+	SVPL=us_left();
 	datalogAddValue(0, SVPL);
 	}// while( LeftBui<SensorValue(port_left) )
 datalogDataGroupEnd();
