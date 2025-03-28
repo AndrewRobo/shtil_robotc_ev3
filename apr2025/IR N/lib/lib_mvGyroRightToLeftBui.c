@@ -4,7 +4,7 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
   /* plivem po generalnomu kursu
   korrektiruyas po GYRO i pravomu ultazvukovomu datchiku
   do bui (left ultrazvukovomu datchiku)*/
-	datalogDataGroupStart();
+
 
 
 
@@ -19,7 +19,6 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 	int GiroscopTargetDinamik = giroTagetXZ;
 	sleep(15);
 	int SVPL=us_left();
-	datalogAddValue(0, SVPL);
 	while(LeftBui<SVPL)
 	{
 			sleep(15);
@@ -36,8 +35,6 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
 			}//if(abs(delta_distans_right)<10)
 	sleep(15);
 	SVPL=us_left();
-	datalogAddValue(0, SVPL);
 	}// while( LeftBui<SensorValue(port_left) )
-datalogDataGroupEnd();
 
 }//void mvGyroRightToNose()
