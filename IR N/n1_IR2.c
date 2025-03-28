@@ -15,6 +15,7 @@ int distans_ot_robota_do_borta=40;
 const int v_max=100;
 
 
+
 //include
 #include "lib/sensor3_lib.c";
 #include "lib/init_lib.c";
