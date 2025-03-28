@@ -47,7 +47,7 @@ task main()
 	set_ugol_radar(-45);
 
 
-//  mvGyroToEncoder(1500, -200);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
+  mvGyroToEncoder(1500, -200);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
 
 //  TurnAnRadius(100, -10, -180);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
