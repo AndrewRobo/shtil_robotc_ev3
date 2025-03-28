@@ -35,13 +35,12 @@ task main()
 
 	mvGyroRightToEncoder(250, -90);  /*(int EnkoderTarget, int gyroTaget)*/ 	 playTone(600,10);
 	mvGyroRightToNose(-90,70);		 /*(int gyroTaget, int stoop)*/			 playTone(600,10);
-	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-175, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int gyroTaget)*/   playTone(600,10);
 	mvGyroRightToNose(-180,70);			/*(int giroTaget, int stoop)*/		   playTone(600,10);
 	turn(-270, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
-	mvGyroRightToEncoder(4000, -270);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
 	mvGyroRightToNose(-270,40);			/*(int gyroTaget, int stoop)*/ 		   playTone(600,10);
 
 
