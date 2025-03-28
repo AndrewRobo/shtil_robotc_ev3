@@ -54,9 +54,9 @@ void mvGyroRightToNose(int gyroTaget, int stop_nose)
 		else
 		{
 			if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
-			{	correct_kurs( GiroscopTargetFrozen-20, 1 , v_max);	}
+			{	correct_kurs( GiroscopTargetFrozen-20, 2 , v_max);	}
 			else
-			{	correct_kurs( GiroscopTargetFrozen+20, 1 , v_max);
+			{	correct_kurs( GiroscopTargetFrozen+20, 2 , v_max);
 			}
 		}//if(abs(delta_distans_right)<10)
 
