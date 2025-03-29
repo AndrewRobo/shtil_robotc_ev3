@@ -15,7 +15,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 
-int distans_ot_robota_do_borta=40;
+int distans_ot_robota_do_borta=50;
 const int v_max=100;
 
 
@@ -59,7 +59,7 @@ task main()
 	mvGyroRightToEncoder(220, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
 
-	turn(-440, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-430, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 	mvGyroToEncoder(370, -450);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
 	turn(-530, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
