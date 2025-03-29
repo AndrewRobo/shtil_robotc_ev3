@@ -10,6 +10,10 @@
 
 //global variable
 
+
+#define dlog 1;
+
+
 //int rul;  // tekuschij ugol rulua   global
 int distans_ot_robota_do_borta=40; //70=40cm 60 = 35cm 55=30cm 40=20cm
 const int v_max=100;
@@ -21,6 +25,8 @@ const int v_max=100;
 #include "lib/lib_turn.c";
 #include "lib/lib_mvGyroRightToLeftBui.c";
 #include "lib/lib_TurnAnRadius.c";
+#include "lib/lib_mvGyroToEncoder.c";
+
 
 task main()
 {
@@ -30,7 +36,14 @@ task main()
 	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
 	mvGyroRightToLeftBui(0, 70); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
 
-	TurnAnRadius(-85, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	turn(-45, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+//	mvGyroToEncoder(50,-45)
+		turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+//	mvGyroToEncoder(50,-90)
+		turn(-135, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+//	mvGyroToEncoder(50,-135)
+		turn(-175, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+
 
 	mvGyroRightToNose(-180,30);	/*(int giroTagetXZ, int stoop)*/			playTone(600,10);
 
