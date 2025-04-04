@@ -10,7 +10,7 @@ void correct_kurs( int GiroscopTarget, int koef_usilenia  , int v_max )
 
 	v prediduschi versiyah nazivalas moveproporcional() */
 
-	const int k_gyro_rul = 1;
+	const int k_gyro_rul = 2;
 	int dynamic_speed = v_max;
 
 	int ugol_error = GiroscopTarget -  gyro();
