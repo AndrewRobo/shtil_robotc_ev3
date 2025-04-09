@@ -45,7 +45,7 @@ void mvGyroRightToNose(int gyroTaget, int stop_nose)
 	int GiroscopTargetFrozen = gyroTaget;
 	int GiroscopTargetDinamik = gyroTaget;
 
-	while( stop_nose < us_nose() )
+	while( stop_nose < SensorValue(port_nose) )
 	{
 		int delta_distans_right =  distans_ot_robota_do_borta - us_right();
 		GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;

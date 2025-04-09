@@ -15,7 +15,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 
-int distans_ot_robota_do_borta=50;
+int distans_ot_robota_do_borta=70;
 const int v_max=100;
 
 
@@ -35,22 +35,24 @@ task main()
 	//--------------------------------------------
 
 
-	mvGyroRightToEncoder(400, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 65); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 65); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToEncoder(500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToEncoder(300, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
-	TurnAnRadius(-85, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-100, 90, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-	mvGyroRightToEncoder(3100, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToEncoder(2500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
-	TurnAnRadius(-85, 100, -340);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-100, 95, -340);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 	mvGyroRightToEncoder(750, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
-	mvGyroRightToLeftBui(-360, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	TurnAnRadius(-85, 100, -520);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	mvGyroRightToLeftBui(-360, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	TurnAnRadius(-100, 95, -520);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-	mvGyroRightToNose(-540,25);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
+
+
+	mvGyroRightToNose(-540,30);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 
 
 	////////////////   END

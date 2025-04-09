@@ -15,7 +15,7 @@
 
 //int rul;  // tekuschij ugol rulua   global
 
-int distans_ot_robota_do_borta=50;
+int distans_ot_robota_do_borta=70;
 const int v_max=100;
 
 
@@ -35,10 +35,10 @@ task main()
 	//--------------------------------------------
 
 
+	mvGyroRightToEncoder(300, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToLeftBui(0, 80); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(400, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 65); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(1250, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 65); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 80); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	turn(-45, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 //	mvGyroToEncoder(50,-45)
@@ -46,10 +46,11 @@ task main()
 //	mvGyroToEncoder(50,-90)
 		turn(-135, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 //	mvGyroToEncoder(50,-135)
-		turn(-175, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+		turn(-160, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
+		distans_ot_robota_do_borta=60;
 
-	mvGyroRightToEncoder(3100, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+	mvGyroRightToEncoder(2000, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
 	turn(-225, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 //	mvGyroToEncoder(50,-45)
@@ -59,9 +60,11 @@ task main()
 //	mvGyroToEncoder(50,-135)
 		turn(-355, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-			mvGyroRightToEncoder(500, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+		distans_ot_robota_do_borta=60;
 
-		mvGyroRightToLeftBui(-360, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+			mvGyroRightToEncoder(750, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+
+		mvGyroRightToLeftBui(-360, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 			turn(-405, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 //	mvGyroToEncoder(50,-45)

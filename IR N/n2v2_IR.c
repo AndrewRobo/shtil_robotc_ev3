@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=40; //70=40cm 60 = 35cm 55=30cm 40=20cm
+int distans_ot_robota_do_borta=60; //70=40cm 60 = 35cm 55=30cm 40=20cm
 const int v_max=100;
 
 //include
@@ -19,20 +19,57 @@ const int v_max=100;
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
-#include "lib/lib_mvGyroRightToLeftBui.c";
+//#include "lib/lib_mvGyroRightToLeftBui.c";
 #include "lib/lib_TurnAnRadius.c";
+
+void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
+{
+  /* plivem po generalnomu kursu
+  korrektiruyas po GYRO i pravomu ultazvukovomu datchiku
+  do bui (left ultrazvukovomu datchiku)*/
+
+	setLEDColor(ledOrange);
+
+	int GiroscopTargetFrozen = giroTagetXZ;
+	int GiroscopTargetDinamik = giroTagetXZ;
+	sleep(15);
+	int SVPL=SensorValue(port_nose);
+	while(LeftBui<SVPL)
+	{
+			sleep(15);
+			int delta_distans_right =  distans_ot_robota_do_borta - us_right();
+			GiroscopTargetDinamik = GiroscopTargetFrozen - delta_distans_right;
+			if(abs(delta_distans_right)<20)
+			{	correct_kurs( GiroscopTargetDinamik, 1 , v_max);	}
+			else
+			{
+				if(GiroscopTargetFrozen-GiroscopTargetDinamik>0)
+				{	correct_kurs( GiroscopTargetFrozen-20, 1 , v_max);	}
+				else
+				{	correct_kurs( GiroscopTargetFrozen+20, 1 , v_max);	}
+			}//if(abs(delta_distans_right)<10)
+	sleep(15);
+	SVPL=us_left();
+	}// while( LeftBui<SensorValue(port_left) )
+
+}//void mvGyroRightToNose()
+
 
 task main()
 {
 	start_init_main();
 	//--------------------------------------------
 
+	set_ugol_radar(-80);
+
 	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
-	mvGyroRightToLeftBui(0, 70); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
 
-	TurnAnRadius(-85, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-90, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
-	mvGyroRightToNose(-180,30);	/*(int giroTagetXZ, int stoop)*/			playTone(600,10);
+	set_ugol_radar(0);
+
+	mvGyroRightToNose(-180,40);	/*(int giroTagetXZ, int stoop)*/			playTone(600,10);
 
 
 	////////////////   END

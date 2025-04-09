@@ -13,7 +13,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=40;
+int distans_ot_robota_do_borta=80;
 const int v_max=100;
 
 
@@ -24,7 +24,7 @@ const int v_max=100;
 #include "lib/move_lib.c";
 #include "lib/lib_mvGyroRightToLeftBui.c";
 #include "lib/lib_mvGyroLeftToRightBui.c";
-//#include "lib/lib_mvGyroLeftToEncoder.c";
+#include "lib/lib_mvGyroLeftToEncoder.c";
 #include "lib/lib_mvGyroToEncoder.c";
 #include "lib/lib_mvGyroToNose.c";
 #include "lib/lib_TurnAnRadius.c";
@@ -37,30 +37,32 @@ task main()
 
 
 	mvGyroRightToEncoder(500, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(720, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	TurnAnRadius(-85, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 	mvGyroRightToEncoder(500, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
 	TurnAnRadius(-50, 100, -220);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 	set_ugol_radar(-35);
-  mvGyroToNose(-230, 80);
+  mvGyroToNose(-230, 100);
 	TurnAnRadius(100, -10, -180);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 	set_ugol_radar(5);
-	mvGyroleftToRightBui(-180, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	TurnAnRadius(85, -100, -20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
-	mvGyroLeftToRightBui(0, 70);	  /*(int giroTagetXZ, int LeftBui)*/	 playTone(600,10);
+	mvGyroLeftToEncoder(500, 0);	/*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+
+		TurnAnRadius(100, -85, -20);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+
+	mvGyroLeftToRightBui(0, 90);	  /*(int giroTagetXZ, int LeftBui)*/	 playTone(600,10);
 
 	set_ugol_radar(45);
 	TurnAnRadius(100, -50, 35);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
-  mvGyroToNose(45, 60);
+  mvGyroToNose(45, 90);
 	TurnAnRadius(-50, 100, 0);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 	set_ugol_radar(5);
-	mvGyroRightToLeftBui(0, 70); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	TurnAnRadius(-85, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 	mvGyroRightToNose(-180,25);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 

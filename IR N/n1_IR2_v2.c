@@ -11,8 +11,8 @@
 //#define dlog 1; //esli dlog opredelen tocompiliruemcz s datalog
 
 //globals
-int distans_ot_robota_do_borta=40;
-const int v_max=100;
+int distans_ot_robota_do_borta=33;
+const int v_max=10000;
 
 
 //include
@@ -28,24 +28,24 @@ task main()
 	//------------------------------------------------------------------------------------------
 
 
-	mvGyroRightToEncoder(4500, 0);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
+	mvGyroRightToEncoder(3500, 0);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
 	mvGyroRightToNose(0,80);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 
-	turn(-60, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-45, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-80, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(50, -90);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
+	mvGyroRightToNose(-90,80);			/*(int giroTaget, int stoop)*/		   playTone(600,10);
 
-	turn(-150, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-135, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(5000, -180);	/*(int EnkoderTarget, int gyroTaget)*/   playTone(600,10);
+	mvGyroRightToEncoder(3000, -180);	/*(int EnkoderTarget, int gyroTaget)*/   playTone(600,10);
 	mvGyroRightToNose(-180,80);			/*(int giroTaget, int stoop)*/		   playTone(600,10);
 
-	turn(-240, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
+	turn(-225, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 	turn(-260, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
-	mvGyroRightToNose(-270,40);			/*(int gyroTaget, int stoop)*/ 		   playTone(600,10);
+	mvGyroRightToNose(-270,30);			/*(int gyroTaget, int stoop)*/ 		   playTone(600,10);
 
 
 

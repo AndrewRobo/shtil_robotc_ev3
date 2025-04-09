@@ -5,14 +5,6 @@ void mvGyroRightToLeftBui(int giroTagetXZ, int LeftBui)
   korrektiruyas po GYRO i pravomu ultazvukovomu datchiku
   do bui (left ultrazvukovomu datchiku)*/
 
-
-
-
-
-
-
-
-
 	setLEDColor(ledOrange);
 
 	int GiroscopTargetFrozen = giroTagetXZ;
