@@ -12,28 +12,15 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-const int llen = 936;
-    static int arr_stamp[llen];
+const short llen = 1650;
+    static short arr_stamp[llen];
     int ih = 0;  // indek poslednego izmerenia v massive
+    ubyte arr_code[llen];
+    short arr_value[llen];
+ 	int arr_time[llen];
 
-    //////////////////////////////////////////////////////////////////////////
-    //const int len_right = 501;
-    char arr_code[llen];
-    //int ih_right = 0;
+string name="test.txt";
 
-    //////////////////////////////////////////////////////////////////////////
-    //const int len_nose = 502;
-    int arr_value[llen];
-    //int ih_nose = 0;
-
-    //////////////////////////////////////////////////////////////////////////
-	///const int len_time = 502;
-	int arr_time[llen];
-	//int ih_nose = 0;
-
-
-
-//int rul;  // tekuschij ugol rulua   global
 int distans_ot_robota_do_borta=40;
 const int v_max=100;
 
@@ -46,11 +33,24 @@ const int v_max=100;
 
 task main()
 {
-
+	//int fd = FileOpenWrite("trt.txt");
 
 	//resetAllSensorAutoID();
 
+bEv3FileExists("file2");
 
+int id = fileOpenWrite(name);
+fileWriteChar(id, data);
+fileWriteData(id, pData, nWriteLen);
+fileWriteFloat(id, data);
+fileWriteLong(id, data);
+fileWriteShort(id, data);
+
+
+
+
+
+fileClose(id);
 
 //	startTask(sensors);
 	start_init_main();
