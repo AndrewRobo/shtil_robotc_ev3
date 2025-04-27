@@ -26,11 +26,12 @@ const int v_max=100;
 
 
 //include
+/*
 #include "lib/sensor3_lib.c";
 #include "lib/init_lib.c";
 #include "lib/move_lib.c";
 #include "lib/lib_turn.c";
-
+*/
 task main()
 {
 	//int fd = FileOpenWrite("trt.txt");
@@ -39,12 +40,32 @@ task main()
 
 bEv3FileExists("file2");
 
+char data1 = '.';
+char * pData = "test writing ";
+float data2 = 314.2;
+long data3 = 5000000;
+short data4 = 3200;
+
 int id = fileOpenWrite(name);
-fileWriteChar(id, data);
-fileWriteData(id, pData, nWriteLen);
-fileWriteFloat(id, data);
-fileWriteLong(id, data);
-fileWriteShort(id, data);
+fileWriteChar(id, data1);
+
+fileWriteData(id, pData, 9);
+fileWriteChar(id, data1);
+
+
+fileWriteFloat(id, data2);
+fileWriteChar(id, data1);
+
+
+fileWriteLong(id, data3);
+fileWriteChar(id, data1);
+
+//fileWriteData(id, data3,1);
+fileWriteChar(id, data1);
+
+
+fileWriteShort(id, data4);
+fileWriteChar(id, data1);
 
 
 
@@ -53,29 +74,29 @@ fileWriteShort(id, data);
 fileClose(id);
 
 //	startTask(sensors);
-	start_init_main();
+  //	start_init_main();
 	//------------------------------------------------------------------------------------------
 
 
-	mvGyroRightToEncoder(4000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToNose(0,80);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-	turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+//	mvGyroRightToEncoder(4000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+//	mvGyroRightToNose(0,80);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
+//	turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(250, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
-	mvGyroRightToNose(-90,70);		 /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+//	mvGyroRightToEncoder(250, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
+//	mvGyroRightToNose(-90,70);		 /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
+//	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
-	mvGyroRightToNose(-180,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
-	turn(-270, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
+//	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
+//	mvGyroRightToNose(-180,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
+//	turn(-270, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
-	mvGyroRightToNose(-270,40);			/*(int giroTagetXZ, int stoop)*/ 		   playTone(600,10);
-
-
+//	mvGyroRightToNose(-270,40);			/*(int giroTagetXZ, int stoop)*/ 		   playTone(600,10);
 
 
 
 
-	////////////////   END
-	dispEndTimer();
-	}
+
+
+////////////////   END
+//dispEndTimer();
+}
