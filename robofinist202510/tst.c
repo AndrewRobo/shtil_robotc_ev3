@@ -12,9 +12,9 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-string logname = "../rc-data/n0v2_%d";
+string logname = "n0v2_%d.csv";
 string llog;
-
+ int idr, id, idtmp;
 
 //const short llen = 1650;
  //   static short arr_stamp[llen];
@@ -33,13 +33,18 @@ task main()
 {
 	//resetAllSensorAutoID();
 ubyte ii=0;
-stringFormat(llog,logname,ii);
-while(bEv3FileExists(llog))
-	{
-		ii++;
-		stringFormat(llog,logname,ii);
+//stringFormat(llog,logname,ii);
 
-  }
+//while(bEv3FileExists(llog))
+	do{
+
+		stringFormat(llog,logname,ii);
+    ii++;
+    idr =  fileOpenRead(llog);
+    idtmp =idr;
+    if (idr>0)    {fileClose(idr);}
+
+  }while (idtmp>0);
 
 char data1 = ',';
 char * pData = "test writing test programmi logov v file big new file";
@@ -52,7 +57,7 @@ string sst = "test programmi logov v file big new file";
 	eraseDisplay();
 	displayBigTextLine(1, "LL = %d ", ii);
 
-int id = fileOpenWrite(llog);
+id = fileOpenWrite(llog);
 fileWriteChar(id, data1);
 
 fileWriteData(id, pData, 35);
