@@ -12,44 +12,50 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-const short llen = 1650;
-    static short arr_stamp[llen];
-    int ih = 0;  // indek poslednego izmerenia v massive
-    ubyte arr_code[llen];
-    short arr_value[llen];
- 	int arr_time[llen];
-
-string name="test.txt";
-
-int distans_ot_robota_do_borta=40;
-const int v_max=100;
+string logname = "../rc-data/n0v2_%d";
+string llog;
 
 
-//include
-/*
-#include "lib/sensor3_lib.c";
-#include "lib/init_lib.c";
-#include "lib/move_lib.c";
-#include "lib/lib_turn.c";
-*/
+//const short llen = 1650;
+ //   static short arr_stamp[llen];
+//    ubyte ih = 0;  // indek poslednego izmerenia v massive
+//    ubyte arr_code[llen];
+//    short arr_value[llen];
+// 	int arr_time[llen];
+
+//string name="test.csv";
+//ubyte len_name;
+//int distans_ot_robota_do_borta=40;
+//const int v_max=100;
+
+
 task main()
 {
-	//int fd = FileOpenWrite("trt.txt");
-
 	//resetAllSensorAutoID();
+ubyte ii=0;
+stringFormat(llog,logname,ii);
+while(bEv3FileExists(llog))
+	{
+		ii++;
+		stringFormat(llog,logname,ii);
 
-bEv3FileExists("file2");
+  }
 
-char data1 = '.';
-char * pData = "test writing ";
+char data1 = ',';
+char * pData = "test writing test programmi logov v file big new file";
 float data2 = 314.2;
 long data3 = 5000000;
 short data4 = 3200;
 
-int id = fileOpenWrite(name);
+string sst = "test programmi logov v file big new file";
+ 	//len_name = sizeof(sst);
+	eraseDisplay();
+	displayBigTextLine(1, "LL = %d ", ii);
+
+int id = fileOpenWrite(llog);
 fileWriteChar(id, data1);
 
-fileWriteData(id, pData, 9);
+fileWriteData(id, pData, 35);
 fileWriteChar(id, data1);
 
 
@@ -61,6 +67,8 @@ fileWriteLong(id, data3);
 fileWriteChar(id, data1);
 
 //fileWriteData(id, data3,1);
+
+
 fileWriteChar(id, data1);
 
 
@@ -68,35 +76,8 @@ fileWriteShort(id, data4);
 fileWriteChar(id, data1);
 
 
-
-
-
 fileClose(id);
-
-//	startTask(sensors);
-  //	start_init_main();
-	//------------------------------------------------------------------------------------------
-
-
-//	mvGyroRightToEncoder(4000, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-//	mvGyroRightToNose(0,80);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-//	turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-
-//	mvGyroRightToEncoder(250, -90);  /*(int EnkoderTarget, int giroTagetXZ)*/ 	 playTone(600,10);
-//	mvGyroRightToNose(-90,70);		 /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
-//	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
-
-//	mvGyroRightToEncoder(4000, -180);	/*(int EnkoderTarget, int giroTagetXZ)*/   playTone(600,10);
-//	mvGyroRightToNose(-180,70);			/*(int giroTagetXZ, int stoop)*/		   playTone(600,10);
-//	turn(-270, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
-
-//	mvGyroRightToNose(-270,40);			/*(int giroTagetXZ, int stoop)*/ 		   playTone(600,10);
-
-
-
-
-
-
+sleep(15000);
 ////////////////   END
 //dispEndTimer();
 }
