@@ -12,50 +12,52 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-string logtemplate = "n0v2_%d.csv";
+string logname = "n0v2_%d.csv";
 string llog;
+ int idr, id, idtmp;
 
-int idr, id, idtmp;
+//const short llen = 1650;
+ //   static short arr_stamp[llen];
+//    ubyte ih = 0;  // indek poslednego izmerenia v massive
+//    ubyte arr_code[llen];
+//    short arr_value[llen];
+// 	int arr_time[llen];
 
+//string name="test.csv";
+//ubyte len_name;
+//int distans_ot_robota_do_borta=40;
+//const int v_max=100;
 
 
 task main()
 {
-time1[0]=0;
+	//resetAllSensorAutoID();
 ubyte ii=0;
+//stringFormat(llog,logname,ii);
 
-do  // fomiruem filename
-{
-	stringFormat(llog,logtemplate,ii);
+//while(bEv3FileExists(llog))
+	do{
+
+		stringFormat(llog,logname,ii);
     ii++;
     idr =  fileOpenRead(llog);
     idtmp =idr;
-    if ( idr>0 )
-	    { fileClose(idr); }
-}while (idtmp>0);
+    if (idr>0)    {fileClose(idr);}
+
+  }while (idtmp>0);
 
 char data1 = ',';
-//char comma = ',';
-char LF = '\n';
 char * pData = "test writing test programmi logov v file big new file";
 float data2 = 314.2;
 long data3 = 5000000;
 short data4 = 3200;
 
 string sst = "test programmi logov v file big new file";
-
+ 	//len_name = sizeof(sst);
+	eraseDisplay();
+	displayBigTextLine(1, "LL = %d ", ii);
 
 id = fileOpenWrite(llog);
-
-
-for (short kk=0; kk<1000; kk++)
-{
-	string ts;
-	stringFormat(ts,"timestamp=%d,", time1[0] );
-	fileWriteData(id, ts, 20);
-
-
-
 fileWriteChar(id, data1);
 
 fileWriteData(id, pData, 35);
@@ -78,17 +80,9 @@ fileWriteChar(id, data1);
 fileWriteShort(id, data4);
 fileWriteChar(id, data1);
 
-fileWriteChar(id, LF);
-
-}
-
-	//len_name = sizeof(sst);
-	eraseDisplay();
-	displayBigTextLine(1, "LL = %d ", ii);
-
 
 fileClose(id);
-sleep(5000);
+sleep(15000);
 ////////////////   END
 //dispEndTimer();
 }
