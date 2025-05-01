@@ -12,15 +12,16 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-string logtemplate = "n0v2_%d.csv";
-string llog;
 
 int idr, id, idtmp;
 
 
-
 task main()
 {
+
+string  logtemplate = "n0v2_%d.csv";
+string  llog;
+//= "                                                              ";
 time1[0]=0;
 ubyte ii=0;
 
@@ -34,57 +35,51 @@ do  // fomiruem filename
 	    { fileClose(idr); }
 }while (idtmp>0);
 
-char data1 = ',';
+//char data1 = ',';
 //char comma = ',';
 char LF = '\n';
-char * pData = "test writing test programmi logov v file big new file";
+//char * pData = "test writing test programmi logov v file big new file";
 float data2 = 314.2;
 long data3 = 5000000;
-short data4 = 3200;
+//short data4 = 3200;
 
-string sst = "test programmi logov v file big new file";
+//string sst = "test programmi logov v file big new file";
 
 
 id = fileOpenWrite(llog);
+char * ts= "                    ";
 
 
-for (short kk=0; kk<1000; kk++)
+for (short nn=0; nn<1000; nn++)
 {
-	string ts;
-	stringFormat(ts,"timestamp=%d,", time1[0] );
-	fileWriteData(id, ts, 20);
 
+	sprintf(ts,  "nn=% 3d, ",  nn);
+	fileWriteData(id, ts,8);
+//wait1Msec(10);
+ //ts= "                    ";
+	sprintf(ts,"stamp=% 6d ,",  time1[0]);
+	fileWriteData(id, ts, 14);
+//wait1Msec(10);
+//  ts= "                    ";
+	sprintf(ts, " %4.1f ," ,  data2 );
+	fileWriteData(id, ts, 8);
+//wait1Msec(10);
+//  ts= "                    ";
+	sprintf(ts, "% 7d ," ,  data3 );
+	fileWriteData(id, ts, 10);
+//wait1Msec(10);
 
-
-fileWriteChar(id, data1);
-
-fileWriteData(id, pData, 35);
-fileWriteChar(id, data1);
-
-
-fileWriteFloat(id, data2);
-fileWriteChar(id, data1);
-
-
-fileWriteLong(id, data3);
-fileWriteChar(id, data1);
-
-//fileWriteData(id, data3,1);
-
-
-fileWriteChar(id, data1);
-
-
-fileWriteShort(id, data4);
-fileWriteChar(id, data1);
 
 fileWriteChar(id, LF);
+//wait1Msec(10);
+sleep(10);
+
 
 }
 
 	//len_name = sizeof(sst);
 	eraseDisplay();
-	displayBigTextLine(1, "LL = %d ", ii);
+	displayBigTextLine(1," nfile= % 3d ", ii);
 
 
 fileClose(id);
