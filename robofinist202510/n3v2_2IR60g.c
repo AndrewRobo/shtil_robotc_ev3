@@ -37,40 +37,30 @@ task main()
 	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(550, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(100, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+//	mvGyroRightToEncoder(100, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
-
-
-	turn(-80, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-	mvGyroToEncoder(220, -90);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
-	turn(-160, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-
-
+	turn(-60, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-120, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	mvGyroRightToLeftBui(-180, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(550, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToLeftBui(-180, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(100, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+//	mvGyroRightToEncoder(100, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
-
-
-//	mvGyroRightToEncoder(3600, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-
-
-	turn(-260, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-	mvGyroToEncoder(220, -270);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
-	turn(-340, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-240, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-300, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-360, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 
 	mvGyroRightToLeftBui(-360, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(750, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	mvGyroRightToLeftBui(-360, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
-	mvGyroRightToEncoder(100, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+//	mvGyroRightToEncoder(100, -360);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 
-
-	turn(-430, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-	mvGyroToEncoder(300, -450);	/*(int EnkoderTarget, int gyroTaget)*/	playTone(600,10);
-	turn(-530, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-420, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-480, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-540, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	mvGyroRightToNose(-540,25);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 
