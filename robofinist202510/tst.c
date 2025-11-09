@@ -24,7 +24,7 @@ task main()
 time1[0]=0;
 ubyte ii=0;
 
-do  // fomiruem filename
+do  // formiruem new filename
 {
 	stringFormat(llog,logtemplate,ii);
     ii++;
