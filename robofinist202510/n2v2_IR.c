@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=60; //70=40cm 60 = 35cm 55=30cm 40=20cm
+int distans_ot_robota_do_borta=30; //70=40cm 60 = 35cm 55=30cm 40=20cm
 const int v_max=100;
 
 //include
@@ -65,7 +65,7 @@ task main()
 	mvGyroRightToEncoder(360, 0);   /*(int EnkoderTarget, int giroTagetXZ)*/	playTone(600,10);
 	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/			playTone(600,10);
 
-	TurnAnRadius(-90, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
+	TurnAnRadius(-55, 100, -160);	/*(int v_left, int v_right, int giroTagetXZ)*/playTone(600,10);
 
 	set_ugol_radar(0);
 

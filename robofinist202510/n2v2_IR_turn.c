@@ -11,7 +11,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=70; //70=40cm 60 = 35cm 55=30cm 40=20cm
+int distans_ot_robota_do_borta=30; //70=40cm 60 = 35cm 55=30cm 40=20cm
 const int v_max=100;
 
 //include

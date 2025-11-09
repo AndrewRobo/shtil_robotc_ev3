@@ -12,18 +12,15 @@
 #define dlog 1;
 //preprocessor dla datalog
 
-string logtemplate = "n0v2_%d.csv";
-string llog;
 
 int idr, id, idtmp;
-
-
+char  tss[5908];
+char * ts = "";
 
 task main()
 {
-time1[0]=0;
-ubyte ii=0;
 
+<<<<<<< HEAD
 do  // formiruem new filename
 {
 	stringFormat(llog,logtemplate,ii);
@@ -33,62 +30,93 @@ do  // formiruem new filename
     if ( idr>0 )
 	    { fileClose(idr); }
 }while (idtmp>0);
+=======
+	string  logtemplate = "n0v2_%d.csv";
+	string  llog;
+	//= "                                                              ";
+	time1[0]=0;
+	ubyte ii=0;
+>>>>>>> cdac26848dccb5b67c40dded11bc059362670b76
 
-char data1 = ',';
-//char comma = ',';
-char LF = '\n';
-char * pData = "test writing test programmi logov v file big new file";
-float data2 = 314.2;
-long data3 = 5000000;
-short data4 = 3200;
-
-string sst = "test programmi logov v file big new file";
-
-
-id = fileOpenWrite(llog);
-
-
-for (short kk=0; kk<1000; kk++)
-{
-	string ts;
-	stringFormat(ts,"timestamp=%d,", time1[0] );
-	fileWriteData(id, ts, 20);
+	do  // fomiruem filename
+	{
+		stringFormat(llog,logtemplate,ii);
+		ii++;
+		idr =  fileOpenRead(llog);
+		idtmp =idr;
+		if ( idr>0 )
+		{ fileClose(idr); }
+	}while (idtmp>0);
 
 
+	ubyte lss=strlen(logtemplate);
 
-fileWriteChar(id, data1);
+	eraseDisplay();
+	displayBigTextLine(1,"nfile= % 3d ", ii);
+	displayBigTextLine(3,"strlen= % 3d ", lss);
 
-fileWriteData(id, pData, 35);
-fileWriteChar(id, data1);
+	//char data1 = ',';
+	char comma = ',';
+	char LF = '\n';
+	//char * pData = "test writing test programmi logov v file big new file";
+	float data2 = 314.2;
+	long data3 = 5000000;
+	//short data4 = 3200;
 
-
-fileWriteFloat(id, data2);
-fileWriteChar(id, data1);
-
-
-fileWriteLong(id, data3);
-fileWriteChar(id, data1);
-
-//fileWriteData(id, data3,1);
-
-
-fileWriteChar(id, data1);
+	//string sst = "test programmi logov v file big new file";
 
 
-fileWriteShort(id, data4);
-fileWriteChar(id, data1);
+	id = fileOpenWrite(llog);
 
-fileWriteChar(id, LF);
+	//"                         ";
+	displayBigTextLine(5,"len ts= % 3d ", strlen(ts));
 
-}
+
+	for (short nn=0; nn<100; nn++)
+	{
+
+		sprintf(ts,  "% 4d",  nn);
+		strcat(tss,ts);
+		//fileWriteData(id, ts,4);
+		//fileWriteChar(id, comma);
+
+		//wait1Msec(10);
+		//ts= "                    ";
+		sprintf(ts,"% 7d",  time1[0] );
+		strcat(tss,ts);
+		//fileWriteData(id, ts, 7);
+		//fileWriteChar(id, comma);
+
+		//wait1Msec(10);
+		//  ts= "                    ";
+		sprintf(ts, "% 5.1f" ,  data2 );
+		strcat(tss,ts);
+		//fileWriteData(id, ts, 6);
+		//fileWriteChar(id, comma);
+		//wait1Msec(10);
+		//  ts= "                    ";
+		sprintf(ts, "% 8d" ,  data3 );
+		strcat(tss,ts);
+		//fileWriteData(id, ts, 8);
+		//fileWriteChar(id, comma);
+		//wait1Msec(10);
+
+    //strcat(tss,'\n');
+		//fileWriteChar(id, LF);
+		//wait1Msec(10);
+		//sleep(10);
+
+
+	}
 
 	//len_name = sizeof(sst);
-	eraseDisplay();
-	displayBigTextLine(1, "LL = %d ", ii);
+short ff=strlen(tss);
+displayBigTextLine(7,"l_tss= % 3d ", ff);
+fileWriteData(id, tss, ff);
 
 
-fileClose(id);
-sleep(5000);
-////////////////   END
-//dispEndTimer();
+	fileClose(id);
+	sleep(13000);
+	////////////////   END
+	//dispEndTimer();
 }
