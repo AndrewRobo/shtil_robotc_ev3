@@ -20,11 +20,23 @@ char * ts = "";
 task main()
 {
 
+<<<<<<< HEAD
+do  // formiruem new filename
+{
+	stringFormat(llog,logtemplate,ii);
+    ii++;
+    idr =  fileOpenRead(llog);
+    idtmp =idr;
+    if ( idr>0 )
+	    { fileClose(idr); }
+}while (idtmp>0);
+=======
 	string  logtemplate = "n0v2_%d.csv";
 	string  llog;
 	//= "                                                              ";
 	time1[0]=0;
 	ubyte ii=0;
+>>>>>>> cdac26848dccb5b67c40dded11bc059362670b76
 
 	do  // fomiruem filename
 	{
