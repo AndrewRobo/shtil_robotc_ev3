@@ -13,7 +13,7 @@
 //global variable
 
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=80;
+int distans_ot_robota_do_borta=65;
 const int v_max=100;
 
 

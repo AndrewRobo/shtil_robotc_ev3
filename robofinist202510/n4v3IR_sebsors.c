@@ -10,7 +10,7 @@
 //#define dlog 1;
 //global variabl
 //int rul;  // tekuschij ugol rulua   global
-int distans_ot_robota_do_borta=30;
+int distans_ot_robota_do_borta=65;
 const int v_max=100;
 //include
 #include "lib/sensor3_lib.c";
@@ -30,18 +30,18 @@ task main()
 
 
 	mvGyroRightToEncoder(700, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 93); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 	mvGyroRightToEncoder(720, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
+	mvGyroRightToLeftBui(0, 93); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
 
 	turn(-60, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-120, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	mvGyroRightToEncoder(200, -180);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
-	turn(-235, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
+	turn(-220, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 	set_ugol_radar(-35);
-  mvGyroToNose(-230, 55);
+  mvGyroToNose(-215, 75);
 
 	turn(-185, 100);/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
@@ -49,11 +49,15 @@ task main()
 
 	turn(-120, 100);					/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-60, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
+	mvGyroRightToEncoder(100, -60);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
 	turn(-5, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
 	set_ugol_radar(45);
+
+		mvGyroRightToEncoder(200, 0);	  /*(int EnkoderTarget, int giroTagetXZ)*/	 playTone(600,10);
+
 	turn(55, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
-	mvGyroToNose(45, 70);
+	mvGyroToNose(45, 80);
 	turn(5, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 	set_ugol_radar(5);
 	mvGyroRightToLeftBui(0, 90); 	/*(int giroTagetXZ, int LeftBui)*/		 playTone(600,10);
@@ -62,8 +66,8 @@ task main()
 	turn(-120, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 	turn(-170, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	distans_ot_robota_do_borta=30;
-	mvGyroRightToNose(-180,25);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
+	distans_ot_robota_do_borta=60;
+	mvGyroRightToNose(-180,10);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 
 
 	////////////////   END

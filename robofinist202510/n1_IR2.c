@@ -11,7 +11,7 @@
 //#define dlog 1; //esli dlog opredelen tocompiliruemcz s datalog
 
 //globals
-int distans_ot_robota_do_borta=33;
+int distans_ot_robota_do_borta=35;
 const int v_max=100;
 
 
@@ -28,7 +28,7 @@ task main()
 	//------------------------------------------------------------------------------------------
 
 
-	mvGyroRightToEncoder(3500, 0);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
+	mvGyroRightToEncoder(3000, 0);	  /*(int EnkoderTarget, int gyroTaget)*/	 playTone(600,10);
 	mvGyroRightToNose(0,70);		  /*(int giroTagetXZ, int stoop)*/			 playTone(600,10);
 	turn(-90, 100);					  /*(int new_kurs, int v_max)*/				 playTone(600,10);
 
@@ -36,7 +36,7 @@ task main()
 	mvGyroRightToNose(-90,70);		 /*(int gyroTaget, int stoop)*/			 playTone(600,10);
 	turn(-160, 100);				/*(int new_kurs, int v_max)*/				 playTone(600,10);
 
-	mvGyroRightToEncoder(3500, -180);	/*(int EnkoderTarget, int gyroTaget)*/   playTone(600,10);
+	mvGyroRightToEncoder(3000, -180);	/*(int EnkoderTarget, int gyroTaget)*/   playTone(600,10);
 	mvGyroRightToNose(-180,70);			/*(int giroTaget, int stoop)*/		   playTone(600,10);
 	turn(-260, 100);					/*(int new_kurs, int v_max)*/ 			   playTone(600,10);
 
